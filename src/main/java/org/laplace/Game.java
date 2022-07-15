@@ -5,6 +5,7 @@ import org.laplace.scenes.ScenesGeneric;
 import org.laplace.scenes.gamescene.GameScene;
 import org.laplace.scenes.mainmenu.MainMenu;
 import org.laplace.systems.modelmanager.ModelManager;
+import org.laplace.systems.renderer.shadermanager.ShaderManager;
 
 import static com.raylib.Jaylib.RAYWHITE;
 import static com.raylib.Jaylib.VIOLET;
@@ -12,18 +13,23 @@ import static com.raylib.Raylib.*;
 import static com.raylib.Raylib.CloseWindow;
 
 public class Game {
+    private static int windowWidth = 1280;
+    private static int windowHeight = 720;
+
+    public static int pixelezationRate = 4;
     private static Raylib.Camera3D camera;
     private boolean gameRunning;
     private static ModelManager modelManager;
+    private static ShaderManager shaderManager;
     ScenesGeneric activeScene;
 
     //Game constructor
     public Game() {
-        InitWindow(800, 450, "Demo");
+        InitWindow(windowWidth, windowHeight, "Demo");
         SetTargetFPS(60);
 
         camera = new Raylib.Camera3D()
-                ._position(new Raylib.Vector3().x(18).y(16).z(18))
+                ._position(new Raylib.Vector3().x(5).y(4).z(5))
                 .target(new Raylib.Vector3())
                 .up(new Raylib.Vector3().x(0).y(1).z(0))
                 .fovy(45).projection(CAMERA_PERSPECTIVE);
@@ -34,6 +40,7 @@ public class Game {
 
         modelManager = new ModelManager();
         activeScene = new GameScene();
+        shaderManager = new ShaderManager();
     }
 
     //Main game loop
@@ -65,7 +72,21 @@ public class Game {
         return modelManager;
     }
 
+    public static ShaderManager getShaderManager() {
+        return shaderManager;
+    }
+
     public Game getInstance() {
         return this;
+    }
+
+    public static int getWindowWidth() {
+        return windowWidth;
+    }
+    public static int getWindowHeight() {
+        return windowHeight;
+    }
+    public static int getPixelezationRate() {
+        return pixelezationRate;
     }
 }
