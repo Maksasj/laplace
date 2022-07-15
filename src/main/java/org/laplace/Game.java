@@ -1,6 +1,8 @@
 package org.laplace;
 
 import com.raylib.Raylib;
+import org.laplace.scenes.ScenesGeneric;
+import org.laplace.scenes.mainmenu.MainMenu;
 
 import static com.raylib.Jaylib.RAYWHITE;
 import static com.raylib.Jaylib.VIOLET;
@@ -8,8 +10,10 @@ import static com.raylib.Raylib.*;
 import static com.raylib.Raylib.CloseWindow;
 
 public class Game {
-    private Raylib.Camera3D camera;
+    private static Raylib.Camera3D camera;
     private boolean gameRunning;
+
+    ScenesGeneric activeScene;
 
     //Game constructor
     public Game() {
@@ -24,32 +28,20 @@ public class Game {
         SetCameraMode(camera, CAMERA_ORBITAL);
 
         gameRunning = true;
-    }
-
-    public void handleDrawing() {
-        BeginDrawing();
-            ClearBackground(RAYWHITE);
-
-            BeginMode3D(camera); //Scope for 3d stuff
-                DrawGrid(20, 1.0f);
-            EndMode3D();
-
-            //There will be scope for 2d staff, guid soo on
-            DrawText("Hello world", 190, 200, 20, VIOLET);
-            //DrawFPS(20, 20);
-        EndDrawing();
+        activeScene = new MainMenu();
     }
 
     //Main game loop
     public void run() {
         while (gameRunning) {
-            UpdateCamera(camera);
-
-            this.handleDrawing();
+            activeScene.Update();
+            activeScene.Draw();
         }
 
         CloseWindow();
-        System.out.println("Hello world!");
+    }
+    public void handleDrawing() {
+        activeScene.Draw();
     }
 
     public void setGameRunning(boolean value) {
@@ -58,5 +50,13 @@ public class Game {
 
     public void close() {
         setGameRunning(false);
+    }
+
+    public static Raylib.Camera3D getCamera() {
+        return camera;
+    }
+
+    public Game getInstance() {
+        return this;
     }
 }
