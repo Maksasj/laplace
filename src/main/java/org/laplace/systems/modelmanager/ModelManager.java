@@ -6,17 +6,19 @@ import com.raylib.Raylib;
 import java.util.HashMap;
 
 import static com.raylib.Jaylib.RAYWHITE;
-import static com.raylib.Jaylib.WHITE;
 
 public class ModelManager {
     public HashMap<String, Raylib.Model> models;
 
     public ModelManager() {
         models = new HashMap<String, Raylib.Model>();
+
+        this.LoadModel("goblin", "target/models/goblin/scene.gltf");
     }
 
     public void LoadModel(String name, String path) {
-        Raylib.Model tower = Raylib.LoadModel(path);
+        Raylib.Model model = Raylib.LoadModel(path);
+        models.put(name, model);
     }
 
     public Raylib.Model getModel(String name) {

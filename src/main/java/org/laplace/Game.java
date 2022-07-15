@@ -2,7 +2,9 @@ package org.laplace;
 
 import com.raylib.Raylib;
 import org.laplace.scenes.ScenesGeneric;
+import org.laplace.scenes.gamescene.GameScene;
 import org.laplace.scenes.mainmenu.MainMenu;
+import org.laplace.systems.modelmanager.ModelManager;
 
 import static com.raylib.Jaylib.RAYWHITE;
 import static com.raylib.Jaylib.VIOLET;
@@ -12,7 +14,7 @@ import static com.raylib.Raylib.CloseWindow;
 public class Game {
     private static Raylib.Camera3D camera;
     private boolean gameRunning;
-
+    private static ModelManager modelManager;
     ScenesGeneric activeScene;
 
     //Game constructor
@@ -28,7 +30,10 @@ public class Game {
         SetCameraMode(camera, CAMERA_ORBITAL);
 
         gameRunning = true;
-        activeScene = new MainMenu();
+        //activeScene = new MainMenu();
+
+        modelManager = new ModelManager();
+        activeScene = new GameScene();
     }
 
     //Main game loop
@@ -54,6 +59,10 @@ public class Game {
 
     public static Raylib.Camera3D getCamera() {
         return camera;
+    }
+
+    public static ModelManager getModelManager() {
+        return modelManager;
     }
 
     public Game getInstance() {
