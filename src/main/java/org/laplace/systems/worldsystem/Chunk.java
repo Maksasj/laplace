@@ -1,17 +1,14 @@
 package org.laplace.systems.worldsystem;
 
-import com.raylib.Jaylib;
-
 import org.laplace.systems.objectsystem.GameEntity;
 import org.laplace.systems.objectsystem.GameEntitys.*;
-import org.laplace.systems.worldsystem.RandomChankType;
 
 
 public class Chunk extends ChunkMesh{
     private int X; //relative to world
     private int Y; //relative to world
     private ChunkTypes chankType;
-    private GameEntity[][] gameObjects = new GameEntity[8][8];
+    private GameEntity[][] gameObjects = new GameEntity[10][10];
 
     public Chunk(int X, int Y) {
         super(X, Y);
@@ -34,8 +31,8 @@ public class Chunk extends ChunkMesh{
 
         chankType = ChunkTypes.NULL;
 
-        for(int x = 0; x < 8; x++) {
-            for(int y = 0; y < 8; y++) {
+        for(int x = 1; x < 9; x++) {
+            for(int y = 1; y < 9; y++) {
                 gameObjects[x][y] = new Goblin(x*2 + 8*X*2, y*2 + 8*Y*2); //Testing
             }
         }
@@ -48,8 +45,8 @@ public class Chunk extends ChunkMesh{
     public void Draw() {
         this.DrawChunkMesh();
 
-        for(int x = 0; x < 8; x++) {
-            for(int y = 0; y < 8; y++) {
+        for(int x = 1; x < 9; x++) {
+            for(int y = 1; y < 9; y++) {
                 if(gameObjects[x][y] != null) {
                     gameObjects[x][y].Draw();
                 }
@@ -58,8 +55,8 @@ public class Chunk extends ChunkMesh{
     }
 
     public void Update() {
-        for(int x = 0; x < 8; x++) {
-            for(int y = 0; y < 8; y++) {
+        for(int x = 1; x < 9; x++) {
+            for(int y = 1; y < 9; y++) {
                 if(gameObjects[x][y] != null) {
                     gameObjects[x][y].Update();
                 }
