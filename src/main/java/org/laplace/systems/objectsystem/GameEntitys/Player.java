@@ -20,7 +20,7 @@ public class Player extends GameEntity {
         this.y = y;
 
         this.setModelScale(0.3f);
-        this.setModelOffset(new Jaylib.Vector3(0.2f, 0.0f,0.2f));
+        this.setModelOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f));
         this.setRotAxis(new Jaylib.Vector3(1.0f, 0.0f, 0.0f));
         this.setRot(270);
     }
@@ -35,8 +35,9 @@ public class Player extends GameEntity {
 
         if(!walkCd) {
             if(IsKeyPressed(87)) { //W
-                this.setRotAxis(new Jaylib.Vector3(-1.0f, 1.0f, 0.0f));
-                this.setRot(90);
+                this.setModelOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f));
+                this.setRotAxis(new Jaylib.Vector3(1.0f, 1.0f, 1.0f));
+                this.setRot(240.0f);
 
                 if(!GameWorld.ChechIfWall(x - 1, y)) {
                     if(GameWorld.getEntity(x - 1, y) != null) {
@@ -51,6 +52,10 @@ public class Player extends GameEntity {
             }
 
             if(IsKeyPressed(83)) { //S
+                this.setModelOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f));
+                this.setRotAxis(new Jaylib.Vector3(1.0f, -1.0f, -1.0f));
+                this.setRot(240);
+
                 if(!GameWorld.ChechIfWall(x + 1, y)) {
                     if(GameWorld.getEntity(x + 1, y) != null) {
                         //BATLE LOGIC
@@ -63,6 +68,10 @@ public class Player extends GameEntity {
             }
 
             if(IsKeyPressed(68)) { //D
+                this.setModelOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f));
+                this.setRotAxis(new Jaylib.Vector3(1.0f, 0.0f, 0.0f));
+                this.setRot(270);
+
                 if(!GameWorld.ChechIfWall(x, y + 1)) {
                     if(GameWorld.getEntity(x, y + 1) != null) {
                         //BATLE LOGIC
@@ -76,6 +85,10 @@ public class Player extends GameEntity {
             }
 
             if(IsKeyPressed(65)) { //A
+                this.setModelOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f));
+                this.setRotAxis(new Jaylib.Vector3(0.0f, 0.7f, 0.7f));
+                this.setRot(180);
+
                 if(!GameWorld.ChechIfWall(x, y - 1)) {
                     if(GameWorld.getEntity(x, y - 1) != null) {
 
