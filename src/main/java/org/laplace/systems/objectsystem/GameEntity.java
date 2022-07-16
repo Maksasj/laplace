@@ -1,8 +1,12 @@
 package org.laplace.systems.objectsystem;
 
 import com.raylib.Jaylib;
+import com.raylib.Raylib;
 import org.laplace.Game;
 import org.laplace.systems.worldsystem.GameWorld;
+
+import static com.raylib.Jaylib.RAYWHITE;
+import static com.raylib.Raylib.LoadRenderTexture;
 
 public class GameEntity extends GameObject{
     protected int x = 0; //Relative to world cords
@@ -44,7 +48,6 @@ public class GameEntity extends GameObject{
     @Override
     public void Update() {
         this.setPos(new Jaylib.Vector3(this.x, 0.0f, this.y));
-
         if(health <= 0) {
             GameWorld.killEnity(x, y);
         }
@@ -64,6 +67,35 @@ public class GameEntity extends GameObject{
                 rotAxis,
                 rot
                 );
+
+        //Healt bar drawing
+        if(getName() != "player") {
+            if(health != maxhealth) {
+                //oid DrawBillboardRec(Camera camera, Texture2D texture, Rectangle source, Vector3 position, Vector2 size, Color tint);
+
+                Raylib.DrawBillboard(
+                        Game.getCamera(),
+                        Game.getTextureManager().GetTexture("healthbar"),
+                        new Jaylib.Vector3(
+                                pos.x() + offset.x(),
+                                pos.y() + offset.y() + 1.5f,
+                                pos.z() + offset.z()
+                        ),
+                        0.30f,
+                        RAYWHITE);
+
+                Raylib.DrawBillboard(
+                        Game.getCamera(),
+                        Game.getTextureManager().GetTexture("healthbar"),
+                        new Jaylib.Vector3(
+                                pos.x() + offset.x(),
+                                pos.y() + offset.y() + 1.5f,
+                                pos.z() + offset.z()
+                        ),
+                        0.30f,
+                        RAYWHITE);
+            }
+        }
     }
 
     public void setModelScale(float value) {

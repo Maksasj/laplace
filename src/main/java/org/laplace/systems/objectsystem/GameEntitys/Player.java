@@ -35,6 +35,9 @@ public class Player extends GameEntity {
 
         if(!walkCd) {
             if(IsKeyPressed(87)) { //W
+                this.setRotAxis(new Jaylib.Vector3(0.0f, 0.5f, 1.0f));
+                this.setRot(90);
+
                 if(!GameWorld.ChechIfWall(x - 1, y)) {
                     if(GameWorld.getEntity(x - 1, y) != null) {
 
