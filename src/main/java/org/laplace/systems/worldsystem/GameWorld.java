@@ -125,11 +125,10 @@ public class GameWorld {
     public void GenerateWorld() {
     
         chunks[0][0] = new Chunk(0,0, ChunkTypes.TWO_UP_RIGHT_DOOR);
-        chunks[0][0].CreatePlayer(5, 3);
-        //GenerateChunk(1, 0);
-        //GenerateChunk(0, 1);
+        GenerateChunk(1, 0);
+        GenerateChunk(0, 1);
 
-        /*
+
         int buff[][] = new int[64][3];
         int l = 0;
             for (int i = 0; i < 8; i++) {
@@ -140,109 +139,143 @@ public class GameWorld {
                         l++;
                 }
             }
-        int some_action = 0;
-        while(some_action <= 64)
-        {
+        boolean some_action = true;
+        while(some_action)
+        {;
+            some_action = false;
             for (int i = 0; i < 64; i++) {
                 if (buff[i][2] == 0 && chunks[buff[i][0]][buff[i][1]] != null) {
-                    switch (chunks[buff[i][0]][buff[i][1]].getType()) {
+                    switch (chunks[buff[i][0]][buff[i][1]].getType())
+                    {
                         case ONE_UP_DOOR:
-                            if((buff[i][1] + 1) < 8) {
-                                if (chunks[buff[i][0]][buff[i][1] + 1] == null) {
-                                    chunks[buff[i][0]][buff[i][1] + 1] = new Chunk(buff[i][0], (buff[i][1] + 1));
-                                    buff[i][2] = 1;
-                                    some_action = 0;
-                                } else {
-                                    buff[i][2] = 1;
-                                    some_action = 0;
-                                }
-                            }
+                            GenerateUpChunk(buff, i);
+                            buff[i][2] = 1;
+                            some_action = true;
                             break;
-
-                        case ONE_RIGHT_DOOR:
-                            if((buff[i][0] + 1) < 8) {
-                                if (chunks[buff[i][0] + 1][buff[i][1]] == null) {
-                                    chunks[buff[i][0] + 1][buff[i][1]] = new Chunk((buff[i][0] + 1), buff[i][1]);
-                                    buff[i][2] = 1;
-                                    some_action = 0;
-                                } else {
-                                    buff[i][2] = 1;
-                                    some_action = 0;
-                                }
-                            }
-                            break;
-
-                        case ONE_DOWN_DOOR:
-                            if ((buff[i][1] - 1) >= 0) {
-                                if (chunks[buff[i][0]][buff[i][1] - 1] == null) {
-                                    chunks[buff[i][0]][buff[i][1] - 1] = new Chunk(buff[i][0], (buff[i][1] - 1));
-                                    buff[i][2] = 1;
-                                    some_action = 0;
-                                } else {
-                                    buff[i][2] = 1;
-                                    some_action = 0;
-                                }
-                            }
-                            break;
-
                         case ONE_LEFT_DOOR:
-                            if ((buff[i][0] - 1) >= 0) {
-                                if (chunks[buff[i][0] - 1][buff[i][1]] == null) {
-                                    chunks[buff[i][0] - 1][buff[i][1]] = new Chunk((buff[i][0] - 1), buff[i][1]);
-                                    buff[i][2] = 1;
-                                    some_action = 0;
-                                } else {
-                                    buff[i][2] = 1;
-                                    some_action = 0;
-                                }
-                            }
+                            GenerateLeftChunk(buff, i);
+                            buff[i][2] = 1;
+                            some_action = true;
                             break;
-                            /*
+                        case ONE_RIGHT_DOOR:
+                            GenerateRightChunk(buff, i);
+                            buff[i][2] = 1;
+                            some_action = true;
+                            break;
+                        case ONE_DOWN_DOOR:
+                            GenerateDownChunk(buff, i);
+                            buff[i][2] = 1;
+                            some_action = true;
+                            break;
+
                         case TWO_LEFT_RIGHT_DOOR:
+                            GenerateLeftChunk(buff, i);
+                            GenerateRightChunk(buff, i);
+                            buff[i][2] = 1;
+                            some_action = true;
                             break;
                         case TWO_UP_DOWN_DOOR:
+                            GenerateUpChunk(buff, i);
+                            GenerateDownChunk(buff, i);
+                            buff[i][2] = 1;
+                            some_action = true;
                             break;
                         case TWO_LEFT_UP_DOOR:
+                            GenerateLeftChunk(buff, i);
+                            GenerateUpChunk(buff, i);
+                            buff[i][2] = 1;
+                            some_action = true;
                             break;
                         case TWO_UP_RIGHT_DOOR:
+                            GenerateUpChunk(buff, i);
+                            GenerateRightChunk(buff, i);
+                            buff[i][2] = 1;
+                            some_action = true;
                             break;
                         case TWO_RIGHT_DOWN_DOOR:
+                            GenerateRightChunk(buff, i);
+                            GenerateDownChunk(buff, i);
+                            buff[i][2] = 1;
+                            some_action = true;
                             break;
                         case TWO_DOWN_LEFT_DOOR:
+                            GenerateDownChunk(buff, i);
+                            GenerateLeftChunk(buff, i);
+                            buff[i][2] = 1;
+                            some_action = true;
                             break;
                         case THREE_F_UP_DOOR:
+                            GenerateLeftChunk(buff, i);
+                            GenerateRightChunk(buff, i);
+                            GenerateDownChunk(buff, i);
+                            buff[i][2] = 1;
+                            some_action = true;
                             break;
                         case THREE_F_RIGHT_DOOR:
+                            GenerateDownChunk(buff, i);
+                            GenerateUpChunk(buff, i);
+                            GenerateLeftChunk(buff, i);
+                            buff[i][2] = 1;
+                            some_action = true;
                             break;
                         case THREE_F_DOWN_DOOR:
+                            GenerateUpChunk(buff, i);
+                            GenerateLeftChunk(buff, i);
+                            GenerateRightChunk(buff, i);
+                            buff[i][2] = 1;
+                            some_action = true;
                             break;
                         case THREE_F_LEFT_DOOR:
+                            GenerateUpChunk(buff, i);
+                            GenerateRightChunk(buff, i);
+                            GenerateDownChunk(buff, i);
+                            buff[i][2] = 1;
+                            some_action = true;
                             break;
                         case FOUR_DOOR:
-                            break;
-                        case NULL:
-                            int pull[] = new int[15];
-                            for(int a = 0; a < 15; a++)
-                            {
-                                pull[a] = 1;
-                            }
-                            if(chunks[buff[i][0] + 1][buff[i][1]] != null)
-                            {
-
-                                pull[1] = 0;
-
-                            }
-                            break;
-                        default:
+                            GenerateUpChunk(buff, i);
+                            GenerateRightChunk(buff, i);
+                            GenerateLeftChunk(buff, i);
+                            GenerateDownChunk(buff, i);
+                            buff[i][2] = 1;
+                            some_action = true;
                             break;
                     }
                 }
-                some_action++;
             }
         }
-        */
+
+        chunks[0][0].CreatePlayer(5, 3);
     }
 
+    public void GenerateRightChunk(int buff[][], int i)
+    {
+        if (buff[i][0] + 1 <= 7 && chunks[buff[i][0] + 1][buff[i][1]] == null)
+        {
+            GenerateChunk(buff[i][0] + 1, buff[i][1]);
+        }
+    }
+    public void GenerateLeftChunk(int buff[][], int i)
+    {
+        if (buff[i][0] - 1 >= 0 && chunks[buff[i][0] - 1][buff[i][1]] == null)
+        {
+            GenerateChunk(buff[i][0] - 1, buff[i][1]);
+        }
+    }
+    public void GenerateUpChunk(int buff[][], int i)
+    {
+        if (buff[i][1] + 1 <= 7 && chunks[buff[i][0]][buff[i][1] + 1] == null)
+        {
+            GenerateChunk(buff[i][0], buff[i][1] + 1);
+        }
+    }
+    public void GenerateDownChunk(int buff[][], int i)
+    {
+        if (buff[i][1] - 1 >= 0 && chunks[buff[i][0]][buff[i][1] - 1] == null)
+        {
+            GenerateChunk(buff[i][0], buff[i][1] - 1);
+        }
+    }
     public static void GenerateChunk(int x, int y)
     {
         int[] pull = new int[15];

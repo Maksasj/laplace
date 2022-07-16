@@ -491,7 +491,7 @@ public class Chunk extends ChunkMesh {
         this.RegenerateMesh();
         this.LoadAtlas();
         //Objects generation
-
+        /*
         for(int x = 1; x < 9; x++) {
             for(int y = 1; y < 9; y++) {
 
@@ -502,7 +502,7 @@ public class Chunk extends ChunkMesh {
                     gameObjects[x][y] = new Goblin(x*2 + 10*X*2, y*2 + 10*Y*2); //Testing
                 }
             }
-        }
+        }*/
     }
 
     public void setEntity(GameEntity entity, int x, int y) {
