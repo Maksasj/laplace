@@ -552,8 +552,8 @@ public class Chunk extends ChunkMesh {
     public void Draw() {
         this.DrawChunkMesh();
 
-        for(int x = 1; x < 9; x++) {
-            for(int y = 1; y < 9; y++) {
+        for(int x = 0; x < 10; x++) {
+            for(int y = 0; y < 10; y++) {
                 if(gameObjects[x][y] != null) {
                     gameObjects[x][y].Draw();
                 }
@@ -573,8 +573,8 @@ public class Chunk extends ChunkMesh {
     }
 
     public void Update() {
-        for(int x = 1; x < 9; x++) {
-            for(int y = 1; y < 9; y++) {
+        for(int x = 0; x < 10; x++) {
+            for(int y = 0; y < 10; y++) {
                 if(gameObjects[x][y] != null) {
                     gameObjects[x][y].Update();
                 }
