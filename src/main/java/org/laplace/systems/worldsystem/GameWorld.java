@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 public class GameWorld {
-    public Chunk[][] chunks = new Chunk[8][8];
+    public static Chunk[][] chunks = new Chunk[8][8];
 
     public GameWorld() {
         this.GenerateWorld();
@@ -24,6 +24,28 @@ public class GameWorld {
         if(chunks[x][y] != null) {
             chunks[x][y].Update();
         }
+    }
+
+    public static boolean ChechIfWall(int ix, int iy) {
+        int X = ix / 20;
+        int Y = iy / 20;
+
+        int x = ix % 20;
+        int y = iy % 20;
+
+        if(X < 0 || X > 8) {
+            return false;
+        }
+
+        if(Y < 0 || Y > 8) {
+            return false;
+        }
+
+        if(chunks[X][Y] == null) {
+            return false;
+        }
+
+        return chunks[X][Y].getWall(x, y);
     }
 
     public void GenerateWorld() {

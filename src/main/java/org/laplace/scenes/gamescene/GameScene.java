@@ -17,7 +17,7 @@ public class GameScene extends ScenesGeneric {
     private int shaderLoc;
     private Texture texture;
 
-    private GameWorld gameWorld;
+    public static GameWorld gameWorld;
 
     public GameScene() {
         super(); //Parent constructor
@@ -44,8 +44,6 @@ public class GameScene extends ScenesGeneric {
 
     @Override
     public void Draw() {
-
-
         BeginTextureMode(target);
             ClearBackground(RAYWHITE);
 

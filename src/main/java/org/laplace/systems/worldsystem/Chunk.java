@@ -1,7 +1,10 @@
 package org.laplace.systems.worldsystem;
 
+import com.raylib.Raylib;
 import org.laplace.systems.objectsystem.GameEntity;
 import org.laplace.systems.objectsystem.GameEntitys.*;
+
+import static com.raylib.Jaylib.WHITE;
 
 
 public class Chunk extends ChunkMesh{
@@ -53,6 +56,10 @@ public class Chunk extends ChunkMesh{
                 }
             }
         }
+    }
+
+    public boolean getWall(int x, int y) {
+        return walls[x][y];
     }
 
     public void Update() {

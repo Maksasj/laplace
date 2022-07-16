@@ -4,6 +4,7 @@ import com.raylib.Jaylib;
 import com.raylib.Raylib;
 import org.laplace.Game;
 import org.laplace.systems.objectsystem.GameEntity;
+import org.laplace.systems.worldsystem.GameWorld;
 
 import static com.raylib.Raylib.CAMERA_PERSPECTIVE;
 import static com.raylib.Raylib.IsKeyPressed;
@@ -32,19 +33,27 @@ public class Player extends GameEntity {
 
 
         if(IsKeyPressed(83)) { //W
-            this.x += 1;
+            if(!GameWorld.ChechIfWall(x + 1, y)) {
+                this.x += 1;
+            }
         }
 
         if(IsKeyPressed(87)) { //S
-            this.x -= 1;
+            if(!GameWorld.ChechIfWall(x - 1, y)) {
+                this.x -= 1;
+            }
         }
 
         if(IsKeyPressed(68)) { //A
-            this.y += 1;
+            if(!GameWorld.ChechIfWall(x, y + 1)) {
+                this.y += 1;
+            }
         }
 
         if(IsKeyPressed(65)) { //D
-            this.y -= 1;
+            if(!GameWorld.ChechIfWall(x, y - 1)) {
+                this.y -= 1;
+            }
         }
 
         if(IsKeyPressed(66)) { //test

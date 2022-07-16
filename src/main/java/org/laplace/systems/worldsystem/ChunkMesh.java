@@ -15,6 +15,8 @@ public class ChunkMesh {
 
     private Raylib.Image image;
 
+    public boolean walls[][] = new boolean[20][20];
+
     public ChunkMesh(int x, int y) {
         image = LoadImage("target/maps/test/cubicmap.png");      // Load cubicmap image (RAM)
 
@@ -31,6 +33,7 @@ public class ChunkMesh {
     }
 
     public void CreateWall(int x, int y) {
+        walls[x][y] = true;
         Raylib.ImageDrawPixel(image, x,y, WHITE);
     }
 
