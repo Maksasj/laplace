@@ -111,7 +111,8 @@ public class GameWorld {
     }
 
     public void GenerateWorld() {
-        chunks[0][0] = new Chunk(0, 0, RandomChankType.randomChank());
+        GenerateChunk(0, 0);
+        GenerateChunk(1, 0);
         chunks[0][0].CreatePlayer(5, 3);
         /*
         int buff[][] = new int[64][3];
