@@ -47,7 +47,7 @@ public class GameWorld {
             return null;
         }
 
-        return chunks[X][Y].getWall(x, y);
+        return chunks[X][Y].getEntity(x, y);
     }
 
     public static boolean ChechIfWall(int ix, int iy) {
@@ -75,10 +75,7 @@ public class GameWorld {
     public void GenerateWorld() {
         chunks[0][0] = new Chunk(0, 0);
         chunks[0][0].CreatePlayer(5, 3);
-
-        chunks[1][1] = new Chunk(1, 1);
-        chunks[5][3] = new Chunk(5, 3);
-
+        /*
         int buff[][] = new int[64][3];
         int l = 0;
             for (int i = 0; i < 8; i++) {
@@ -169,7 +166,19 @@ public class GameWorld {
                             break;
                         case FOUR_DOOR:
                             break;
-                             */
+                        case NULL:
+                            int pull[] = new int[15];
+                            for(int a = 0; a < 15; a++)
+                            {
+                                pull[a] = 1;
+                            }
+                            if(chunks[buff[i][0] + 1][buff[i][1]] != null)
+                            {
+
+                                pull[1] = 0;
+
+                            }
+                            break;
                         default:
                             break;
                     }
@@ -177,7 +186,25 @@ public class GameWorld {
                 some_action++;
             }
         }
+        */
+    }
 
+    public void GenerateChunk(int x, int y)
+    {
+        int pull[] = new int[15];
+        for (int i = 0; i < 15; i++)
+        {
+            pull[i] = 1;
+        }
+        if(chunks[x+1][y] != null)
+        {
+            if(chunks[x+1][y].getType() == ChunkTypes.ONE_LEFT_DOOR || chunks[x+1][y].getType() == ChunkTypes.TWO_LEFT_RIGHT_DOOR || chunks[x+1][y].getType() == ChunkTypes.TWO_DOWN_LEFT_DOOR || chunks[x+1][y].getType() == ChunkTypes.TWO_LEFT_UP_DOOR || chunks[x+1][y].getType() == ChunkTypes.THREE_F_DOWN_DOOR || chunks[x+1][y].getType() == ChunkTypes.THREE_F_RIGHT_DOOR || chunks[x+1][y].getType() == ChunkTypes.THREE_F_UP_DOOR || chunks[x+1][y].getType() == ChunkTypes.FOUR_DOOR)
+            {
+                pull[0] = 0;
+                pull[2] = 0;
+                pull[3] = 0;
+            }
+        }
     }
 }
 

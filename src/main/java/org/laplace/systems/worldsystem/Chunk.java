@@ -62,6 +62,13 @@ public class Chunk extends ChunkMesh{
         return walls[x][y];
     }
 
+    public GameEntity getEntity(int x, int y) {
+        if(gameObjects[x][y] != null) {
+            return gameObjects[x][y];
+        }
+        return null;
+    }
+
     public void Update() {
         for(int x = 1; x < 9; x++) {
             for(int y = 1; y < 9; y++) {
