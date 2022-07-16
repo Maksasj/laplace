@@ -48,7 +48,7 @@ public class Chunk extends ChunkMesh {
             }
         }
     }
-    
+
     public Chunk(int X, int Y, ChunkTypes chad) {
         super(X, Y);
 
