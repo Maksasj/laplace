@@ -15,7 +15,6 @@ public class Chunk extends ChunkMesh {
     private ChunkTypes chankType;
     private GameEntity[][] gameObjects = new GameEntity[10][10];
 
-<<<<<<< HEAD
     public Chunk(int X, int Y) {
         super(X, Y);
 
@@ -49,9 +48,7 @@ public class Chunk extends ChunkMesh {
             }
         }
     }
-
-=======
->>>>>>> 8dee6dd335023e76e2d689f4f26c12b407bce1a3
+    
     public Chunk(int X, int Y, ChunkTypes chad) {
         super(X, Y);
 
