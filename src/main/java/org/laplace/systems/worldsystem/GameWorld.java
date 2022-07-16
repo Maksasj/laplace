@@ -1,10 +1,9 @@
 package org.laplace.systems.worldsystem;
 
 import org.laplace.systems.objectsystem.GameEntity;
+import org.laplace.systems.worldsystem.RandomChankType;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 public class GameWorld {
     public static Chunk[][] chunks = new Chunk[8][8];
 
@@ -228,22 +227,105 @@ public class GameWorld {
         */
     }
 
-    public void GenerateChunk(int x, int y)
+    public static void GenerateChunk(int x, int y)
     {
-        int pull[] = new int[15];
+        int[] pull = new int[15];
         for (int i = 0; i < 15; i++)
         {
             pull[i] = 1;
         }
-        if(chunks[x+1][y] != null)
-        {
-            if(chunks[x+1][y].getType() == ChunkTypes.ONE_LEFT_DOOR || chunks[x+1][y].getType() == ChunkTypes.TWO_LEFT_RIGHT_DOOR || chunks[x+1][y].getType() == ChunkTypes.TWO_DOWN_LEFT_DOOR || chunks[x+1][y].getType() == ChunkTypes.TWO_LEFT_UP_DOOR || chunks[x+1][y].getType() == ChunkTypes.THREE_F_DOWN_DOOR || chunks[x+1][y].getType() == ChunkTypes.THREE_F_RIGHT_DOOR || chunks[x+1][y].getType() == ChunkTypes.THREE_F_UP_DOOR || chunks[x+1][y].getType() == ChunkTypes.FOUR_DOOR)
-            {
-                pull[0] = 0;
-                pull[2] = 0;
-                pull[3] = 0;
+        if(x + 1 < 8) {
+            if (chunks[x + 1][y] != null) {
+                if (chunks[x + 1][y].getType() == ChunkTypes.ONE_LEFT_DOOR
+                        || chunks[x + 1][y].getType() == ChunkTypes.TWO_LEFT_RIGHT_DOOR
+                        || chunks[x + 1][y].getType() == ChunkTypes.TWO_DOWN_LEFT_DOOR || chunks[x + 1][y].getType() == ChunkTypes.TWO_LEFT_UP_DOOR || chunks[x + 1][y].getType() == ChunkTypes.THREE_F_DOWN_DOOR || chunks[x + 1][y].getType() == ChunkTypes.THREE_F_RIGHT_DOOR || chunks[x + 1][y].getType() == ChunkTypes.THREE_F_UP_DOOR || chunks[x + 1][y].getType() == ChunkTypes.FOUR_DOOR) {
+                    pull[0] = 0;
+                    pull[2] = 0;
+                    pull[3] = 0;
+                    pull[5] = 0;
+                    pull[6] = 0;
+                    pull[9] = 0;
+                    pull[11] = 0;
+                } else {
+                    pull[1] = 0;
+                    pull[4] = 0;
+                    pull[7] = 0;
+                    pull[8] = 0;
+                    pull[10] = 0;
+                    pull[12] = 0;
+                    pull[13] = 0;
+                    pull[14] = 0;
+                }
             }
         }
+        else
+        {
+            pull[1] = 0;
+            pull[4] = 0;
+            pull[7] = 0;
+            pull[8] = 0;
+            pull[10] = 0;
+            pull[12] = 0;
+            pull[13] = 0;
+            pull[14] = 0;
+        }
+        if(x - 1 >= 0)
+        {
+            if(chunks[x-1][y] != null)
+            {
+                if(chunks[x-1][y].getType() == ChunkTypes.ONE_RIGHT_DOOR || chunks[x-1][y].getType() == ChunkTypes.TWO_LEFT_RIGHT_DOOR || chunks[x-1][y].getType() == ChunkTypes.TWO_RIGHT_DOWN_DOOR || chunks[x-1][y].getType() == ChunkTypes.TWO_UP_RIGHT_DOOR || chunks[x-1][y].getType() == ChunkTypes.THREE_F_DOWN_DOOR || chunks[x-1][y].getType() == ChunkTypes.THREE_F_UP_DOOR || chunks[x-1][y].getType() == ChunkTypes.THREE_F_LEFT_DOOR || chunks[x-1][y].getType() == ChunkTypes.FOUR_DOOR)
+                {
+                    pull[0] = 0;
+                    pull[1] = 0;
+                    pull[2] = 0;
+                    pull[5] = 0;
+                    pull[7] = 0;
+                    pull[8] = 0;
+                    pull[13] = 0;
+                }
+                else
+                {
+                    pull[3] = 0;
+                    pull[4] = 0;
+                    pull[6] = 0;
+                    pull[9] = 0;
+                    pull[10] = 0;
+                    pull[11] = 0;
+                    pull[12] = 0;
+                    pull[14] = 0;
+                }
+            }
+        }
+        else
+        {
+            pull[3] = 0;
+            pull[4] = 0;
+            pull[6] = 0;
+            pull[9] = 0;
+            pull[10] = 0;
+            pull[11] = 0;
+            pull[12] = 0;
+            pull[14] = 0;
+        }
+
+
+
+        //
+        Vector<Integer> mas = new Vector<Integer>();
+        for (int i = 0; i < 15; i++)
+        {
+            if(pull[i] == 1)
+            {
+                mas.add(i);
+            }
+        }
+        Random rand = new Random();
+        int k = rand.nextInt(mas.size());
+        String g = String.valueOf(mas.get(k));
+        int j = Integer.parseInt(g);
+        //
+
+        chunks[x][y] = new Chunk(x, y, RandomChankType.randomChank(j));
     }
 }
 
