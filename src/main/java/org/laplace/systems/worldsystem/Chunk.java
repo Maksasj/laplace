@@ -4,6 +4,8 @@ import com.raylib.Jaylib;
 
 import org.laplace.systems.objectsystem.GameEntity;
 import org.laplace.systems.objectsystem.GameEntitys.*;
+import org.laplace.systems.worldsystem.RandomChankType;
+
 
 public class Chunk extends ChunkMesh{
     private int X; //relative to world
@@ -12,7 +14,7 @@ public class Chunk extends ChunkMesh{
     private GameEntity[][] gameObjects = new GameEntity[8][8];
 
     public Chunk(int X, int Y) {
-        super();
+        super(X, Y);
 
         this.X = X;
         this.Y = Y;
@@ -34,14 +36,9 @@ public class Chunk extends ChunkMesh{
 
         for(int x = 0; x < 8; x++) {
             for(int y = 0; y < 8; y++) {
-                gameObjects[x][y] = new Goblin(0*2 + 8*X, 0*2 + 8*Y); //Testing
+                gameObjects[x][y] = new Goblin(x*2 + 8*X*2, y*2 + 8*Y*2); //Testing
             }
         }
-
-        gameObjects[0][0] = new Spider(0 + 8*X, 0 + 8*Y);
-        gameObjects[3][3] = new Player(3 + 8*X, 3 + 8*Y);
-        gameObjects[0][1] = new Skeleton(0 + 8*X, 0 + 8*Y);
-        gameObjects[1][0] = new Chest(1 + 8*X, 0 + 8*Y);
     }
 
     public void changeType(ChunkTypes type){
@@ -68,5 +65,9 @@ public class Chunk extends ChunkMesh{
                 }
             }
         }
+    }
+
+    public void CreatePlayer(int x, int y) {
+        gameObjects[x][y] = new Player(x + 8*this.X*2, y + 8*this.Y*2);
     }
 }

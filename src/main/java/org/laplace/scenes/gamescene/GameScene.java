@@ -53,7 +53,7 @@ public class GameScene extends ScenesGeneric {
             Game.getShaderManager().DeactivateShader();
 
             BeginMode3D(Game.getCamera()); //Scope for 3d stuff
-                gameWorld.Draw(0, 0);
+                gameWorld.Draw();
             EndMode3D();
         EndTextureMode();
 

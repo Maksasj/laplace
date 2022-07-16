@@ -19,7 +19,7 @@ public class GameEntity extends GameObject{
 
     @Override
     public void Update() {
-
+        this.setPos(new Jaylib.Vector3(this.x, 0.0f, this.y));
     }
 
     @Override

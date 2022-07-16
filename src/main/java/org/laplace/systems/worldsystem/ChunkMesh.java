@@ -15,10 +15,10 @@ public class ChunkMesh {
 
     private Raylib.Image image;
 
-    public ChunkMesh() {
+    public ChunkMesh(int x, int y) {
         image = LoadImage("target/maps/test/cubicmap.png");      // Load cubicmap image (RAM)
 
-        mapPosition = new Jaylib.Vector3( 0.0f, -1.0f, 0.0f);
+        mapPosition = new Jaylib.Vector3( 16.0f*x, -1.0f, 16.0f*y);
     }
 
     public void DrawChunkMesh() {
