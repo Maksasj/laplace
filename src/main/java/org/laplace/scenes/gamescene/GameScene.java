@@ -5,12 +5,19 @@ import com.raylib.Raylib;
 import org.laplace.Game;
 import org.laplace.scenes.ScenesGeneric;
 import org.laplace.systems.modelmanager.ModelManager;
+import org.laplace.systems.worldsystem.GameWorld;
 
 import static com.raylib.Jaylib.RAYWHITE;
 import static com.raylib.Raylib.*;
 
 public class GameScene extends ScenesGeneric {
-    Raylib.RenderTexture target;
+    private Raylib.RenderTexture target; //Rendering target
+
+    private float iTime = 0; //For now i used only with rendering
+    private int shaderLoc;
+    private Texture texture;
+    
+    private GameWorld gameWorld;
 
     public GameScene() {
         super(); //Parent constructor
@@ -18,20 +25,33 @@ public class GameScene extends ScenesGeneric {
         target = LoadRenderTexture(
                 Game.getWindowWidth() / Game.pixelezationRate,
                 Game.getWindowHeight() / Game.pixelezationRate);
+
+        gameWorld = new GameWorld();
+
+        texture = LoadTexture("target/shaders/defaultBackground/tex.png");
+
+        shaderLoc = Game.getShaderManager().GetShaderLocation("defaultBackground", "iTime");
+        Game.getShaderManager().SetShaderValue("defaultBackground", "iTime", shaderLoc, iTime);
     }
 
     @Override
     public void Update() {
-        UpdateCamera(Game.getCamera());
+        iTime += 0.01;
+        Game.getShaderManager().SetShaderValue("defaultBackground", "iTime", shaderLoc, iTime);
+        //UpdateCamera(Game.getCamera());
     }
 
     @Override
     public void Draw() {
 
+
         BeginTextureMode(target);
+            Game.getShaderManager().ActivateShader("defaultBackground");
+                DrawTexture(texture, 0, 0, RAYWHITE);
+            Game.getShaderManager().DeactivateShader();
+
             BeginMode3D(Game.getCamera()); //Scope for 3d stuff
-                ClearBackground(RAYWHITE);
-                Game.getModelManager().DrawModel("goblin", new Jaylib.Vector3(0, 0, 0));
+                gameWorld.Draw(0, 0);
             EndMode3D();
         EndTextureMode();
 

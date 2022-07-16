@@ -1,5 +1,7 @@
 package org.laplace.systems.objectsystem;
 
+import com.raylib.Jaylib;
+
 public class GameObject {
     private String name;
 
@@ -11,7 +13,7 @@ public class GameObject {
 
     }
 
-    public void Draw() {
+    public void Draw(Jaylib.Vector3 pos) {
 
     }
 

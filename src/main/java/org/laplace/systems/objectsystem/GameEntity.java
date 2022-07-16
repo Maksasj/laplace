@@ -16,7 +16,7 @@ public class GameEntity extends GameObject{
     }
 
     @Override
-    public void Draw() {
+    public void Draw(Jaylib.Vector3 pos) {
         Game.getModelManager().DrawModel(this.getName(), pos);
     }
 
