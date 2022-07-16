@@ -26,7 +26,7 @@ public class Chunk extends ChunkMesh {
         switch (chankType) {
 
             case ONE_UP_DOOR:
-
+                
                 //Left & Right
                 for (int y = 0; y < 10; y++) { //10 bcs borders
                     this.CreateWall(0, y);
@@ -35,17 +35,17 @@ public class Chunk extends ChunkMesh {
 
                 //Down
                 for (int x = 0; x < 10; x++) {
-                    this.CreateWall(x, 9);
+                    this.CreateWall(x, 0);
                 }
 
                 //Up
                 for (int x = 0; x < 4; x++)
                 {
-                    this.CreateWall(x, 0);
+                    this.CreateWall(x, 9);
                 }
                 for (int x = 6; x < 10; x++)
                 {
-                    this.CreateWall(x, 0);
+                    this.CreateWall(x, 9);
                 }
             break;
 
@@ -113,17 +113,17 @@ public class Chunk extends ChunkMesh {
 
                 //Up
                 for (int x = 0; x < 10; x++) {
-                    this.CreateWall(x, 0);
+                    this.CreateWall(x, 9);
                 }
 
                 //Down
                 for (int x = 0; x < 4; x++)
                 {
-                    this.CreateWall(x, 9);
+                    this.CreateWall(x, 0);
                 }
                 for (int x = 6; x < 10; x++)
                 {
-                    this.CreateWall(x, 9);
+                    this.CreateWall(x, 0);
                 }
                 break;
 
@@ -147,12 +147,12 @@ public class Chunk extends ChunkMesh {
 
                 //Up
                 for (int x = 0; x < 10; x++) {
-                    this.CreateWall(x, 0);
+                    this.CreateWall(x, 9);
                 }
 
                 //Down
                 for (int x = 0; x < 10; x++) {
-                    this.CreateWall(x, 9);
+                    this.CreateWall(x, 0);
                 }
 
                 break;
@@ -168,21 +168,21 @@ public class Chunk extends ChunkMesh {
                 //Down
                 for (int x = 0; x < 4; x++)
                 {
-                    this.CreateWall(x, 9);
+                    this.CreateWall(x, 0);
                 }
                 for (int x = 6; x < 10; x++)
                 {
-                    this.CreateWall(x, 9);
+                    this.CreateWall(x, 0);
                 }
 
                 //Up
                 for (int x = 0; x < 4; x++)
                 {
-                    this.CreateWall(x, 0);
+                    this.CreateWall(x, 9);
                 }
                 for (int x = 6; x < 10; x++)
                 {
-                    this.CreateWall(x, 0);
+                    this.CreateWall(x, 9);
                 }
                 break;
 
@@ -204,16 +204,16 @@ public class Chunk extends ChunkMesh {
                 //Up
                 for (int x = 0; x < 4; x++)
                 {
-                    this.CreateWall(x, 0);
+                    this.CreateWall(x, 9);
                 }
                 for (int x = 6; x < 10; x++)
                 {
-                    this.CreateWall(x, 0);
+                    this.CreateWall(x, 9);
                 }
 
                 //Down
                 for (int x = 0; x < 10; x++) {
-                    this.CreateWall(x, 9);
+                    this.CreateWall(x, 0);
                 }
                 break;
 
@@ -265,17 +265,17 @@ public class Chunk extends ChunkMesh {
 
                 //Up
                 for (int x = 0; x < 10; x++) {
-                    this.CreateWall(x, 0);
+                    this.CreateWall(x, 9);
                 }
 
                 //Down
                 for (int x = 0; x < 4; x++)
                 {
-                    this.CreateWall(x, 9);
+                    this.CreateWall(x, 0);
                 }
                 for (int x = 6; x < 10; x++)
                 {
-                    this.CreateWall(x, 9);
+                    this.CreateWall(x, 0);
                 }
                 break;
 
@@ -296,17 +296,17 @@ public class Chunk extends ChunkMesh {
 
                 //Up
                 for (int x = 0; x < 10; x++) {
-                    this.CreateWall(x, 0);
+                    this.CreateWall(x, 9);
                 }
 
                 //Down
                 for (int x = 0; x < 4; x++)
                 {
-                    this.CreateWall(x, 9);
+                    this.CreateWall(x, 0);
                 }
                 for (int x = 6; x < 10; x++)
                 {
-                    this.CreateWall(x, 9);
+                    this.CreateWall(x, 0);
                 }
                 break;
 
@@ -330,17 +330,17 @@ public class Chunk extends ChunkMesh {
 
                 //Up
                 for (int x = 0; x < 10; x++) {
-                    this.CreateWall(x, 0);
+                    this.CreateWall(x, 9);
                 }
 
                 //Down
                 for (int x = 0; x < 4; x++)
                 {
-                    this.CreateWall(x, 9);
+                    this.CreateWall(x, 0);
                 }
                 for (int x = 6; x < 10; x++)
                 {
-                    this.CreateWall(x, 9);
+                    this.CreateWall(x, 0);
                 }
                 break;
 
@@ -362,20 +362,20 @@ public class Chunk extends ChunkMesh {
                 //Down
                 for (int x = 0; x < 4; x++)
                 {
-                    this.CreateWall(x, 9);
+                    this.CreateWall(x, 0);
                 }
                 for (int x = 6; x < 10; x++)
                 {
-                    this.CreateWall(x, 9);
+                    this.CreateWall(x, 0);
                 }
                 //Up
                 for (int x = 0; x < 4; x++)
                 {
-                    this.CreateWall(x, 0);
+                    this.CreateWall(x, 9);
                 }
                 for (int x = 6; x < 10; x++)
                 {
-                    this.CreateWall(x, 0);
+                    this.CreateWall(x, 9);
                 }
                 break;
 
@@ -400,16 +400,16 @@ public class Chunk extends ChunkMesh {
                 //Up
                 for (int x = 0; x < 4; x++)
                 {
-                    this.CreateWall(x, 0);
+                    this.CreateWall(x, 9);
                 }
                 for (int x = 6; x < 10; x++)
                 {
-                    this.CreateWall(x, 0);
+                    this.CreateWall(x, 9);
                 }
 
                 //Down
                 for (int x = 0; x < 10; x++) {
-                    this.CreateWall(x, 9);
+                    this.CreateWall(x, 0);
                 }
                 break;
 
@@ -431,21 +431,21 @@ public class Chunk extends ChunkMesh {
                 //Down
                 for (int x = 0; x < 4; x++)
                 {
-                    this.CreateWall(x, 9);
+                    this.CreateWall(x, 0);
                 }
                 for (int x = 6; x < 10; x++)
                 {
-                    this.CreateWall(x, 9);
+                    this.CreateWall(x, 0);
                 }
 
                 //Up
                 for (int x = 0; x < 4; x++)
                 {
-                    this.CreateWall(x, 0);
+                    this.CreateWall(x, 9);
                 }
                 for (int x = 6; x < 10; x++)
                 {
-                    this.CreateWall(x, 0);
+                    this.CreateWall(x, 9);
                 }
                 break;
 
@@ -470,21 +470,21 @@ public class Chunk extends ChunkMesh {
                 //Down
                 for (int x = 0; x < 4; x++)
                 {
-                    this.CreateWall(x, 9);
+                    this.CreateWall(x, 0);
                 }
                 for (int x = 6; x < 10; x++)
                 {
-                    this.CreateWall(x, 9);
+                    this.CreateWall(x, 0);
                 }
 
                 //Up
                 for (int x = 0; x < 4; x++)
                 {
-                    this.CreateWall(x, 0);
+                    this.CreateWall(x, 9);
                 }
                 for (int x = 6; x < 10; x++)
                 {
-                    this.CreateWall(x, 0);
+                    this.CreateWall(x, 9);
                 }
                 break;
         }
