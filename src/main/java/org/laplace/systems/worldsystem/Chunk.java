@@ -4,7 +4,7 @@ import com.raylib.Raylib;
 import org.laplace.systems.objectsystem.GameEntity;
 import org.laplace.systems.objectsystem.GameEntitys.*;
 import org.laplace.systems.worldsystem.ChunkTypes;
-
+import org.laplace.systems.worldsystem.RandomRoomObjects;
 import java.util.Random;
 
 import static com.raylib.Jaylib.WHITE;
@@ -490,19 +490,9 @@ public class Chunk extends ChunkMesh {
         }
         this.RegenerateMesh();
         this.LoadAtlas();
-        //Objects generation
 
-        for(int x = 1; x < 9; x++) {
-            for(int y = 1; y < 9; y++) {
+        new RandomRoomObjects(X, Y, gameObjects);
 
-                Random rand = new Random();
-                int int_random = rand.nextInt(6);
-
-                if(int_random == 3) {
-                    gameObjects[x][y] = new Goblin(x*2 + 10*X*2, y*2 + 10*Y*2); //Testing
-                }
-            }
-        }
     }
 
     public void setEntity(GameEntity entity, int x, int y) {
