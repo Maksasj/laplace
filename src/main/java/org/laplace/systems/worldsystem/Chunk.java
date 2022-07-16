@@ -8,12 +8,13 @@ import org.laplace.systems.objectsystem.GameEntitys.*;
 import static com.raylib.Jaylib.RAYWHITE;
 import static com.raylib.Raylib.*;
 
-public class Chunk {
+public class Chunk extends ChunkMesh{
     private ChunkTypes chankType;
     private GameEntity[][] gameObjects = new GameEntity[8][8];
 
-    private Model model;
     public Chunk() {
+        super();
+
         chankType = ChunkTypes.NULL;
 
         for(int x = 0; x < 8; x++) {
@@ -26,15 +27,6 @@ public class Chunk {
         gameObjects[0][2] = new Player();
         gameObjects[0][1] = new Skeleton();
         gameObjects[1][0] = new Chest();
-
-        Raylib.Image image = LoadImage("target/maps/test/cubicmap.png");      // Load cubicmap image (RAM)
-        Raylib.Texture cubicmap = LoadTextureFromImage(image);                  // Convert image to texture to display (VRAM)
-
-        Raylib.Mesh mesh = GenMeshCubicmap(image, new Jaylib.Vector3(1.0f, 1.0f, 1.0f ));
-        model = LoadModelFromMesh(mesh);
-
-        Texture texture = LoadTexture("target/maps/test/cubicmap_atlas.png");    // Load map texture
-        model.materials().maps().texture(texture);
     }
 
     public void changeType(ChunkTypes type){
@@ -42,8 +34,7 @@ public class Chunk {
     }
 
     public void Draw() {
-        Jaylib.Vector3 mapPosition = new Jaylib.Vector3( 0.0f, -1.0f, 0.0f);
-        Raylib.DrawModelEx(model, mapPosition, new Jaylib.Vector3(0.0f, 0.0f, 0.0f) , 0, new Jaylib.Vector3(2.0f, 3.0f, 2.0f), RAYWHITE);
+        this.DrawChunkMesh();
 
         for(int x = 0; x < 8; x++) {
             for(int y = 0; y < 8; y++) {
