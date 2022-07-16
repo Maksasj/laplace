@@ -51,6 +51,8 @@ public class Player extends GameEntity {
                         this.x -= 1;
                         walkCd = true;
                     }
+                } else {
+                    System.out.println("WALL COLLISION");
                 }
             }
 
@@ -67,6 +69,8 @@ public class Player extends GameEntity {
                         this.x += 1;
                         walkCd = true;
                     }
+                } else {
+                    System.out.println("WALL COLLISION");
                 }
             }
 
@@ -84,6 +88,8 @@ public class Player extends GameEntity {
                         walkCd = true;
 
                     }
+                } else {
+                    System.out.println("WALL COLLISION");
                 }
             }
 
@@ -101,6 +107,8 @@ public class Player extends GameEntity {
                         this.y -= 1;
                         walkCd = true;
                     }
+                } else {
+                    System.out.println("WALL COLLISION");
                 }
             }
         } else {
