@@ -5,7 +5,7 @@ import org.laplace.systems.objectsystem.GameEntity;
 
 public class Chest extends GameEntity {
 
-    public Chest() {
+    public Chest(int x, int y) {
         super("chest");
         this.setModelScale(0.015f);
         this.setModelOffset(new Jaylib.Vector3(0.0f, -1.0f,1.0f));

@@ -4,7 +4,7 @@ import org.laplace.systems.objectsystem.GameEntity;
 
 public class Goblin extends GameEntity {
 
-    public Goblin() {
+    public Goblin(int x, int y) {
         super("goblin");
     }
 }

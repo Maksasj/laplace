@@ -13,7 +13,7 @@ public class GameObject {
 
     }
 
-    public void Draw(Jaylib.Vector3 pos) {
+    public void Draw() {
 
     }
 

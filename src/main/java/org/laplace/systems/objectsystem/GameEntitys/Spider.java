@@ -5,7 +5,7 @@ import org.laplace.systems.objectsystem.GameEntity;
 
 public class Spider extends GameEntity {
 
-    public Spider() {
+    public Spider(int x, int y) {
         super("spider");
         this.setModelScale(0.2f);
         this.setModelOffset(new Jaylib.Vector3(0.2f, -0.5f,0.2f));

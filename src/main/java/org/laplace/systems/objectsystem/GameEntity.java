@@ -4,7 +4,9 @@ import com.raylib.Jaylib;
 import org.laplace.Game;
 
 public class GameEntity extends GameObject{
-    private Jaylib.Vector3 pos;
+    protected int x = 0; //Relative to world cords
+    protected int y = 0; //Relative to world cords
+    private Jaylib.Vector3 pos = new Jaylib.Vector3(0.0f, 0.0f, 0.0f); //Graphic thing
     private Jaylib.Vector3 offset = new Jaylib.Vector3(0.0f, 0.0f, 0.0f);
     private Jaylib.Vector3 rotAxis = new Jaylib.Vector3(0.0f, 0.0f, 0.0f);
     private float rot = 0.0f;
@@ -21,7 +23,7 @@ public class GameEntity extends GameObject{
     }
 
     @Override
-    public void Draw(Jaylib.Vector3 pos) {
+    public void Draw() {
         Game.getModelManager().DrawModel(
                 this.getName(),
                 new Jaylib.Vector3(
@@ -54,5 +56,9 @@ public class GameEntity extends GameObject{
 
     public void setPos(Jaylib.Vector3 pos) {
         this.pos = pos;
+    }
+
+    public Jaylib.Vector3 getPos() {
+        return pos;
     }
 }

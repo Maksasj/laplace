@@ -28,11 +28,7 @@ public class Game {
         InitWindow(windowWidth, windowHeight, "Laplace");
         SetTargetFPS(60);
 
-        camera = new Raylib.Camera3D()
-                ._position(new Raylib.Vector3().x(5).y(4).z(5))
-                .target(new Raylib.Vector3())
-                .up(new Raylib.Vector3().x(0).y(1).z(0))
-                .fovy(45).projection(CAMERA_PERSPECTIVE);
+        camera = new Raylib.Camera3D();
         SetCameraMode(camera, CAMERA_ORBITAL);
 
         gameRunning = true;

@@ -37,8 +37,9 @@ public class GameScene extends ScenesGeneric {
     @Override
     public void Update() {
         iTime += 0.01;
+        gameWorld.Update(0, 0);
         Game.getShaderManager().SetShaderValue("defaultBackground", "iTime", shaderLoc, iTime);
-        UpdateCamera(Game.getCamera());
+        //UpdateCamera(Game.getCamera());
     }
 
     @Override
