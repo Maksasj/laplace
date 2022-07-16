@@ -9,13 +9,9 @@ public class GameObject {
         this.name = name;
     }
 
-    public void Update() {
+    public void Update() { }
 
-    }
-
-    public void Draw() {
-
-    }
+    public void Draw() { }
 
     public String getName() {
         return name;

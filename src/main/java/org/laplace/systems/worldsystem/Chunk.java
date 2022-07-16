@@ -5,14 +5,50 @@ import org.laplace.systems.objectsystem.GameEntity;
 import org.laplace.systems.objectsystem.GameEntitys.*;
 import org.laplace.systems.worldsystem.ChunkTypes;
 
+import java.util.Random;
+
 import static com.raylib.Jaylib.WHITE;
 
 
-public class Chunk extends ChunkMesh{
+public class Chunk extends ChunkMesh {
     private int X; //relative to world
     private int Y; //relative to world
     private ChunkTypes chankType;
     private GameEntity[][] gameObjects = new GameEntity[10][10];
+
+    public Chunk(int X, int Y) {
+        super(X, Y);
+
+        this.X = X;
+        this.Y = Y;
+
+        for(int x = 0; x < 10; x++) { //10 bcs borders
+            this.CreateWall(0, x);
+            this.CreateWall(9, x);
+        }
+
+        for(int x = 0; x < 10; x++) {
+            this.CreateWall(x, 0);
+            this.CreateWall(x, 9);
+        }
+
+        this.RegenerateMesh();
+        this.LoadAtlas();
+
+        chankType = ChunkTypes.NULL;
+
+        for(int x = 1; x < 9; x++) {
+            for(int y = 1; y < 9; y++) {
+
+                Random rand = new Random();
+                int int_random = rand.nextInt(6);
+
+                if(int_random == 3) {
+                    gameObjects[x][y] = new Goblin(x*2 + 10*X*2, y*2 + 10*Y*2); //Testing
+                }
+            }
+        }
+    }
 
     public Chunk(int X, int Y, ChunkTypes chad) {
         super(X, Y);
@@ -494,7 +530,13 @@ public class Chunk extends ChunkMesh{
         /*
         for(int x = 1; x < 9; x++) {
             for(int y = 1; y < 9; y++) {
-                //gameObjects[x][y] = new Goblin(x*2 + 10*X*2, y*2 + 10*Y*2); //Testing
+
+                Random rand = new Random();
+                int int_random = rand.nextInt(6);
+
+                if(int_random == 3) {
+                    gameObjects[x][y] = new Goblin(x*2 + 10*X*2, y*2 + 10*Y*2); //Testing
+                }
             }
         }*/
     }

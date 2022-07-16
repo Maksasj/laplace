@@ -11,6 +11,7 @@ public class TextureManager {
         textureHashMap = new HashMap<String, Raylib.Texture>();
 
         this.LoadTexture("healthbar", "target/textures/healthbar/healthbar.png");
+        this.LoadTexture("healthbarui", "target/textures/healthbar/healthbarui.png");
     }
 
     public void LoadTexture(String name, String path) {
