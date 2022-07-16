@@ -25,7 +25,7 @@ public class Game {
 
     //Game constructor
     public Game() {
-        InitWindow(windowWidth, windowHeight, "Demo");
+        InitWindow(windowWidth, windowHeight, "Laplace");
         SetTargetFPS(60);
 
         camera = new Raylib.Camera3D()

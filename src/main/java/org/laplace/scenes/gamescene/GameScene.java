@@ -16,7 +16,7 @@ public class GameScene extends ScenesGeneric {
     private float iTime = 0; //For now i used only with rendering
     private int shaderLoc;
     private Texture texture;
-    
+
     private GameWorld gameWorld;
 
     public GameScene() {
@@ -38,7 +38,7 @@ public class GameScene extends ScenesGeneric {
     public void Update() {
         iTime += 0.01;
         Game.getShaderManager().SetShaderValue("defaultBackground", "iTime", shaderLoc, iTime);
-        //UpdateCamera(Game.getCamera());
+        UpdateCamera(Game.getCamera());
     }
 
     @Override
@@ -46,6 +46,7 @@ public class GameScene extends ScenesGeneric {
 
 
         BeginTextureMode(target);
+            ClearBackground(RAYWHITE);
             Game.getShaderManager().ActivateShader("defaultBackground");
                 DrawTexture(texture, 0, 0, RAYWHITE);
             Game.getShaderManager().DeactivateShader();
@@ -60,6 +61,8 @@ public class GameScene extends ScenesGeneric {
                     SetTextureWrap(target.texture(), 1);
                     DrawTextureEx(target.texture(), new Jaylib.Vector2(Game.getWindowWidth() , Game.getWindowHeight()), 180, Game.getPixelezationRate(), RAYWHITE);
                 Game.getShaderManager().DeactivateShader();
+
+                DrawFPS(20, 20);
         EndDrawing();
     }
 }

@@ -2,7 +2,9 @@ package org.laplace.systems.worldsystem;
 
 import com.raylib.Jaylib;
 import org.laplace.systems.objectsystem.GameEntity;
+import org.laplace.systems.objectsystem.GameEntitys.Chest;
 import org.laplace.systems.objectsystem.GameEntitys.Goblin;
+import org.laplace.systems.objectsystem.GameEntitys.Skeleton;
 
 public class Chunk {
     private ChunkTypes chankType;
@@ -16,6 +18,9 @@ public class Chunk {
                 gameObjects[x][y] = new Goblin(); //Testing
             }
         }
+
+        gameObjects[0][0] = new Skeleton();
+        gameObjects[1][0] = new Chest();
     }
 
     public void changeType(ChunkTypes type){

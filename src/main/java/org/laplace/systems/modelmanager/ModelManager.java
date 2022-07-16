@@ -14,6 +14,8 @@ public class ModelManager {
         models = new HashMap<String, Raylib.Model>();
 
         this.LoadModel("goblin", "target/models/goblin/scene.gltf");
+        this.LoadModel("skeleton", "target/models/skeleton/scene.gltf");
+        this.LoadModel("chest", "target/models/chest/scene.gltf");
     }
 
     public void LoadModel(String name, String path) {
@@ -28,7 +30,7 @@ public class ModelManager {
         return null;
     }
 
-    public void DrawModel(String name, Jaylib.Vector3 pos) {
-        Raylib.DrawModel(getModel(name), pos, 1.0f, RAYWHITE);
+    public void DrawModel(String name, Jaylib.Vector3 pos, float scale, Jaylib.Vector3 rotAxis, float rot) {
+        Raylib.DrawModelEx(getModel(name), pos, rotAxis,rot, new Jaylib.Vector3(scale, scale, scale), RAYWHITE);
     }
 }
