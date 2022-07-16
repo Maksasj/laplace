@@ -8,6 +8,8 @@ import org.laplace.systems.worldsystem.GameWorld;
 
 import static com.raylib.Raylib.CAMERA_PERSPECTIVE;
 import static com.raylib.Raylib.IsKeyPressed;
+import static java.lang.Math.cos;
+import static java.lang.Math.sin;
 
 public class Player extends GameEntity {
     private boolean walkCd = false;
@@ -27,14 +29,15 @@ public class Player extends GameEntity {
 
     @Override
     public void Update() {
-        Game.getCamera()._position( new Jaylib.Vector3((float) this.x*2 + 7, 5.0f, (float) this.y*2 + 7)) //TODO x*2 may cause issues in the future
-                        .target(    new Jaylib.Vector3(this.x*2, 1.0f, (float) this.y*2))
-                        .up(        new Raylib.Vector3().x(0).y(1).z(0))
-                        .fovy(45)
-                        .projection(CAMERA_PERSPECTIVE);
+        Game.getCamera()
+                ._position(new Jaylib.Vector3((float) this.x*2 - 7, 5.0f, (float) this.y*2 - 7))
+                .target(    new Jaylib.Vector3(this.x*2, 1.0f, (float) this.y*2))
+                .up(        new Raylib.Vector3().x(0).y(1).z(0))
+                .fovy(45)
+                .projection(CAMERA_PERSPECTIVE);
 
         if(!walkCd) {
-            if(IsKeyPressed(87)) { //W
+            if(IsKeyPressed(83)) { //S
                 this.setModelOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f));
                 this.setRotAxis(new Jaylib.Vector3(1.0f, 1.0f, 1.0f));
                 this.setRot(240.0f);
@@ -51,7 +54,7 @@ public class Player extends GameEntity {
                 }
             }
 
-            if(IsKeyPressed(83)) { //S
+            if(IsKeyPressed(87)) { //W
                 this.setModelOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f));
                 this.setRotAxis(new Jaylib.Vector3(1.0f, -1.0f, -1.0f));
                 this.setRot(240);
@@ -67,7 +70,7 @@ public class Player extends GameEntity {
                 }
             }
 
-            if(IsKeyPressed(68)) { //D
+            if(IsKeyPressed(65)) { //A
                 this.setModelOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f));
                 this.setRotAxis(new Jaylib.Vector3(1.0f, 0.0f, 0.0f));
                 this.setRot(270);
@@ -84,7 +87,7 @@ public class Player extends GameEntity {
                 }
             }
 
-            if(IsKeyPressed(65)) { //A
+            if(IsKeyPressed(68)) { //D
                 this.setModelOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f));
                 this.setRotAxis(new Jaylib.Vector3(0.0f, 0.7f, 0.7f));
                 this.setRot(180);
