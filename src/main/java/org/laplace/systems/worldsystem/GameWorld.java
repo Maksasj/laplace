@@ -21,18 +21,22 @@ public class GameWorld {
         }
     }
 
-    public void Update(int x, int y) {
-        if(chunks[x][y] != null) {
-            chunks[x][y].Update();
+    public void Update() {
+        for(int x = 0; x < 8; x++) {
+            for(int y = 0; y < 8; y++) {
+                if(chunks[x][y] != null) {
+                    chunks[x][y].Update();
+                }
+            }
         }
     }
 
     public static GameEntity getEntity(int ix, int iy) {
-        int X = ix / 20;
-        int Y = iy / 20;
+        int X = ix / 10;
+        int Y = iy / 10;
 
-        int x = ix % 20;
-        int y = iy % 20;
+        int x = ix % 10;
+        int y = iy % 10;
 
         if(X < 0 || X > 8) {
             return null;
@@ -50,11 +54,11 @@ public class GameWorld {
     }
 
     public static void killEnity(int ix, int iy) {
-        int X = ix / 20;
-        int Y = iy / 20;
+        int X = ix / 10;
+        int Y = iy / 10;
 
-        int x = ix % 20;
-        int y = iy % 20;
+        int x = ix % 10;
+        int y = iy % 10;
 
         if(X < 0 || X > 8) {
             return;
@@ -72,17 +76,25 @@ public class GameWorld {
     }
 
     public static boolean ChechIfWall(int ix, int iy) {
-        int X = ix / 20;
-        int Y = iy / 20;
+        int X = ix / 10;
+        int Y = iy / 10;
 
-        int x = ix % 20;
-        int y = iy % 20;
+        int x = ix % 10;
+        int y = iy % 10;
 
         if(X < 0 || X > 8) {
             return false;
         }
 
         if(Y < 0 || Y > 8) {
+            return false;
+        }
+
+        if(x > 9 || x < 0) {
+            return false;
+        }
+
+        if(y > 9 || y < 0) {
             return false;
         }
 
