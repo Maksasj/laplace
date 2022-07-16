@@ -4,6 +4,8 @@ import com.raylib.Jaylib;
 import com.raylib.Raylib;
 import org.laplace.Game;
 
+import java.util.Random;
+
 import static com.raylib.Jaylib.RAYWHITE;
 import static com.raylib.Raylib.*;
 
@@ -11,6 +13,7 @@ public class Dice extends DiceAnimation {
     private Raylib.Model dice6;
     private static Raylib.Camera3D camera;
 
+    int value = 1;
 
     public Dice() {
         super();
@@ -22,7 +25,7 @@ public class Dice extends DiceAnimation {
 
     public void Draw() {
         if(active) {
-            this.BeginAnimation(1);
+            this.BeginAnimation(value);
             camera._position( new Jaylib.Vector3( 9.0f, 0.0f,  0.0f))
                     .target(    new Jaylib.Vector3(0.0f, 0.0f, 0.0f))
                     .up(        new Raylib.Vector3().x(0.0f).y(1.0f).z(0.0f))
@@ -41,9 +44,13 @@ public class Dice extends DiceAnimation {
     }
 
     private int trow6() {
+        Random rand = new Random();
+        int int_random = rand.nextInt(6);
+        value = int_random+1;
+
         this.ResetAnimation();
         active = true;
-        return 0;
+        return int_random;
     }
 
     public int ThrowDice(int maxVal) {
