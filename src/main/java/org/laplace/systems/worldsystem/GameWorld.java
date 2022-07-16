@@ -72,6 +72,23 @@ public class GameWorld {
         return chunks[X][Y].getWall(x, y);
     }
 
+    public static void TranlocateEntity(GameEntity entity, int px, int py, int ix, int iy) {
+        int X = ix / 10;
+        int Y = iy / 10;
+        int x = ix % 10;
+        int y = iy % 10;
+
+        int X1 = px / 10;
+        int Y1 = py / 10;
+        int x1 = px % 10;
+        int y1 = py % 10;
+
+        chunks[X][Y]
+                .setEntity(entity, x, y);
+        chunks[X1][Y1]
+                .setEntity(null, x1, y1);
+    }
+
     public void GenerateWorld() {
         chunks[0][0] = new Chunk(0, 0);
         chunks[0][0].CreatePlayer(5, 3);

@@ -10,6 +10,7 @@ import static com.raylib.Raylib.CAMERA_PERSPECTIVE;
 import static com.raylib.Raylib.IsKeyPressed;
 
 public class Player extends GameEntity {
+    private boolean walkCd = false;
 
     public Player(int x, int y) {
         super("player");
@@ -31,29 +32,59 @@ public class Player extends GameEntity {
                         .fovy(45)
                         .projection(CAMERA_PERSPECTIVE);
 
+        if(!walkCd) {
+            if(IsKeyPressed(87)) { //W
+                if(!GameWorld.ChechIfWall(x - 1, y)) {
+                    if(GameWorld.getEntity(x - 1, y) != null) {
 
-        if(IsKeyPressed(83)) { //W
-            if(!GameWorld.ChechIfWall(x + 1, y)) {
-                this.x += 1;
+                        //BATLE LOGIC
+                    } else {
+                        GameWorld.TranlocateEntity(this, x, y, x - 1, y);
+                        this.x -= 1;
+                        walkCd = true;
+                    }
+                }
             }
-        }
 
-        if(IsKeyPressed(87)) { //S
-            if(!GameWorld.ChechIfWall(x - 1, y)) {
-                this.x -= 1;
+            if(IsKeyPressed(83)) { //S
+                if(!GameWorld.ChechIfWall(x + 1, y)) {
+                    if(GameWorld.getEntity(x + 1, y) != null) {
+                        //BATLE LOGIC
+                    } else {
+                        GameWorld.TranlocateEntity(this, x, y, x + 1, y);
+                        this.x += 1;
+                        walkCd = true;
+                    }
+                }
             }
-        }
 
-        if(IsKeyPressed(68)) { //A
-            if(!GameWorld.ChechIfWall(x, y + 1)) {
-                this.y += 1;
-            }
-        }
+            if(IsKeyPressed(68)) { //D
+                if(!GameWorld.ChechIfWall(x, y + 1)) {
+                    if(GameWorld.getEntity(x, y + 1) != null) {
+                        //BATLE LOGIC
+                    } else {
+                        GameWorld.TranlocateEntity(this, x, y, x, y + 1);
+                        this.y += 1;
+                        walkCd = true;
 
-        if(IsKeyPressed(65)) { //D
-            if(!GameWorld.ChechIfWall(x, y - 1)) {
-                this.y -= 1;
+                    }
+                }
             }
+
+            if(IsKeyPressed(65)) { //A
+                if(!GameWorld.ChechIfWall(x, y - 1)) {
+                    if(GameWorld.getEntity(x, y - 1) != null) {
+
+                        //BATLE LOGIC
+                    } else {
+                        GameWorld.TranlocateEntity(this, x, y, x, y - 1);
+                        this.y -= 1;
+                        walkCd = true;
+                    }
+                }
+            }
+        } else {
+            walkCd = false;
         }
 
         if(IsKeyPressed(66)) { //test
