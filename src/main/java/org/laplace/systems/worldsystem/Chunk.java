@@ -235,16 +235,16 @@ public class Chunk extends ChunkMesh {
                 //Up
                 for (int x = 0; x < 4; x++)
                 {
-                    this.CreateWall(x, 0);
+                    this.CreateWall(x, 9);
                 }
                 for (int x = 6; x < 10; x++)
                 {
-                    this.CreateWall(x, 0);
+                    this.CreateWall(x, 9);
                 }
 
                 //Down
                 for (int x = 0; x < 10; x++) {
-                    this.CreateWall(x, 9);
+                    this.CreateWall(x, 0);
                 }
                 break;
 

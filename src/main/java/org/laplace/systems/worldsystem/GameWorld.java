@@ -111,7 +111,7 @@ public class GameWorld {
     }
 
     public void GenerateWorld() {
-        GenerateChunk(0, 0);
+        chunks[0][0] = new Chunk(0, 0, ChunkTypes.TWO_UP_RIGHT_DOOR);
         GenerateChunk(1, 0);
         GenerateChunk(0, 1);
         GenerateChunk(1, 1);
@@ -391,17 +391,20 @@ public class GameWorld {
         }
 
         //
-        Vector<Integer> mas = new Vector<Integer>();
+        Vector<String> mas = new Vector<String>();
+        int jh = 0;
         for (int i = 0; i < 15; i++)
         {
             if(pull[i] == 1)
             {
-                mas.add(i);
+                String m = String.valueOf(i);
+                mas.add(m);
+                jh++;
             }
         }
         Random rand = new Random();
-        int k = rand.nextInt(mas.size());
-        String g = String.valueOf(mas.get(k));
+        int k = rand.nextInt(jh);
+        String g = mas.get(k);
         int j = Integer.parseInt(g);
         //
 
