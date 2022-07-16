@@ -4,7 +4,6 @@ import com.raylib.Jaylib;
 import com.raylib.Raylib;
 import org.laplace.Game;
 import org.laplace.scenes.ScenesGeneric;
-import org.laplace.systems.modelmanager.ModelManager;
 import org.laplace.systems.worldsystem.GameWorld;
 
 import static com.raylib.Jaylib.RAYWHITE;
