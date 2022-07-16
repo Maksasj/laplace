@@ -124,11 +124,10 @@ public class GameWorld {
 
     public void GenerateWorld() {
     
-        GenerateChunk(0, 0);
-        GenerateChunk(1, 0);
-        GenerateChunk(0, 1);
-        GenerateChunk(1, 1);
+        chunks[0][0] = new Chunk(0,0, ChunkTypes.TWO_UP_RIGHT_DOOR);
         chunks[0][0].CreatePlayer(5, 3);
+        //GenerateChunk(1, 0);
+        //GenerateChunk(0, 1);
 
         /*
         int buff[][] = new int[64][3];
@@ -414,9 +413,7 @@ public class GameWorld {
             }
         }
         Random rand = new Random();
-        int k = rand.nextInt(mas.size());
-        String g = String.valueOf(mas.get(k));
-        int j = Integer.parseInt(g);
+        int j = Integer.parseInt(String.valueOf(mas.get(rand.nextInt(mas.size()))));
         //
 
         chunks[x][y] = new Chunk(x, y, RandomChankType.randomChank(j));
