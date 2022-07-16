@@ -8,7 +8,7 @@ public class Skeleton extends GameEntity {
     public Skeleton() {
         super("skeleton");
         this.setModelScale(0.01f);
-        this.setModelOffset(new Jaylib.Vector3(0.4f, -1.0f,0.4f));
+        this.setModelOffset(new Jaylib.Vector3(0.0f, -1.0f,0.0f));
     }
 
 }
