@@ -7,31 +7,30 @@ import org.laplace.Game;
 import static com.raylib.Jaylib.RAYWHITE;
 import static com.raylib.Raylib.*;
 
-public class Dice {
+public class Dice extends DiceAnimation {
     private Raylib.Model dice6;
     private static Raylib.Camera3D camera;
 
     boolean active = false;
 
     public Dice() {
+        super();
         camera = new Raylib.Camera3D();
-        SetCameraMode(camera, CAMERA_ORBITAL);
+        SetCameraMode(camera, CAMERA_CUSTOM);
 
         dice6 = Game.getModelManager().getModel("dice6");
     }
 
     public void Draw() {
         if(active) {
-            camera._position( new Jaylib.Vector3( 7.0f, 5.0f,  7.0f))
-                    .target(    new Jaylib.Vector3(2.0f, 1.0f, 2.0f))
-                    .up(        new Raylib.Vector3().x(0).y(1).z(0))
+            this.BeginAnimation();
+            camera._position( new Jaylib.Vector3( 5.0f, 5.0f,  5.0f))
+                    .target(    new Jaylib.Vector3(0.0f, 0.0f, 0.0f))
+                    .up(        new Raylib.Vector3().x(0.0f).y(1.0f).z(0.0f))
                     .fovy(45)
                     .projection(CAMERA_PERSPECTIVE);
 
-            Jaylib.Vector3 pos = new Jaylib.Vector3(2.0f, 2.0f, 2.0f);
-            Jaylib.Vector3 rotAxis = new Jaylib.Vector3(0.0f, 0.0f, 0.0f);
-            float rot = 0;
-            float scale = 1;
+
             Game.getModelManager().DrawModel("dice6", pos, scale, rotAxis, rot);
 
             this.Update();
@@ -44,7 +43,6 @@ public class Dice {
 
     private int trow6() {
         active = true;
-
         return 0;
     }
 

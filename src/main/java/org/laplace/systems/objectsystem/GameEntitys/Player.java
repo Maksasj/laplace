@@ -47,7 +47,8 @@ public class Player extends GameEntity {
             this.y -= 1;
         }
 
-        if(IsKeyPressed(84)) { //test
+        if(IsKeyPressed(66)) { //test
+            System.out.println("testttt");
             Game.getDice().ThrowDice(6);
         }
 
