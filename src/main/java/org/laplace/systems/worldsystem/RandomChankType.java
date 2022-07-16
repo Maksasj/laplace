@@ -14,7 +14,31 @@ public class RandomChankType {
             case 1:
                 return ChunkTypes.ONE_RIGHT_DOOR;
             case 2:
-                return ChunkTypes.ONE_RIGHT_DOOR;
+                return ChunkTypes.ONE_DOWN_DOOR;
+            case 3:
+                return ChunkTypes.ONE_LEFT_DOOR;
+            case 4:
+                return ChunkTypes.TWO_LEFT_RIGHT_DOOR;
+            case 5:
+                return ChunkTypes.TWO_UP_DOWN_DOOR;
+            case 6:
+                return ChunkTypes.TWO_LEFT_UP_DOOR;
+            case 7:
+                return ChunkTypes.TWO_UP_RIGHT_DOOR;
+            case 8:
+                return ChunkTypes.TWO_RIGHT_DOWN_DOOR;
+            case 9:
+                return ChunkTypes.TWO_DOWN_LEFT_DOOR;
+            case 10:
+                return ChunkTypes.THREE_F_UP_DOOR;
+            case 11:
+                return ChunkTypes.THREE_F_RIGHT_DOOR;
+            case 12:
+                return ChunkTypes.THREE_F_DOWN_DOOR;
+            case 13:
+                return ChunkTypes.THREE_F_LEFT_DOOR;
+            case 14:
+                return ChunkTypes.FOUR_DOOR;
             default:
                 return ChunkTypes.NULL;
 

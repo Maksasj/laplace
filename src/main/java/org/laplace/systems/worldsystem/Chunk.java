@@ -4,6 +4,8 @@ import com.raylib.Jaylib;
 import org.laplace.systems.objectsystem.GameEntity;
 import org.laplace.systems.objectsystem.GameEntitys.*;
 
+import org.laplace.systems.worldsystem.RandomChankType;
+
 public class Chunk {
     private ChunkTypes chankType;
     private GameEntity[][] gameObjects = new GameEntity[8][8];

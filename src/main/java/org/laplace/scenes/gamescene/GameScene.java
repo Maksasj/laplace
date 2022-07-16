@@ -28,6 +28,8 @@ public class GameScene extends ScenesGeneric {
 
         gameWorld = new GameWorld();
 
+        gameWorld.GenerateWorld();
+
         texture = LoadTexture("target/shaders/defaultBackground/tex.png");
 
         shaderLoc = Game.getShaderManager().GetShaderLocation("defaultBackground", "iTime");
