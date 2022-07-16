@@ -28,13 +28,10 @@ public class GameWorld {
 
     public void GenerateWorld() {
         chunks[0][0] = new Chunk(0, 0);
-        chunks[0][0].CreatePlayer(1, 1);
+        chunks[0][0].CreatePlayer(5, 3);
 
-        chunks[1][0] = new Chunk(1, 0);
-        chunks[1][0].changeType(new RandomChankType().randomChank());
-
+        chunks[1][1] = new Chunk(1, 1);
         chunks[5][3] = new Chunk(5, 3);
-        chunks[5][3].changeType(new RandomChankType().randomChank());
 
         int buff[][] = new int[64][3];
         int l = 0;

@@ -11,7 +11,6 @@ public class Dice extends DiceAnimation {
     private Raylib.Model dice6;
     private static Raylib.Camera3D camera;
 
-    boolean active = false;
 
     public Dice() {
         super();
@@ -23,8 +22,8 @@ public class Dice extends DiceAnimation {
 
     public void Draw() {
         if(active) {
-            this.BeginAnimation();
-            camera._position( new Jaylib.Vector3( 5.0f, 5.0f,  5.0f))
+            this.BeginAnimation(1);
+            camera._position( new Jaylib.Vector3( 9.0f, 0.0f,  0.0f))
                     .target(    new Jaylib.Vector3(0.0f, 0.0f, 0.0f))
                     .up(        new Raylib.Vector3().x(0.0f).y(1.0f).z(0.0f))
                     .fovy(45)
@@ -42,6 +41,7 @@ public class Dice extends DiceAnimation {
     }
 
     private int trow6() {
+        this.ResetAnimation();
         active = true;
         return 0;
     }

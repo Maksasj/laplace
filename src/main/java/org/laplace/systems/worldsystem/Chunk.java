@@ -33,7 +33,7 @@ public class Chunk extends ChunkMesh{
 
         for(int x = 1; x < 9; x++) {
             for(int y = 1; y < 9; y++) {
-                gameObjects[x][y] = new Goblin(x*2 + 8*X*2, y*2 + 8*Y*2); //Testing
+                //gameObjects[x][y] = new Goblin(x*2 + 10*X*2, y*2 + 10*Y*2); //Testing
             }
         }
     }
@@ -66,6 +66,6 @@ public class Chunk extends ChunkMesh{
     }
 
     public void CreatePlayer(int x, int y) {
-        gameObjects[x][y] = new Player(x + 8*this.X*2, y + 8*this.Y*2);
+        gameObjects[x][y] = new Player(x + 10*this.X*2, y + 10*this.Y*2);
     }
 }
