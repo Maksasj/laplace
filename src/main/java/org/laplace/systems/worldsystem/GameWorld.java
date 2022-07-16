@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.Vector;
 
 public class GameWorld {
-    public Chunk[][] chunks = new Chunk[8][8];;
+    private Chunk[][] chunks = new Chunk[8][8];;
 
     public GameWorld() {
 
