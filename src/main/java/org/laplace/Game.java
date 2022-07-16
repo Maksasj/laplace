@@ -21,11 +21,11 @@ public class Game {
     private boolean gameRunning;
     private static ModelManager modelManager;
     private static ShaderManager shaderManager;
-    ScenesGeneric activeScene;
+    private static ScenesGeneric activeScene;
 
     //Game constructor
     public Game() {
-        InitWindow(windowWidth, windowHeight, "Demo");
+        InitWindow(windowWidth, windowHeight, "Laplace");
         SetTargetFPS(60);
 
         camera = new Raylib.Camera3D()
@@ -39,8 +39,8 @@ public class Game {
         //activeScene = new MainMenu();
 
         modelManager = new ModelManager();
-        activeScene = new GameScene();
         shaderManager = new ShaderManager();
+        activeScene = new GameScene();
     }
 
     //Main game loop

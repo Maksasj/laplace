@@ -1,0 +1,11 @@
+Model Information:
+* title:	RPG lowpoly Skeleton
+* source:	https://sketchfab.com/3d-models/rpg-lowpoly-skeleton-6b3cb0f76a7540f7968e785c68058883
+* author:	ImageParSeconde (https://sketchfab.com/ImageParSeconde)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "RPG lowpoly Skeleton" (https://sketchfab.com/3d-models/rpg-lowpoly-skeleton-6b3cb0f76a7540f7968e785c68058883) by ImageParSeconde (https://sketchfab.com/ImageParSeconde) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
