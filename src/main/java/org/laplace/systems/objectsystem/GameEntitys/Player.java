@@ -57,7 +57,6 @@ public class Player extends GameEntity {
         }
 
         if(IsKeyPressed(66)) { //test
-            System.out.println("testttt");
             Game.getDice().ThrowDice(6);
         }
 

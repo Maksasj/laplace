@@ -6,6 +6,9 @@ import org.laplace.Game;
 public class GameEntity extends GameObject{
     protected int x = 0; //Relative to world cords
     protected int y = 0; //Relative to world cords
+
+    int health = 0;
+    int maxhealth = 0;
     private Jaylib.Vector3 pos = new Jaylib.Vector3(0.0f, 0.0f, 0.0f); //Graphic thing
     private Jaylib.Vector3 offset = new Jaylib.Vector3(0.0f, 0.0f, 0.0f);
     private Jaylib.Vector3 rotAxis = new Jaylib.Vector3(0.0f, 0.0f, 0.0f);

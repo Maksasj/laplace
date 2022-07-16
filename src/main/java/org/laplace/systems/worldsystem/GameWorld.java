@@ -1,5 +1,7 @@
 package org.laplace.systems.worldsystem;
 
+import org.laplace.systems.objectsystem.GameEntity;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,6 +26,28 @@ public class GameWorld {
         if(chunks[x][y] != null) {
             chunks[x][y].Update();
         }
+    }
+
+    public static GameEntity getEntity(int ix, int iy) {
+        int X = ix / 20;
+        int Y = iy / 20;
+
+        int x = ix % 20;
+        int y = iy % 20;
+
+        if(X < 0 || X > 8) {
+            return null;
+        }
+
+        if(Y < 0 || Y > 8) {
+            return null;
+        }
+
+        if(chunks[X][Y] == null) {
+            return null;
+        }
+
+        return chunks[X][Y].getWall(x, y);
     }
 
     public static boolean ChechIfWall(int ix, int iy) {
