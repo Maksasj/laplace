@@ -11,18 +11,27 @@ public class DiceAnimation {
     public float rot;
     public float scale;
 
+    private float x = 0;
+    private float y = 0;
     public float Timer = 0.0f;
 
     public boolean active = false;
-
     public DiceAnimation() {
+        pos = new Jaylib.Vector3(0.0f, 8.0f, 0.0f);
+        scale = 1;
+    }
+
+    public DiceAnimation(float x, float y) {
+        this.x = x;
+        this.y = y;
+
         pos = new Jaylib.Vector3(0.0f, 8.0f, 0.0f);
         scale = 1;
     }
     public void BeginAnimation(int value) {
         if(pos.y() > 0) {
-            pos = this.cubic_interpolation( new Jaylib.Vector3(0.0f, 8.0f, 0.0f),
-                            new Jaylib.Vector3(0.0f, 0.0f, 0.0f),
+            pos = this.cubic_interpolation( new Jaylib.Vector3(x, 8.0f, y),
+                            new Jaylib.Vector3(x, 0.0f, y),
                             Timer / 200.0f);
 
             rot = this.CosineInterpolate( 2400, this.getRot(value).rot, Timer / 200.0f);

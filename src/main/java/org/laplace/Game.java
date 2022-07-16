@@ -18,14 +18,14 @@ public class Game {
     private static int windowWidth = 1280;
     private static int windowHeight = 720;
 
-    public static int pixelezationRate = 1;
+    public static int pixelezationRate = 4;
     private static Raylib.Camera3D camera;
     private boolean gameRunning;
     private static ModelManager modelManager;
     private static ShaderManager shaderManager;
     private static TextureManager textureManager;
     private static ScenesGeneric activeScene;
-    private static Dice dice;
+
     //Game constructor
     public Game() {
         InitWindow(windowWidth, windowHeight, "Laplace");
@@ -35,14 +35,12 @@ public class Game {
         SetCameraMode(camera, CAMERA_ORBITAL);
 
         gameRunning = true;
-        //activeScene = new MainMenu();
 
         modelManager = new ModelManager();
         shaderManager = new ShaderManager();
-        activeScene = new GameScene();
         textureManager = new TextureManager();
 
-        dice = new Dice();
+        activeScene = new GameScene();
     }
 
     //Main game loop
@@ -94,9 +92,5 @@ public class Game {
     }
     public static int getPixelezationRate() {
         return pixelezationRate;
-    }
-
-    public static Dice getDice() {
-        return dice;
     }
 }

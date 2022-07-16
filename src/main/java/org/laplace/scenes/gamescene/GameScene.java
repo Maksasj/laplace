@@ -2,6 +2,7 @@ package org.laplace.scenes.gamescene;
 
 import com.raylib.Jaylib;
 import com.raylib.Raylib;
+import org.laplace.Dice.Dice;
 import org.laplace.Game;
 import org.laplace.scenes.ScenesGeneric;
 import org.laplace.systems.worldsystem.GameWorld;
@@ -12,7 +13,10 @@ import static com.raylib.Raylib.*;
 public class GameScene extends ScenesGeneric {
     private Raylib.RenderTexture target; //Rendering target
 
-    private float iTime = 0; //For now i used only with rendering
+    private static Dice mainDice = new Dice();
+    private static Dice leftDice = new Dice(0, -2.5f);
+    private static Dice rightDice = new Dice(0, 2.5f);
+    private float iTime = 0; //For now iTime used only with rendering
     private int shaderLoc;
     private Texture texture;
 
@@ -41,6 +45,18 @@ public class GameScene extends ScenesGeneric {
         UpdateCamera(Game.getCamera());
     }
 
+    public static Dice getMainDice() {
+        return mainDice;
+    }
+
+    public static Dice getLeftDice() {
+        return leftDice;
+    }
+
+    public static Dice getRightDice() {
+        return rightDice;
+    }
+
     @Override
     public void Draw() {
         BeginTextureMode(target);
@@ -54,8 +70,10 @@ public class GameScene extends ScenesGeneric {
                 gameWorld.Draw();
             EndMode3D();
 
-            BeginMode3D(Game.getDice().GetCamera());
-                Game.getDice().Draw();
+            BeginMode3D(mainDice.GetCamera());
+                mainDice.Draw();
+                leftDice.Draw();
+                rightDice.Draw();
             EndMode3D();
         EndTextureMode();
 

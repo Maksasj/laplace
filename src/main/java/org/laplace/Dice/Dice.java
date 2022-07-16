@@ -23,6 +23,15 @@ public class Dice extends DiceAnimation {
         dice6 = Game.getModelManager().getModel("dice6");
     }
 
+    public Dice(float x, float y) {
+        super(x, y);
+
+        camera = new Raylib.Camera3D();
+        SetCameraMode(camera, CAMERA_CUSTOM);
+
+        dice6 = Game.getModelManager().getModel("dice6");
+    }
+
     public void Draw() {
         if(active) {
             this.BeginAnimation(value);

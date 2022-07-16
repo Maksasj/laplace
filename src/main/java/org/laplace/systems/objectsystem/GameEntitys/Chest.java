@@ -7,6 +7,7 @@ public class Chest extends GameEntity {
 
     public Chest(int x, int y) {
         super("chest");
+        setHealth(20, 20);
 
         this.x = x;
         this.y = y;
