@@ -1,14 +1,21 @@
 package org.laplace.systems.objectsystem;
 
 import com.raylib.Jaylib;
+import com.raylib.Raylib;
 import org.laplace.Game;
+import org.laplace.systems.worldsystem.GameWorld;
+
+import static com.raylib.Jaylib.RAYWHITE;
+import static com.raylib.Raylib.LoadRenderTexture;
 
 public class GameEntity extends GameObject{
     protected int x = 0; //Relative to world cords
     protected int y = 0; //Relative to world cords
 
-    int health = 0;
-    int maxhealth = 0;
+    private int health = 0;
+    private int maxhealth = 0;
+    private int damage = 0;
+
     private Jaylib.Vector3 pos = new Jaylib.Vector3(0.0f, 0.0f, 0.0f); //Graphic thing
     private Jaylib.Vector3 offset = new Jaylib.Vector3(0.0f, 0.0f, 0.0f);
     private Jaylib.Vector3 rotAxis = new Jaylib.Vector3(0.0f, 0.0f, 0.0f);
@@ -20,9 +27,30 @@ public class GameEntity extends GameObject{
         super(name);
     }
 
+    public void setHealth(int x, int y) {
+        health = x;
+        health = y;
+    }
+
+    public void setHealth(int x) {
+        health = x;
+        health = x;
+    }
+
+    public void setDamage(int x) {
+        damage = x;
+    }
+
+    public int dealDamage() {
+        return damage;
+    }
+
     @Override
     public void Update() {
         this.setPos(new Jaylib.Vector3(this.x, 0.0f, this.y));
+        if(health <= 0) {
+            GameWorld.killEnity(x, y);
+        }
     }
 
     @Override
@@ -39,6 +67,35 @@ public class GameEntity extends GameObject{
                 rotAxis,
                 rot
                 );
+
+        //Healt bar drawing
+        if(getName() != "player") {
+            if(health != maxhealth) {
+                //oid DrawBillboardRec(Camera camera, Texture2D texture, Rectangle source, Vector3 position, Vector2 size, Color tint);
+
+                Raylib.DrawBillboard(
+                        Game.getCamera(),
+                        Game.getTextureManager().GetTexture("healthbar"),
+                        new Jaylib.Vector3(
+                                pos.x() + offset.x(),
+                                pos.y() + offset.y() + 1.5f,
+                                pos.z() + offset.z()
+                        ),
+                        0.30f,
+                        RAYWHITE);
+
+                Raylib.DrawBillboard(
+                        Game.getCamera(),
+                        Game.getTextureManager().GetTexture("healthbar"),
+                        new Jaylib.Vector3(
+                                pos.x() + offset.x(),
+                                pos.y() + offset.y() + 1.5f,
+                                pos.z() + offset.z()
+                        ),
+                        0.30f,
+                        RAYWHITE);
+            }
+        }
     }
 
     public void setModelScale(float value) {

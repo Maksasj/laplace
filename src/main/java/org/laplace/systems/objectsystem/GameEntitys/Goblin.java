@@ -7,6 +7,8 @@ public class Goblin extends GameEntity {
 
     public Goblin(int x, int y) {
         super("goblin");
+        setHealth(20);
+        setDamage(3);
 
         this.x = x;
         this.y = y;

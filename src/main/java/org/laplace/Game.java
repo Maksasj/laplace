@@ -7,6 +7,7 @@ import org.laplace.scenes.gamescene.GameScene;
 import org.laplace.scenes.mainmenu.MainMenu;
 import org.laplace.systems.modelmanager.ModelManager;
 import org.laplace.systems.renderer.shadermanager.ShaderManager;
+import org.laplace.systems.texturemanager.TextureManager;
 
 import static com.raylib.Jaylib.RAYWHITE;
 import static com.raylib.Jaylib.VIOLET;
@@ -22,6 +23,7 @@ public class Game {
     private boolean gameRunning;
     private static ModelManager modelManager;
     private static ShaderManager shaderManager;
+    private static TextureManager textureManager;
     private static ScenesGeneric activeScene;
     private static Dice dice;
     //Game constructor
@@ -38,6 +40,7 @@ public class Game {
         modelManager = new ModelManager();
         shaderManager = new ShaderManager();
         activeScene = new GameScene();
+        textureManager = new TextureManager();
 
         dice = new Dice();
     }
@@ -50,6 +53,10 @@ public class Game {
         }
 
         CloseWindow();
+    }
+
+    public static TextureManager getTextureManager() {
+        return textureManager;
     }
     public void handleDrawing() {
         activeScene.Draw();

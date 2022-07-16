@@ -49,6 +49,28 @@ public class GameWorld {
         return chunks[X][Y].getEntity(x, y);
     }
 
+    public static void killEnity(int ix, int iy) {
+        int X = ix / 20;
+        int Y = iy / 20;
+
+        int x = ix % 20;
+        int y = iy % 20;
+
+        if(X < 0 || X > 8) {
+            return;
+        }
+
+        if(Y < 0 || Y > 8) {
+            return;
+        }
+
+        if(chunks[X][Y] == null) {
+            return;
+        }
+
+        chunks[X][Y].setEntity(null, x, y);
+    }
+
     public static boolean ChechIfWall(int ix, int iy) {
         int X = ix / 20;
         int Y = iy / 20;
@@ -69,6 +91,23 @@ public class GameWorld {
         }
 
         return chunks[X][Y].getWall(x, y);
+    }
+
+    public static void TranlocateEntity(GameEntity entity, int px, int py, int ix, int iy) {
+        int X = ix / 10;
+        int Y = iy / 10;
+        int x = ix % 10;
+        int y = iy % 10;
+
+        int X1 = px / 10;
+        int Y1 = py / 10;
+        int x1 = px % 10;
+        int y1 = py % 10;
+
+        chunks[X][Y]
+                .setEntity(entity, x, y);
+        chunks[X1][Y1]
+                .setEntity(null, x1, y1);
     }
 
     public void GenerateWorld() {

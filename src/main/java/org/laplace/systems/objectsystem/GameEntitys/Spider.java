@@ -7,6 +7,8 @@ public class Spider extends GameEntity {
 
     public Spider(int x, int y) {
         super("spider");
+        setHealth(20);
+        setDamage(4);
 
         this.x = x;
         this.y = y;
