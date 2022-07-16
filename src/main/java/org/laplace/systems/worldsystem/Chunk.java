@@ -26,7 +26,7 @@ public class Chunk extends ChunkMesh {
         switch (chankType) {
 
             case ONE_UP_DOOR:
-                
+
                 //Left & Right
                 for (int y = 0; y < 10; y++) { //10 bcs borders
                     this.CreateWall(0, y);
@@ -87,7 +87,7 @@ public class Chunk extends ChunkMesh {
                 for (int y = 0; y < 4; y++) { //10 bcs borders
                     this.CreateWall(9, y);
                 }
-                for (int y = 6; y < 4; y++) { //10 bcs borders
+                for (int y = 6; y < 10; y++) { //10 bcs borders
                     this.CreateWall(9, y);
                 }
 
@@ -133,7 +133,7 @@ public class Chunk extends ChunkMesh {
                 for (int y = 0; y < 4; y++) { //10 bcs borders
                     this.CreateWall(9, y);
                 }
-                for (int y = 6; y < 4; y++) { //10 bcs borders
+                for (int y = 6; y < 10; y++) { //10 bcs borders
                     this.CreateWall(9, y);
                 }
 
@@ -228,7 +228,7 @@ public class Chunk extends ChunkMesh {
                 for (int y = 0; y < 4; y++) { //10 bcs borders
                     this.CreateWall(9, y);
                 }
-                for (int y = 6; y < 4; y++) { //10 bcs borders
+                for (int y = 6; y < 10; y++) { //10 bcs borders
                     this.CreateWall(9, y);
                 }
 
@@ -259,7 +259,7 @@ public class Chunk extends ChunkMesh {
                 for (int y = 0; y < 4; y++) { //10 bcs borders
                     this.CreateWall(9, y);
                 }
-                for (int y = 6; y < 4; y++) { //10 bcs borders
+                for (int y = 6; y < 10; y++) { //10 bcs borders
                     this.CreateWall(9, y);
                 }
 
@@ -324,7 +324,7 @@ public class Chunk extends ChunkMesh {
                 for (int y = 0; y < 4; y++) { //10 bcs borders
                     this.CreateWall(9, y);
                 }
-                for (int y = 6; y < 4; y++) { //10 bcs borders
+                for (int y = 6; y < 10; y++) { //10 bcs borders
                     this.CreateWall(9, y);
                 }
 
@@ -393,7 +393,7 @@ public class Chunk extends ChunkMesh {
                 for (int y = 0; y < 4; y++) { //10 bcs borders
                     this.CreateWall(9, y);
                 }
-                for (int y = 6; y < 4; y++) { //10 bcs borders
+                for (int y = 6; y < 10; y++) { //10 bcs borders
                     this.CreateWall(9, y);
                 }
 
@@ -424,7 +424,7 @@ public class Chunk extends ChunkMesh {
                 for (int y = 0; y < 4; y++) { //10 bcs borders
                     this.CreateWall(9, y);
                 }
-                for (int y = 6; y < 4; y++) { //10 bcs borders
+                for (int y = 6; y < 10; y++) { //10 bcs borders
                     this.CreateWall(9, y);
                 }
 
@@ -463,7 +463,7 @@ public class Chunk extends ChunkMesh {
                 for (int y = 0; y < 4; y++) { //10 bcs borders
                     this.CreateWall(9, y);
                 }
-                for (int y = 6; y < 4; y++) { //10 bcs borders
+                for (int y = 6; y < 10; y++) { //10 bcs borders
                     this.CreateWall(9, y);
                 }
 
