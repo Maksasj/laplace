@@ -15,6 +15,19 @@ public class Chunk extends ChunkMesh{
     public Chunk() {
         super();
 
+        for(int x = 0; x < 10; x++) { //10 bcs borders
+            this.CreateWall(0, x);
+            this.CreateWall(9, x);
+        }
+
+        for(int x = 0; x < 10; x++) {
+            this.CreateWall(x, 0);
+            this.CreateWall(x, 9);
+        }
+
+        this.RegenerateMesh();
+        this.LoadAtlas();
+
         chankType = ChunkTypes.NULL;
 
         for(int x = 0; x < 8; x++) {

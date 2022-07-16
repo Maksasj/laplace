@@ -2,8 +2,10 @@ package org.laplace.systems.worldsystem;
 
 import com.raylib.Jaylib;
 import com.raylib.Raylib;
+import org.laplace.Game;
 
 import static com.raylib.Jaylib.RAYWHITE;
+import static com.raylib.Jaylib.WHITE;
 import static com.raylib.Raylib.*;
 import static com.raylib.Raylib.LoadTexture;
 
@@ -15,10 +17,6 @@ public class ChunkMesh {
 
     public ChunkMesh() {
         image = LoadImage("target/maps/test/cubicmap.png");      // Load cubicmap image (RAM)
-        this.RegenerateMesh();
-
-        Texture texture = LoadTexture("target/maps/test/cubicmap_atlas.png");    // Load map texture
-        chunkModel.materials().maps().texture(texture);
 
         mapPosition = new Jaylib.Vector3( 0.0f, -1.0f, 0.0f);
     }
@@ -30,5 +28,14 @@ public class ChunkMesh {
     public void RegenerateMesh() {
         Raylib.Mesh mesh = GenMeshCubicmap(image, new Jaylib.Vector3(1.0f, 1.0f, 1.0f ));
         chunkModel = LoadModelFromMesh(mesh);
+    }
+
+    public void CreateWall(int x, int y) {
+        Raylib.ImageDrawPixel(image, x,y, WHITE);
+    }
+
+    public void LoadAtlas() {
+        Texture texture = LoadTexture("target/maps/test/cubicmap_atlas.png");    // Load map texture
+        chunkModel.materials().maps().texture(texture);
     }
 }
