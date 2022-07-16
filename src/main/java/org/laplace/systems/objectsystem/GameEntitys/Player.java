@@ -47,6 +47,10 @@ public class Player extends GameEntity {
             this.y -= 1;
         }
 
+        if(IsKeyPressed(84)) { //test
+            Game.getDice().ThrowDice(6);
+        }
+
         this.setPos(new Jaylib.Vector3(this.x*2, 0.0f, this.y*2));
     }
 }

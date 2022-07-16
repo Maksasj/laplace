@@ -18,6 +18,8 @@ public class ModelManager {
         this.LoadModel("chest", "target/models/chest/scene.gltf");
         this.LoadModel("player", "target/models/knight/scene.gltf");
         this.LoadModel("spider", "target/models/spider/scene.gltf");
+
+        this.LoadModel("dice6", "target/models/dice6/scene.gltf");
     }
 
     public void LoadModel(String name, String path) {

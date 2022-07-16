@@ -1,6 +1,7 @@
 package org.laplace;
 
 import com.raylib.Raylib;
+import org.laplace.Dice.Dice;
 import org.laplace.scenes.ScenesGeneric;
 import org.laplace.scenes.gamescene.GameScene;
 import org.laplace.scenes.mainmenu.MainMenu;
@@ -22,7 +23,7 @@ public class Game {
     private static ModelManager modelManager;
     private static ShaderManager shaderManager;
     private static ScenesGeneric activeScene;
-
+    private static Dice dice;
     //Game constructor
     public Game() {
         InitWindow(windowWidth, windowHeight, "Laplace");
@@ -37,6 +38,8 @@ public class Game {
         modelManager = new ModelManager();
         shaderManager = new ShaderManager();
         activeScene = new GameScene();
+
+        dice = new Dice();
     }
 
     //Main game loop
@@ -84,5 +87,9 @@ public class Game {
     }
     public static int getPixelezationRate() {
         return pixelezationRate;
+    }
+
+    public static Dice getDice() {
+        return dice;
     }
 }
