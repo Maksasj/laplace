@@ -6,7 +6,7 @@ public class RandomChankType {
 
     public static ChunkTypes randomChank() {
         Random rand = new Random();
-        int int_random = rand.nextInt(15);
+        int int_random = rand.nextInt(4);
         switch (int_random) {
             case 0:
                 return ChunkTypes.ONE_UP_DOOR;

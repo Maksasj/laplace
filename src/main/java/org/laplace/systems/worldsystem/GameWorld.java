@@ -35,25 +35,75 @@ public class GameWorld {
 
         chunks[5][3] = new Chunk(5, 3);
         chunks[5][3].changeType(new RandomChankType().randomChank());
-        /*
-        int buff[][] = new int[64][3];
-        boolean buff_is_not_empty = true;
 
-        while(buff_is_not_empty)
+        int buff[][] = new int[64][3];
+        int l = 0;
+            for (int i = 0; i < 8; i++) {
+                for (int k = 0; k < 8; k++) {
+                        buff[l][0] = i;
+                        buff[l][1] = k;
+                        buff[l][2] = 0;
+                        l++;
+                }
+            }
+        int some_action = 0;
+        while(some_action <= 64)
         {
             for (int i = 0; i < 64; i++) {
-                if(buff[i][3] == 0) {
+                if (buff[i][2] == 0 && chunks[buff[i][0]][buff[i][1]] != null) {
                     switch (chunks[buff[i][0]][buff[i][1]].getType()) {
                         case ONE_UP_DOOR:
-                            chunks[buff[0][0]][buff[0][1] + 1] = new Chunk( buff[0][0], (buff[0][1] + 1));
+                            if((buff[i][1] + 1) < 8) {
+                                if (chunks[buff[i][0]][buff[i][1] + 1] == null) {
+                                    chunks[buff[i][0]][buff[i][1] + 1] = new Chunk(buff[i][0], (buff[i][1] + 1));
+                                    buff[i][2] = 1;
+                                    some_action = 0;
+                                } else {
+                                    buff[i][2] = 1;
+                                    some_action = 0;
+                                }
+                            }
+                            break;
+
+                        case ONE_RIGHT_DOOR:
+                            if((buff[i][0] + 1) < 8) {
+                                if (chunks[buff[i][0] + 1][buff[i][1]] == null) {
+                                    chunks[buff[i][0] + 1][buff[i][1]] = new Chunk((buff[i][0] + 1), buff[i][1]);
+                                    buff[i][2] = 1;
+                                    some_action = 0;
+                                } else {
+                                    buff[i][2] = 1;
+                                    some_action = 0;
+                                }
+                            }
+                            break;
+
+                        case ONE_DOWN_DOOR:
+                            if ((buff[i][1] - 1) >= 0) {
+                                if (chunks[buff[i][0]][buff[i][1] - 1] == null) {
+                                    chunks[buff[i][0]][buff[i][1] - 1] = new Chunk(buff[i][0], (buff[i][1] - 1));
+                                    buff[i][2] = 1;
+                                    some_action = 0;
+                                } else {
+                                    buff[i][2] = 1;
+                                    some_action = 0;
+                                }
+                            }
+                            break;
+
+                        case ONE_LEFT_DOOR:
+                            if ((buff[i][0] - 1) >= 0) {
+                                if (chunks[buff[i][0] - 1][buff[i][1]] == null) {
+                                    chunks[buff[i][0] - 1][buff[i][1]] = new Chunk((buff[i][0] - 1), buff[i][1]);
+                                    buff[i][2] = 1;
+                                    some_action = 0;
+                                } else {
+                                    buff[i][2] = 1;
+                                    some_action = 0;
+                                }
+                            }
                             break;
                             /*
-                        case ONE_RIGHT_DOOR:
-                            break;
-                        case ONE_DOWN_DOOR:
-                            break;
-                        case ONE_LEFT_DOOR:
-                            break;
                         case TWO_LEFT_RIGHT_DOOR:
                             break;
                         case TWO_UP_DOWN_DOOR:
@@ -76,22 +126,15 @@ public class GameWorld {
                             break;
                         case FOUR_DOOR:
                             break;
-
+                             */
                         default:
                             break;
                     }
                 }
-            }
-            buff_is_not_empty = false;
-            for (int i = 0; i < 64; i++)
-            {
-                if (buff[i][2] == 0)
-                {
-                    buff_is_not_empty = true;
-                }
+                some_action++;
             }
         }
-        */
+
     }
 }
 
