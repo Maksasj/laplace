@@ -42,6 +42,7 @@ public class Chunk extends ChunkMesh{
         chankType = type;
     }
 
+    public ChunkTypes getType(){ return chankType;}
     public void Draw() {
         this.DrawChunkMesh();
 
