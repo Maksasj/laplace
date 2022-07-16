@@ -69,6 +69,9 @@ public class Chunk extends ChunkMesh{
         }
     }
 
+    public void setEntity(GameEntity entity, int x, int y) {
+        gameObjects[x][y] = entity;
+    }
     public void changeType(ChunkTypes type){
         chankType = type;
     }
