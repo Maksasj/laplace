@@ -14,6 +14,7 @@ public class Player extends GameEntity {
 
     public Player(int x, int y) {
         super("player");
+        setHealth(35);
 
         this.x = x;
         this.y = y;

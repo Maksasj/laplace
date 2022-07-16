@@ -50,6 +50,28 @@ public class GameWorld {
         return chunks[X][Y].getEntity(x, y);
     }
 
+    public static void killEnity(int ix, int iy) {
+        int X = ix / 20;
+        int Y = iy / 20;
+
+        int x = ix % 20;
+        int y = iy % 20;
+
+        if(X < 0 || X > 8) {
+            return;
+        }
+
+        if(Y < 0 || Y > 8) {
+            return;
+        }
+
+        if(chunks[X][Y] == null) {
+            return;
+        }
+
+        chunks[X][Y].setEntity(null, x, y);
+    }
+
     public static boolean ChechIfWall(int ix, int iy) {
         int X = ix / 20;
         int Y = iy / 20;
