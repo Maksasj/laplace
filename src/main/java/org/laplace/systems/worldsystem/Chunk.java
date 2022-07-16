@@ -29,6 +29,7 @@ public class Chunk {
         chankType = type;
     }
 
+    public ChunkTypes getType() { return chankType; }
     public void Draw() {
         for(int x = 0; x < 8; x++) {
             for(int y = 0; y < 8; y++) {
