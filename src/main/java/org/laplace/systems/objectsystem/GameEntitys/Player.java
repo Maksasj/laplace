@@ -7,7 +7,7 @@ import org.laplace.Game;
 import org.laplace.scenes.gamescene.GameScene;
 import org.laplace.systems.objectsystem.GameEntity;
 import org.laplace.systems.worldsystem.GameWorld;
-
+import org.laplace.systems.worldsystem.Chunk;
 import java.sql.Struct;
 import java.sql.Time;
 import java.util.Random;
@@ -254,7 +254,6 @@ public class Player extends GameEntity {
             if(attackingTarget.getHealth() < 1) {
                 if(GameWorld.getEntity(x + 1, y) == attackingTarget) {
                     GameWorld.killEnity(x + 1, y);
-
                 }else if(GameWorld.getEntity(x - 1, y) == attackingTarget) {
                     GameWorld.killEnity(x - 1, y);
 

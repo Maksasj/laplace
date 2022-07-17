@@ -54,6 +54,8 @@ public class GameWorld {
         return chunks[X][Y].getEntity(x, y);
     }
 
+
+
     public static void killEnity(int ix, int iy) {
         int X = ix / 10;
         int Y = iy / 10;
@@ -62,6 +64,10 @@ public class GameWorld {
 
         chunks[X][Y]
                 .setEntity(null, x, y);
+        if (!chunks[X][Y].MobCheck())
+        {
+            chunks[X][Y].Cleared = true;
+        }
     }
 
     public static boolean ChechIfWall(int ix, int iy) {
@@ -233,33 +239,6 @@ public class GameWorld {
 
         chunks[0][0].CreatePlayer(1, 1);
         //chunks[0][0].KiilMobs();
-    }
-
-    public void RoomCleared(int X, int Y)
-    {
-        //In the chunk
-        chunks[X][Y].DeleteRightDoors();
-        chunks[X][Y].DeleteLeftDoors();
-        chunks[X][Y].DeleteUpDoors();
-        chunks[X][Y].DeleteDownDoors();
-
-        //Nearby chunks
-        if (X + 1 < 8 && chunks[X + 1][Y] != null)
-        {
-            chunks[X + 1][Y].DeleteLeftDoors();
-        }
-        if (X - 1 >= 0 && chunks[X - 1][Y] != null)
-        {
-            chunks[X - 1][Y].DeleteRightDoors();
-        }
-        if (Y + 1 < 8 && chunks[X][Y + 1] != null)
-        {
-            chunks[X][Y + 1].DeleteDownDoors();
-        }
-        if (Y - 1 >= 0 && chunks[X][Y - 1] != null)
-        {
-            chunks[X][Y - 1].DeleteUpDoors();
-        }
     }
 
     public void GenerateRightChunk(int buff[][], int i)
