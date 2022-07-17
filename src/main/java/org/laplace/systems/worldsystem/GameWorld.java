@@ -235,7 +235,7 @@ public class GameWorld {
         }
 
         chunks[0][0].CreatePlayer(1, 1);
-        chunks[0][0].CreateDoor(8, 8);
+        chunks[0][0].CreateTurnedDoor(8, 8);
     }
 
     public void GenerateRightChunk(int buff[][], int i)

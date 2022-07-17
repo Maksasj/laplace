@@ -37,6 +37,8 @@ public class Player extends GameEntity {
         super("player");
         setHealth(35);
 
+        setHealth(20, 35);
+
         this.x = x;
         this.y = y;
 
@@ -53,6 +55,9 @@ public class Player extends GameEntity {
         if(battleMode && attackingTarget != null) {
             //GameWorld.killEnity( attackingTarget.x(), attackingTarget.y());
         }
+
+        GameScene.pHealth = getHealth();
+        GameScene.pMaxHealth = getMaxHealth();
 
         //Walking Cd
         if(!walkCd && !battleMode) {
