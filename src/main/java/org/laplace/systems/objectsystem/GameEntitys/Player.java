@@ -59,6 +59,23 @@ public class Player extends GameEntity {
         GameScene.pMaxHealth = getMaxHealth();
 
         if(getHealth() < 0) {
+            System.out.println("Player called die method");
+
+            battleMode = false;
+            walkCd = false;
+
+            setHealth(35);
+            setDamage(15);
+
+            battleCd = 0;
+            rBorder = 0;
+
+            this.setModelScale(0.3f);
+            this.setModelOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f));
+            this.setRotAxis(new Jaylib.Vector3(1.0f, 0.0f, 0.0f));
+            this.setRot(270);
+
+
             GameScene.playerDied();
         }
 

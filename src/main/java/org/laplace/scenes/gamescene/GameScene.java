@@ -8,7 +8,6 @@ import org.laplace.scenes.ScenesGeneric;
 import org.laplace.systems.worldsystem.GameWorld;
 
 import static com.raylib.Jaylib.RAYWHITE;
-import static com.raylib.Jaylib.RED;
 import static com.raylib.Raylib.*;
 import static com.raylib.Raylib.DrawTextEx;
 
@@ -52,6 +51,30 @@ public class GameScene extends ScenesGeneric {
         Game.getShaderManager().SetShaderValue("basePixelated", "playertint", shaderLocPlayerDeathTint, playerDeathTint);
 
         font = LoadFont("target/fonts/deathFont.ttf");
+
+        System.out.println("CALLING CONSTRUCTOR");
+
+        playerDied = false;
+    }
+
+    public void ResetScene() {
+        playerDied = false;
+        mainDice = new Dice();
+        rightDice = new Dice(0, 2.5f);
+        leftDice = new Dice(0, -2.5f);
+
+        target = LoadRenderTexture(
+                Game.getWindowWidth() / Game.pixelezationRate,
+                Game.getWindowHeight() / Game.pixelezationRate);
+
+        pHealth = 1;
+        pMaxHealth = 1;
+
+        gameWorld = new GameWorld();
+
+        mainDice = new Dice();
+        leftDice = new Dice(0, -2.5f);
+        rightDice = new Dice(0, 2.5f);
     }
 
     @Override
@@ -62,25 +85,19 @@ public class GameScene extends ScenesGeneric {
             Game.getShaderManager().SetShaderValue("defaultBackground", "iTime", shaderLoc, iTime);
         } else {
             if(playerDeathTint > 0.5f) {
-                System.out.println("increesing tint");
-
                 playerDeathTint -= 0.05f;
             }
 
             Game.getShaderManager().SetShaderValue("basePixelated", "playertint", shaderLocPlayerDeathTint, playerDeathTint);
 
             if(IsKeyPressed(32)) {
-                playerDied = false;
-                mainDice = new Dice();
-                rightDice = new Dice(0, 2.5f);
-                leftDice = new Dice(0, -2.5f);
+                System.out.println("PRESSIGN SPACE");
 
-                pHealth = 1;
-                pMaxHealth = 1;
-
+                ResetScene();
                 Game.GameRestart();
             }
         }
+
         UpdateCamera(Game.getCamera());
     }
 
@@ -218,9 +235,7 @@ public class GameScene extends ScenesGeneric {
 
         EndDrawing();
     }
-    
     public static void playerDied() {
-        System.out.println("player_died");
         playerDied = true;
     }
 }

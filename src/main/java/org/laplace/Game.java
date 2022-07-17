@@ -50,12 +50,14 @@ public class Game {
 
         soundManager = new SoundManager();
 
+        Raylib.SetTraceLogLevel(LOG_ALL);
+
         Game.setActiveScene(Game.GetMainMenu());
     }
 
     public static void GameRestart() {
-        gameScene = null;
         gameScene = new GameScene();
+
         Game.setActiveScene(GetMainMenu());
     }
 
