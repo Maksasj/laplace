@@ -32,13 +32,16 @@ public class RandomRoomObjects {
             case 0:
                 for (int x = 3; x < 9; x++)
                 {
-                    gameObjects[x][6] = null;
+                    if (gameObjects[x][6] != null){
+                    gameObjects[x][6] = null;}
                     chunk.CreateWall(x, 6);
                 }
                 for (int y = 1; y < 4; y++)
                 {
-                    gameObjects[3][y] = null;
-                    gameObjects[6][y] = null;
+                    if (gameObjects[3][y] != null){
+                    gameObjects[3][y] = null;}
+                    if (gameObjects[6][y] != null){
+                    gameObjects[6][y] = null;}
                     chunk.CreateWall(3, y);
                     chunk.CreateWall(6, y);
                 }
@@ -46,59 +49,71 @@ public class RandomRoomObjects {
             case 1:
                 for (int x = 3; x < 7; x++)
                 {
-                    gameObjects[x][3] = null;
+                    if (gameObjects[x][3]!= null){
+                    gameObjects[x][3] = null;}
                     chunk.CreateWall(x, 3);
                 }
                 for (int x = 6; x < 9; x++)
                 {
-                    gameObjects[x][6] = null;
+                    if (gameObjects[x][6] != null){
+                    gameObjects[x][6] = null;}
                     chunk.CreateWall(x, 6);
                 }
                 for (int y = 1; y < 7; y++)
                 {
-                    gameObjects[3][y] = null;
+                    if (gameObjects[3][y] != null){
+                    gameObjects[3][y] = null;}
                     chunk.CreateWall(3, y);
                 }
                 break;
             case 2:
                 for (int x = 1; x < 4; x++)
                 {
-                    gameObjects[x][6] = null;
+                    if (gameObjects[x][6] != null){
+                    gameObjects[x][6] = null;}
                     chunk.CreateWall(x, 6);
                 }
                 for (int x = 6; x < 9; x++)
                 {
-                    gameObjects[x][3] = null;
+                    if (gameObjects[x][3] != null){
+                    gameObjects[x][3] = null;}
                     chunk.CreateWall(x, 3);
                 }
                 for (int y = 1; y < 4; y++)
                 {
-                    gameObjects[3][y] = null;
+                    if (gameObjects[3][y] != null){
+                    gameObjects[3][y] = null;}
                     chunk.CreateWall(3, y);
                 }
                 for (int y = 6; y < 9; y++)
                 {
-                    gameObjects[6][y] = null;
+                    if (gameObjects[6][y] != null){
+                    gameObjects[6][y] = null;}
                     chunk.CreateWall(6, y);
                 }
                 break;
             case 3:
                 for (int x = 1; x < 4; x++)
                 {
-                    gameObjects[x][6] = null;
+                    if (gameObjects[x][6] != null){
+                    gameObjects[x][6] = null;}
                     chunk.CreateWall(x, 6);
                 }
                 for (int x = 3; x < 7; x++)
                 {
-                    gameObjects[x][3] = null;
+                    if (gameObjects[x][3] != null){
+                    gameObjects[x][3] = null;}
                     chunk.CreateWall(x, 3);
                 }
-                gameObjects[6][6] = null;
+                if (gameObjects[6][6] != null){
+                gameObjects[6][6] = null;}
                 chunk.CreateWall(6, 6);
                 for (int y = 3; y < 7; y++)
                 {
-                    gameObjects[3][y] = null;
-                    gameObjects[6][y] = null;
+                    if (gameObjects[3][y] != null){
+                    gameObjects[3][y] = null;}
+                    if (gameObjects[6][y] != null){
+                    gameObjects[6][y] = null;}
                     chunk.CreateWall(3, y);
                     chunk.CreateWall(6, y);
                 }
@@ -106,10 +121,14 @@ public class RandomRoomObjects {
             case 4:
                 for (int y = 3; y < 7; y++)
                 {
-                    gameObjects[3][y] = null;
-                    gameObjects[4][y] = null;
-                    gameObjects[5][y] = null;
-                    gameObjects[6][y] = null;
+                    if (gameObjects[3][y] != null){
+                    gameObjects[3][y] = null;}
+                    if (gameObjects[4][y] != null){
+                        gameObjects[4][y] = null;}
+                    if (gameObjects[5][y] != null){
+                        gameObjects[5][y] = null;}
+                    if (gameObjects[6][y] != null){
+                        gameObjects[6][y] = null;}
                     chunk.CreateWall(3, y);
                     chunk.CreateWall(4, y);
                     chunk.CreateWall(5, y);

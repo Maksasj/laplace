@@ -725,9 +725,11 @@ public class Chunk extends ChunkMesh {
     {
         for (int x = 4; x < 6; x++)
         {
+            if (this.gameObjects[x][0] != null){
             if(this.gameObjects[x][0].getName() == "door")
             {
                 this.gameObjects[x][0] = null;
+            }
             }
         }
     }
@@ -735,8 +737,10 @@ public class Chunk extends ChunkMesh {
     {
         for (int x = 4; x < 6; x++)
         {
-            if(this.gameObjects[x][9].getName() == "door") {
-                this.gameObjects[x][9] = null;
+            if(this.gameObjects[x][9] != null) {
+                if (this.gameObjects[x][9].getName() == "door") {
+                    this.gameObjects[x][9] = null;
+                }
             }
         }
     }
@@ -744,8 +748,10 @@ public class Chunk extends ChunkMesh {
     {
         for (int y = 4; y < 6; y++)
         {
-            if(this.gameObjects[9][y].getName() == "door") {
-                this.gameObjects[9][y] = null;
+            if(this.gameObjects[9][y] != null) {
+                if (this.gameObjects[9][y].getName() == "door") {
+                    this.gameObjects[9][y] = null;
+                }
             }
         }
     }
@@ -753,8 +759,10 @@ public class Chunk extends ChunkMesh {
     {
         for (int y = 4; y < 6; y++)
         {
-            if(this.gameObjects[0][y].getName() == "door") {
-                this.gameObjects[0][y] = null;
+            if(this.gameObjects[0][y] != null) {
+                if (this.gameObjects[0][y].getName() == "door") {
+                    this.gameObjects[0][y] = null;
+                }
             }
         }
     }
@@ -764,5 +772,31 @@ public class Chunk extends ChunkMesh {
     }
     public void CreateTurnedDoor(int x, int y) {
         gameObjects[x][y] = new TurnedDoor(x*2 + 10*this.X*2, y*2 + 10*this.Y*2);
+    }
+    public void RoomCleared(int X, int Y, Chunk[][] chunks)
+    {
+        //In the chunk
+        chunks[X][Y].DeleteRightDoors();
+        chunks[X][Y].DeleteLeftDoors();
+        chunks[X][Y].DeleteUpDoors();
+        chunks[X][Y].DeleteDownDoors();
+
+        //Nearby chunks
+        if (X + 1 < 8 && chunks[X + 1][Y] != null)
+        {
+            chunks[X + 1][Y].DeleteLeftDoors();
+        }
+        if (X - 1 >= 0 && chunks[X - 1][Y] != null)
+        {
+            chunks[X - 1][Y].DeleteRightDoors();
+        }
+        if (Y + 1 < 8 && chunks[X][Y + 1] != null)
+        {
+            chunks[X][Y + 1].DeleteDownDoors();
+        }
+        if (Y - 1 >= 0 && chunks[X][Y - 1] != null)
+        {
+            chunks[X][Y - 1].DeleteUpDoors();
+        }
     }
 }

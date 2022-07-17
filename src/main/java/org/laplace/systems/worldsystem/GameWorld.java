@@ -67,6 +67,7 @@ public class GameWorld {
         if (!chunks[X][Y].MobCheck())
         {
             chunks[X][Y].Cleared = true;
+            chunks[X][Y].RoomCleared(X, Y, chunks);
         }
     }
 
@@ -238,6 +239,7 @@ public class GameWorld {
         }
 
         chunks[0][0].CreatePlayer(1, 1);
+        chunks[0][0].RoomCleared(0, 0, chunks);
         //chunks[0][0].KiilMobs();
     }
 
