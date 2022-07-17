@@ -9,6 +9,7 @@ import org.laplace.systems.objectsystem.GameEntity;
 import org.laplace.systems.worldsystem.GameWorld;
 
 import java.sql.Struct;
+import java.sql.Time;
 import java.util.Random;
 
 import static com.raylib.Jaylib.RAYWHITE;
@@ -222,42 +223,45 @@ public class Player extends GameEntity {
             Game.getSoundManager().PlaySound("battlebeggining", 0.2f);
         }
 
-        if(battleMode && battleCd > 500) {
-            if(rValue > lValue) {
-                attackingTarget.receiveDamage(5);
+        if(battleMode && battleCd > 100) {
+            if(attackingTarget.getHealth() < 1) {
+                if(GameWorld.getEntity(x + 1, y) == attackingTarget) {
+                    GameWorld.killEnity(x + 1, y);
 
-                if(attackingTarget.getHealth() < 1) {
-                    if(GameWorld.getEntity(x + 1, y) == attackingTarget) {
-                        GameWorld.killEnity(x + 1, y);
+                }else if(GameWorld.getEntity(x - 1, y) == attackingTarget) {
+                    GameWorld.killEnity(x - 1, y);
 
-                    }else if(GameWorld.getEntity(x - 1, y) == attackingTarget) {
-                        GameWorld.killEnity(x - 1, y);
+                }else if(GameWorld.getEntity(x, y + 1) == attackingTarget) {
+                    GameWorld.killEnity(x, y + 1);
 
-                    }else if(GameWorld.getEntity(x, y + 1) == attackingTarget) {
-                        GameWorld.killEnity(x, y + 1);
-
-                    }else if(GameWorld.getEntity(x, y - 1) == attackingTarget) {
-                        GameWorld.killEnity(x, y - 1);
-                    }
-
-                    attackingTarget = null;
-                    battleMode = false;
-                    return;
+                }else if(GameWorld.getEntity(x, y - 1) == attackingTarget) {
+                    GameWorld.killEnity(x, y - 1);
                 }
 
-                System.out.println("Mob takes damage");
-
-            } else if (rValue < lValue){
-                System.out.println("Player takes damage");
-                this.receiveDamage(lValue);
-            } else {
-                System.out.println("Draft");
+                attackingTarget = null;
+                battleMode = false;
+                return;
             }
 
-            rValue = GameScene.getRightDice().ThrowDice(6);
-            lValue = GameScene.getLeftDice().ThrowDice(6);
 
-            battleCd = 0;
+            if(attackingTarget != null && battleCd > 800) {
+                if(rValue > lValue) {
+                    attackingTarget.receiveDamage(5);
+                } else if (rValue < lValue){
+                    attackingTarget.receiveDamage(5);
+                    this.receiveDamage(lValue);
+                } else {
+                    attackingTarget.receiveDamage(5);
+                }
+
+
+                if(attackingTarget.getHealth() > 1) {
+                    rValue = GameScene.getRightDice().ThrowDice(6);
+                    lValue = GameScene.getLeftDice().ThrowDice(6);
+                }
+
+                battleCd = 0;
+            }
         }
 
         battleCd++;
