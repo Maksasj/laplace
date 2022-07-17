@@ -25,6 +25,7 @@ public class GameScene extends ScenesGeneric {
     public static int pHealth = 1;
     public static int pMaxHealth = 1;
 
+    private boolean playerDied = false;
     public GameScene() {
         super(); //Parent constructor
 
@@ -158,6 +159,6 @@ public class GameScene extends ScenesGeneric {
     }
     
     public static void playerDied() {
-
+        this.playerDied = true;
     }
 }
