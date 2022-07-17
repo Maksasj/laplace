@@ -2,6 +2,7 @@ package org.laplace.systems.modelmanager;
 
 import com.raylib.Jaylib;
 import com.raylib.Raylib;
+import org.laplace.Game;
 
 import java.util.HashMap;
 
@@ -24,6 +25,8 @@ public class ModelManager {
 
     public void LoadModel(String name, String path) {
         Raylib.Model model = Raylib.LoadModel(path);
+        System.out.println("=====================");
+        model.materials().shader(Game.getShaderManager().getShader("defaultLight"));
         models.put(name, model);
     }
 

@@ -66,15 +66,17 @@ public class GameScene extends ScenesGeneric {
                 DrawTexture(texture, 0, 0, RAYWHITE);
             Game.getShaderManager().DeactivateShader();
 
-            BeginMode3D(Game.getCamera()); //Scope for 3d stuff
-                gameWorld.Draw();
-            EndMode3D();
+            Game.getShaderManager().ActivateShader("defaultLight");
+                BeginMode3D(Game.getCamera()); //Scope for 3d stuff
+                    gameWorld.Draw();
+                EndMode3D();
 
-            BeginMode3D(mainDice.GetCamera());
-                mainDice.Draw();
-                leftDice.Draw();
-                rightDice.Draw();
-            EndMode3D();
+                BeginMode3D(mainDice.GetCamera());
+                    mainDice.Draw();
+                    leftDice.Draw();
+                    rightDice.Draw();
+                EndMode3D();
+            Game.getShaderManager().DeactivateShader();
         EndTextureMode();
 
         BeginDrawing();

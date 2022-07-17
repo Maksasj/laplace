@@ -18,7 +18,7 @@ public class Game {
     private static int windowWidth = 1280;
     private static int windowHeight = 720;
 
-    public static int pixelezationRate = 4;
+    public static int pixelezationRate = 1;
     private static Raylib.Camera3D camera;
     private boolean gameRunning;
     private static ModelManager modelManager;
@@ -36,8 +36,8 @@ public class Game {
 
         gameRunning = true;
 
-        modelManager = new ModelManager();
         shaderManager = new ShaderManager();
+        modelManager = new ModelManager();
         textureManager = new TextureManager();
 
         activeScene = new GameScene();
