@@ -236,6 +236,33 @@ public class GameWorld {
         chunks[0][0].CreatePlayer(1, 1);
     }
 
+    public void RoomCleared(int X, int Y)
+    {
+        //In the chunk
+        chunks[X][Y].DeleteRightDoors();
+        chunks[X][Y].DeleteLeftDoors();
+        chunks[X][Y].DeleteUpDoors();
+        chunks[X][Y].DeleteDownDoors();
+
+        //Nearby chunks
+        if (X + 1 < 8 && chunks[X + 1][Y] != null)
+        {
+            chunks[X + 1][Y].DeleteLeftDoors();
+        }
+        if (X - 1 >= 0 && chunks[X - 1][Y] != null)
+        {
+            chunks[X - 1][Y].DeleteRightDoors();
+        }
+        if (Y + 1 < 8 && chunks[X][Y + 1] != null)
+        {
+            chunks[X][Y + 1].DeleteDownDoors();
+        }
+        if (Y - 1 >= 0 && chunks[X][Y - 1] != null)
+        {
+            chunks[X][Y - 1].DeleteUpDoors();
+        }
+    }
+
     public void GenerateRightChunk(int buff[][], int i)
     {
         if (buff[i][0] + 1 <= 7 && chunks[buff[i][0] + 1][buff[i][1]] == null)
