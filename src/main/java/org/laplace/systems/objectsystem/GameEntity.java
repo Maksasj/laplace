@@ -105,7 +105,6 @@ public class GameEntity extends GameObject{
                 rot
         );
     }
-
     public void setModelScale(float value) {
         modelScale = value;
     }

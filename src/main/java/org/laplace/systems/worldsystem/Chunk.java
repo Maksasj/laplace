@@ -539,6 +539,35 @@ public class Chunk extends ChunkMesh {
     public void CreatePlayer(int x, int y) {
         gameObjects[x][y] = new Player(x*2 + 10*this.X*2, y*2 + 10*this.Y*2);
     }
+
+    public boolean MobCheck()
+    {
+        for (int x = 1; x < 9; x++)
+        {
+            for (int y = 1; y < 9; y++)
+            {
+                if (gameObjects[x][y].getName() == "goblin" || gameObjects[x][y].getName() == "spider" || gameObjects[x][y].getName() == "skeleton" )
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void DeleteDoors()
+    {
+        for (int x = 0; x < 10; x++)
+        {
+            for (int y = 0; y < 10; y++)
+            {
+                if (gameObjects[x][y].getName() == "door")
+                {
+                    gameObjects[x][y] = null;
+                }
+            }
+        }
+    }
     public void CreateDoor(int x, int y) {
         gameObjects[x][y] = new Door(x*2 + 10*this.X*2, y*2 + 10*this.Y*2);
     }
