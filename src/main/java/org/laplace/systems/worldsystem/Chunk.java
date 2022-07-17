@@ -27,6 +27,13 @@ public class Chunk extends ChunkMesh {
 
             case ONE_UP_DOOR:
 
+                //Doors
+                for (int x = 4; x < 6; x++)
+                {
+                    this.CreateDoor(x, 9);
+                }
+
+
                 //Left & Right
                 for (int y = 0; y < 10; y++) { //10 bcs borders
                     this.CreateWall(0, y);
@@ -37,7 +44,6 @@ public class Chunk extends ChunkMesh {
                 for (int x = 0; x < 10; x++) {
                     this.CreateWall(x, 0);
                 }
-
                 //Up
                 for (int x = 0; x < 4; x++)
                 {
@@ -50,6 +56,13 @@ public class Chunk extends ChunkMesh {
             break;
 
             case ONE_LEFT_DOOR:
+
+                //Door
+                for(int y = 4; y < 6; y++)
+                {
+                    this.CreateTurnedDoor(0, y);
+                }
+
 
                 //Left
                 for (int y = 0; y < 4; y++) { //10 bcs borders
@@ -78,6 +91,12 @@ public class Chunk extends ChunkMesh {
 
             case ONE_RIGHT_DOOR:
 
+                //Door
+                for(int y = 4; y < 6; y++)
+                {
+                    this.CreateTurnedDoor(9, y);
+                }
+
                 //Left
                 for (int y = 0; y < 10; y++) { //10 bcs borders
                     this.CreateWall(0, y);
@@ -105,6 +124,12 @@ public class Chunk extends ChunkMesh {
 
             case ONE_DOWN_DOOR:
 
+                //Door
+                for (int x = 4; x < 6; x++)
+                {
+                    this.CreateDoor(x, 0);
+                }
+
                 //Left & Right
                 for (int y = 0; y < 10; y++) { //10 bcs borders
                     this.CreateWall(0, y);
@@ -128,6 +153,15 @@ public class Chunk extends ChunkMesh {
                 break;
 
             case TWO_LEFT_RIGHT_DOOR:
+
+                //Door
+                for (int y = 4; y < 6; y++) { //10 bcs borders
+                    this.CreateTurnedDoor(9, y);
+                }
+                for (int y = 4; y < 6; y++) { //10 bcs borders
+                    this.CreateTurnedDoor(0, y);
+                }
+
 
                 //Right
                 for (int y = 0; y < 4; y++) { //10 bcs borders
@@ -159,6 +193,16 @@ public class Chunk extends ChunkMesh {
 
             case TWO_UP_DOWN_DOOR:
 
+                //Door
+                for (int x = 4; x < 6; x++)
+                {
+                    this.CreateDoor(x, 0);
+                }
+                for (int x = 4; x < 6; x++)
+                {
+                    this.CreateDoor(x, 9);
+                }
+
                 //Left & Right
                 for (int y = 0; y < 10; y++) { //10 bcs borders
                     this.CreateWall(0, y);
@@ -187,6 +231,15 @@ public class Chunk extends ChunkMesh {
                 break;
 
             case TWO_LEFT_UP_DOOR:
+
+                //Door
+                for (int y = 4; y < 6; y++) { //10 bcs borders
+                    this.CreateTurnedDoor(0, y);
+                }
+                for (int x = 4; x < 6; x++)
+                {
+                    this.CreateDoor(x, 9);
+                }
 
                 //Left
                 for (int y = 0; y < 4; y++) { //10 bcs borders
@@ -219,6 +272,15 @@ public class Chunk extends ChunkMesh {
 
             case TWO_UP_RIGHT_DOOR:
 
+                //Door
+                for (int y = 4; y < 6; y++) { //10 bcs borders
+                    this.CreateTurnedDoor(9, y);
+                }
+                for (int x = 4; x < 6; x++)
+                {
+                    this.CreateDoor(x, 9);
+                }
+
                 //Left
                 for (int y = 0; y < 10; y++) { //10 bcs borders
                     this.CreateWall(0, y);
@@ -249,6 +311,16 @@ public class Chunk extends ChunkMesh {
                 break;
 
             case TWO_RIGHT_DOWN_DOOR:
+
+                //Door
+                for (int y = 4; y < 6; y++) { //10 bcs borders
+                    this.CreateTurnedDoor(9, y);
+                }
+                for (int x = 4; x < 6; x++)
+                {
+                    this.CreateDoor(x, 0);
+                }
+
 
                 //Left
                 for (int y = 0; y < 10; y++) { //10 bcs borders
@@ -281,6 +353,15 @@ public class Chunk extends ChunkMesh {
 
             case TWO_DOWN_LEFT_DOOR:
 
+                //Door
+                for (int y = 4; y < 6; y++) { //10 bcs borders
+                    this.CreateTurnedDoor(0, y);
+                }
+                for (int x = 4; x < 6; x++)
+                {
+                    this.CreateDoor(x, 0);
+                }
+
                 //Left
                 for (int y = 0; y < 4; y++) { //10 bcs borders
                     this.CreateWall(0, y);
@@ -311,6 +392,18 @@ public class Chunk extends ChunkMesh {
                 break;
 
             case THREE_F_UP_DOOR:
+
+                //Door
+                for (int y = 4; y < 6; y++) { //10 bcs borders
+                    this.CreateTurnedDoor(0, y);
+                }
+                for (int y = 4; y < 6; y++) { //10 bcs borders
+                    this.CreateTurnedDoor(9, y);
+                }
+                for (int x = 4; x < 6; x++)
+                {
+                    this.CreateDoor(x, 0);
+                }
 
                 //Left
                 for (int y = 0; y < 4; y++) { //10 bcs borders
@@ -345,6 +438,19 @@ public class Chunk extends ChunkMesh {
                 break;
 
             case THREE_F_RIGHT_DOOR:
+
+                //Door
+                for (int y = 4; y < 6; y++) { //10 bcs borders
+                    this.CreateTurnedDoor(0, y);
+                }
+                for (int x = 4; x < 6; x++)
+                {
+                    this.CreateDoor(x, 0);
+                }
+                for (int x = 4; x < 6; x++)
+                {
+                    this.CreateDoor(x, 9);
+                }
 
                 //Right
                 for (int y = 0; y < 10; y++) { //10 bcs borders
@@ -381,6 +487,18 @@ public class Chunk extends ChunkMesh {
 
             case THREE_F_DOWN_DOOR:
 
+                //Door
+                for (int y = 4; y < 6; y++) { //10 bcs borders
+                    this.CreateTurnedDoor(0, y);
+                }
+                for (int y = 4; y < 6; y++) { //10 bcs borders
+                    this.CreateTurnedDoor(9, y);
+                }
+                for (int x = 4; x < 6; x++)
+                {
+                    this.CreateDoor(x, 9);
+                }
+
                 //Left
                 for (int y = 0; y < 4; y++) { //10 bcs borders
                     this.CreateWall(0, y);
@@ -414,6 +532,19 @@ public class Chunk extends ChunkMesh {
                 break;
 
             case THREE_F_LEFT_DOOR:
+
+                //Door
+                for (int y = 4; y < 6; y++) { //10 bcs borders
+                    this.CreateTurnedDoor(9, y);
+                }
+                for (int x = 4; x < 6; x++)
+                {
+                    this.CreateDoor(x, 0);
+                }
+                for (int x = 4; x < 6; x++)
+                {
+                    this.CreateDoor(x, 9);
+                }
 
                 //Left
                 for (int y = 0; y < 10; y++) { //10 bcs borders
@@ -450,6 +581,23 @@ public class Chunk extends ChunkMesh {
                 break;
 
             case FOUR_DOOR:
+
+                //Door
+                for (int y = 4; y < 6; y++) { //10 bcs borders
+                    this.CreateTurnedDoor(0, y);
+                }
+                for (int y = 4; y < 6; y++) { //10 bcs borders
+                    this.CreateTurnedDoor(9, y);
+                }
+                for (int x = 4; x < 6; x++)
+                {
+                    this.CreateDoor(x, 0);
+                }
+                for (int x = 4; x < 6; x++)
+                {
+                    this.CreateDoor(x, 9);
+                }
+
 
                 //Left
                 for (int y = 0; y < 4; y++) { //10 bcs borders
@@ -555,19 +703,44 @@ public class Chunk extends ChunkMesh {
         return false;
     }
 
-    public void DeleteDoors()
+    public void DeleteDownDoors()
     {
-        for (int x = 0; x < 10; x++)
+        for (int x = 4; x < 6; x++)
         {
-            for (int y = 0; y < 10; y++)
+            if(this.gameObjects[x][0].getName() == "door")
             {
-                if (gameObjects[x][y].getName() == "door")
-                {
-                    gameObjects[x][y] = null;
-                }
+                this.gameObjects[x][0] = null;
             }
         }
     }
+    public void DeleteUpDoors()
+    {
+        for (int x = 4; x < 6; x++)
+        {
+            if(this.gameObjects[x][9].getName() == "door") {
+                this.gameObjects[x][9] = null;
+            }
+        }
+    }
+    public void DeleteRightDoors()
+    {
+        for (int y = 4; y < 6; y++)
+        {
+            if(this.gameObjects[9][y].getName() == "door") {
+                this.gameObjects[9][y] = null;
+            }
+        }
+    }
+    public void DeleteLeftDoors()
+    {
+        for (int y = 4; y < 6; y++)
+        {
+            if(this.gameObjects[0][y].getName() == "door") {
+                this.gameObjects[0][y] = null;
+            }
+        }
+    }
+
     public void CreateDoor(int x, int y) {
         gameObjects[x][y] = new Door(x*2 + 10*this.X*2, y*2 + 10*this.Y*2);
     }
