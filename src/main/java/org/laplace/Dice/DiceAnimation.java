@@ -2,6 +2,7 @@ package org.laplace.Dice;
 
 import com.raylib.Jaylib;
 import com.raylib.Raylib;
+import org.laplace.Game;
 
 import static java.lang.Math.cos;
 
@@ -31,6 +32,10 @@ public class DiceAnimation {
     public void BeginAnimation(int value) {
         Timer++;
 
+        if(Timer == 1) {
+            Game.getSoundManager().PlaySound("shake", 0.2f);
+        }
+
         if(Timer < 200) {
             pos = this.cubic_interpolation(
                     new Jaylib.Vector3(x, 8.0f, y),
@@ -44,6 +49,9 @@ public class DiceAnimation {
                     Timer / 200.0f);
         }
 
+        if(Timer == 170) {
+            Game.getSoundManager().PlaySound("dice1", 0.2f);
+        }
 
         if(Timer > 250) {
             rot = this.CosineInterpolate(this.getRot(value).rot, 2400, (Timer - 250) / 200.0f);

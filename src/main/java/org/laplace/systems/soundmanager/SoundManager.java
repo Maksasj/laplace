@@ -23,6 +23,10 @@ public class SoundManager {
             this.LoadSound("footstep1", "target/sounds/ambient/footstep1.wav");
             this.LoadSound("footstep2", "target/sounds/ambient/footstep2.wav");
             this.LoadSound("footstep3", "target/sounds/ambient/footstep3.wav");
+
+            this.LoadSound("dice1", "target/sounds/battle/dice1.wav");
+            this.LoadSound("dice2", "target/sounds/battle/dice2.wav");
+            this.LoadSound("shake", "target/sounds/battle/shake.wav");
         }
 
         public void LoadSound(String name, String path) {
