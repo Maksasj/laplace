@@ -3,6 +3,7 @@ package org.laplace;
 import com.raylib.Raylib;
 import org.laplace.scenes.ScenesGeneric;
 import org.laplace.scenes.gamescene.GameScene;
+import org.laplace.scenes.mainmenu.MainMenu;
 import org.laplace.systems.modelmanager.ModelManager;
 import org.laplace.systems.renderer.shadermanager.ShaderManager;
 import org.laplace.systems.soundmanager.SoundManager;
@@ -21,9 +22,14 @@ public class Game {
     private static ModelManager modelManager;
     private static ShaderManager shaderManager;
     private static TextureManager textureManager;
-    private static ScenesGeneric activeScene;
+
 
     private static SoundManager soundManager;
+
+
+    private static ScenesGeneric activeScene;
+    private static ScenesGeneric gameScene;
+    private static ScenesGeneric mainmenuScene;
 
     //Game constructor
     public Game() {
@@ -39,8 +45,18 @@ public class Game {
         modelManager = new ModelManager();
         textureManager = new TextureManager();
 
-        activeScene = new GameScene();
+        gameScene = new GameScene();
+        mainmenuScene = new MainMenu();
+
         soundManager = new SoundManager();
+
+        Game.setActiveScene(Game.GetMainMenu());
+    }
+
+    public static void GameRestart() {
+        gameScene = null;
+        gameScene = new GameScene();
+        Game.setActiveScene(GetMainMenu());
     }
 
     //Main game loop
@@ -51,6 +67,18 @@ public class Game {
         }
 
         CloseWindow();
+    }
+
+    public static ScenesGeneric GetMainMenu() {
+        return mainmenuScene;
+    }
+
+    public static ScenesGeneric GetGameScene() {
+        return gameScene;
+    }
+
+    public static void setActiveScene(ScenesGeneric value) {
+        activeScene = value;
     }
 
     public static SoundManager getSoundManager() {

@@ -20,5 +20,5 @@ void main()
 
     // NOTE: Implement here your fragment shader code
 
-    finalColor = texelColor*colDiffuse;
+    finalColor = texelColor*colDiffuse*playertint;
 }

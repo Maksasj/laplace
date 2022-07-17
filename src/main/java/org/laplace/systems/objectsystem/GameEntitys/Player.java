@@ -183,7 +183,9 @@ public class Player extends GameEntity {
             }
 
         if(IsKeyPressed(66)) { //test
-            GameScene.getMainDice().ThrowDice(6);
+            //GameScene.getMainDice().ThrowDice(6);
+            setHealth(-2, getMaxHealth());
+
         }
 
         Game.getCamera()
