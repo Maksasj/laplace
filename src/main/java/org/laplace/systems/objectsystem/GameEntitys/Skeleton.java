@@ -8,7 +8,7 @@ public class Skeleton extends GameEntity {
     public Skeleton(int x, int y) {
         super("skeleton");
         setHealth(20);
-        setDamage(6);
+        setDamage(10);
 
         this.x = x;
         this.y = y;

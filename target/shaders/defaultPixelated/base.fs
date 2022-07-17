@@ -8,6 +8,7 @@ in vec4 fragColor;
 uniform sampler2D texture0;
 uniform vec4 colDiffuse;
 
+uniform float playertint;
 uniform float rBorder;
 
 // Output fragment color
@@ -52,6 +53,6 @@ void main()
     vec3 rgb = drawBorder(texelColor.rgb, 0.3);
     rgb = drawRedBorder(rgb, rBorder);
     // NOTE: Implement here your fragment shader code
-    finalColor = vec4(rgb , 1.0);
+    finalColor = vec4(rgb*playertint , 1.0);
     //finalColor = texelColor*colDiffuse;
 }

@@ -27,6 +27,8 @@ public class SoundManager {
             this.LoadSound("dice1", "target/sounds/battle/dice1.wav");
             this.LoadSound("dice2", "target/sounds/battle/dice2.wav");
             this.LoadSound("shake", "target/sounds/battle/shake.wav");
+
+            this.LoadSound("screm", "target/sounds/ambient/screm.wav");
         }
 
         public void LoadSound(String name, String path) {

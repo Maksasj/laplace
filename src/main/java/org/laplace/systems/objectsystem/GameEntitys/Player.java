@@ -36,8 +36,7 @@ public class Player extends GameEntity {
     public Player(int x, int y) {
         super("player");
         setHealth(35);
-
-        setHealth(20, 35);
+        setDamage(15);
 
         this.x = x;
         this.y = y;
@@ -58,6 +57,10 @@ public class Player extends GameEntity {
 
         GameScene.pHealth = getHealth();
         GameScene.pMaxHealth = getMaxHealth();
+
+        if(getHealth() < 0) {
+            GameScene.playerDied();
+        }
 
         //Walking Cd
         if(!walkCd && !battleMode) {
@@ -180,7 +183,9 @@ public class Player extends GameEntity {
             }
 
         if(IsKeyPressed(66)) { //test
-            GameScene.getMainDice().ThrowDice(6);
+            //GameScene.getMainDice().ThrowDice(6);
+            setHealth(-2, getMaxHealth());
+
         }
 
         Game.getCamera()
@@ -251,12 +256,11 @@ public class Player extends GameEntity {
 
             if(attackingTarget != null && battleCd > 800) {
                 if(rValue > lValue) {
-                    attackingTarget.receiveDamage(5);
+                    attackingTarget.receiveDamage(rValue + this.dealDamage());
                 } else if (rValue < lValue){
-                    attackingTarget.receiveDamage(5);
-                    this.receiveDamage(lValue);
+                    this.receiveDamage(lValue + attackingTarget.dealDamage());
                 } else {
-                    attackingTarget.receiveDamage(5);
+                    attackingTarget.receiveDamage(rValue + + this.dealDamage());
                 }
 
 
