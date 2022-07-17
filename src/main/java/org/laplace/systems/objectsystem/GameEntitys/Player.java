@@ -184,13 +184,13 @@ public class Player extends GameEntity {
                 .fovy(45)
                 .projection(CAMERA_PERSPECTIVE);
 
-        //Update mesh location
-        this.setPos(new Jaylib.Vector3(this.x*2, 0.0f, this.y*2));
-
         if(!battleMode && rBorder > 0.0) {
             rBorder -= 0.01;
             Game.getShaderManager().SetShaderValue("basePixelated", "rBorder", rBorderShaderLoc, rBorder);
         }
+
+        //Update mesh location
+        this.setPos(new Jaylib.Vector3(this.x*2, 0.0f, this.y*2));
     }
 
     @Override
@@ -211,27 +211,22 @@ public class Player extends GameEntity {
     public void StartBattle(GameEntity entity) {
         if(!battleMode) {
             battleMode = true;
+            battleCd = 0;
             attackingTarget = entity;
-            Game.getSoundManager().PlaySound("battlebeggining", 0.2f);
 
             rValue = GameScene.getRightDice().ThrowDice(6);
             lValue = GameScene.getLeftDice().ThrowDice(6);
 
-            entity.receiveDamage(6);
+            attackingTarget.receiveDamage(1);
+
+            Game.getSoundManager().PlaySound("battlebeggining", 0.2f);
         }
 
-        if(battleMode && rBorder < 0.3) {
-            rBorder += 0.05;
-            Game.getShaderManager().SetShaderValue("basePixelated", "rBorder", rBorderShaderLoc, rBorder);
-        }
-
-        if(battleMode && battleCd > 400) {
-            battleCd = 0;
+        if(battleMode && battleCd > 500) {
             if(rValue > lValue) {
-                attackingTarget.receiveDamage(20);
+                attackingTarget.receiveDamage(5);
 
                 if(attackingTarget.getHealth() < 1) {
-
                     if(GameWorld.getEntity(x + 1, y) == attackingTarget) {
                         GameWorld.killEnity(x + 1, y);
 
@@ -247,17 +242,29 @@ public class Player extends GameEntity {
 
                     attackingTarget = null;
                     battleMode = false;
-
                     return;
                 }
-            } else {
+
+                System.out.println("Mob takes damage");
+
+            } else if (rValue < lValue){
+                System.out.println("Player takes damage");
                 this.receiveDamage(lValue);
+            } else {
+                System.out.println("Draft");
             }
 
             rValue = GameScene.getRightDice().ThrowDice(6);
             lValue = GameScene.getLeftDice().ThrowDice(6);
-        } else {
-            battleCd++;
+
+            battleCd = 0;
+        }
+
+        battleCd++;
+
+        if(battleMode && rBorder < 0.3) {
+            rBorder += 0.05;
+            Game.getShaderManager().SetShaderValue("basePixelated", "rBorder", rBorderShaderLoc, rBorder);
         }
     }
 }

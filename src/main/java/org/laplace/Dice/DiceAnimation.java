@@ -29,58 +29,39 @@ public class DiceAnimation {
         scale = 1;
     }
     public void BeginAnimation(int value) {
-        if(pos.y() >= 0) {
+        Timer++;
+
+        if(Timer < 200) {
             pos = this.cubic_interpolation(
-                            new Jaylib.Vector3(x, 8.0f, y),
-                            new Jaylib.Vector3(x, 0.0f, y),
-                            Timer / 200.0f);
+                    new Jaylib.Vector3(x, 8.0f, y),
+                    new Jaylib.Vector3(x, 0.0f, y),
+                    Timer / 200.0f);
 
             rot = this.CosineInterpolate( 2400, this.getRot(value).rot, Timer / 200.0f);
 
             rotAxis = this.CosineInterpolate( new Jaylib.Vector3(1.0f, 1.0f, 1.0f),
-                                this.getRot(value).rotAxis,
-                                Timer / 200.0f);
-            Timer++;
-
-            if(pos.y() <= 0) {
-                Timer = 0;
-                pos.y(pos.y() - 0.01f);
-            }
+                    this.getRot(value).rotAxis,
+                    Timer / 200.0f);
         }
 
-        if(pos.y() < 0) {
-            Timer++;
 
-            if(Timer > 50) {
-                rot = this.CosineInterpolate(this.getRot(value).rot, 2400, (Timer - 50) / 200.0f);
+        if(Timer > 250) {
+            rot = this.CosineInterpolate(this.getRot(value).rot, 2400, (Timer - 250) / 200.0f);
 
-                pos = this.lep(
-                        new Jaylib.Vector3(x, 0.0f, y),
-                        new Jaylib.Vector3(x, -8.0f, y),
-                        (Timer - 50)/ 200.0f);
-
-                rotAxis = this.CosineInterpolate(
-                        this.getRot(value).rotAxis,
-                        new Jaylib.Vector3(1.0f, 1.0f, 1.0f),
-                        (Timer - 50) / 200.0f);
-            }
-        }
-    }
-
-
-    public void HideAnimation() {
-        if (pos.y() <= 0) {
-            pos = this.cubic_interpolation(
+            pos = this.lep(
                     new Jaylib.Vector3(x, 0.0f, y),
-                    new Jaylib.Vector3(x, 8.0f, y),
-                    Timer / 200.0f);
+                    new Jaylib.Vector3(x, -8.0f, y),
+                    (Timer - 250)/ 200.0f);
 
-            rot = this.CosineInterpolate(rot, 240, Timer / 200.0f);
-
-            rotAxis = this.CosineInterpolate(rotAxis,
+            rotAxis = this.CosineInterpolate(
+                    this.getRot(value).rotAxis,
                     new Jaylib.Vector3(1.0f, 1.0f, 1.0f),
-                    Timer / 200.0f);
-            Timer++;
+                    (Timer - 250) / 200.0f);
+
+            if(Timer > 450) {
+                Timer = 0;
+                active = false;
+            }
         }
     }
 
