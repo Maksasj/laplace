@@ -14,11 +14,13 @@ public class Chunk extends ChunkMesh {
     private int X; //relative to world
     private int Y; //relative to world
     private ChunkTypes chankType;
+
+    public boolean Cleared;
     public GameEntity[][] gameObjects = new GameEntity[10][10];
 
     public Chunk(int X, int Y, ChunkTypes chad) {
         super(X, Y);
-
+        Cleared = false;
         this.X = X;
         this.Y = Y;
 
