@@ -636,9 +636,9 @@ public class Chunk extends ChunkMesh {
                 }
                 break;
         }
-
-        new RandomRoomObjects(X, Y, gameObjects, this);
-
+        if(X != 0 || Y != 0) {
+            new RandomRoomObjects(X, Y, gameObjects, this);
+        }
         this.RegenerateMesh();
         this.LoadAtlas();
     }
@@ -694,14 +694,30 @@ public class Chunk extends ChunkMesh {
         {
             for (int y = 1; y < 9; y++)
             {
-                if (gameObjects[x][y].getName() == "goblin" || gameObjects[x][y].getName() == "spider" || gameObjects[x][y].getName() == "skeleton" )
-                {
-                    return true;
+                if (gameObjects[x][y] != null) {
+                    if (gameObjects[x][y].getName() == "goblin" || gameObjects[x][y].getName() == "spider" || gameObjects[x][y].getName() == "skeleton") {
+                        return true;
+                    }
                 }
             }
         }
         return false;
     }
+    /*
+    public void KiilMobs()
+    {
+        for (int x = 1; x < 9; x++)
+        {
+            for (int y = 1; y < 9; y++)
+            {
+                if (gameObjects[x][y] != null) {
+                    if (gameObjects[x][y].getName() == "goblin" || gameObjects[x][y].getName() == "spider" || gameObjects[x][y].getName() == "skeleton") {
+                        gameObjects[x][y] = null;
+                    }
+                }
+            }
+        }
+    }*/
 
     public void DeleteDownDoors()
     {
