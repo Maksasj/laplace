@@ -3,6 +3,7 @@ package org.laplace.Dice;
 import com.raylib.Jaylib;
 import com.raylib.Raylib;
 import org.laplace.Game;
+import org.laplace.scenes.gamescene.GameScene;
 
 import java.util.Random;
 
@@ -23,19 +24,25 @@ public class Dice extends DiceAnimation {
         dice6 = Game.getModelManager().getModel("dice6");
     }
 
+    public Dice(float x, float y) {
+        super(x, y);
+
+        camera = new Raylib.Camera3D();
+        SetCameraMode(camera, CAMERA_CUSTOM);
+
+        dice6 = Game.getModelManager().getModel("dice6");
+    }
+
     public void Draw() {
+        camera._position( new Jaylib.Vector3( 9.0f, 0.0f,  0.0f))
+                .target(    new Jaylib.Vector3(0.0f, 0.0f, 0.0f))
+                .up(        new Raylib.Vector3().x(0.0f).y(1.0f).z(0.0f))
+                .fovy(45)
+                .projection(CAMERA_PERSPECTIVE);
+
         if(active) {
             this.BeginAnimation(value);
-            camera._position( new Jaylib.Vector3( 9.0f, 0.0f,  0.0f))
-                    .target(    new Jaylib.Vector3(0.0f, 0.0f, 0.0f))
-                    .up(        new Raylib.Vector3().x(0.0f).y(1.0f).z(0.0f))
-                    .fovy(45)
-                    .projection(CAMERA_PERSPECTIVE);
-
-
             Game.getModelManager().DrawModel("dice6", pos, scale, rotAxis, rot);
-
-            this.Update();
         }
     }
 

@@ -2,7 +2,7 @@ package org.laplace.systems.worldsystem;
 
 import java.util.Random;
 
-public class RandomChankType {
+public class RandomChunkType {
 
     public static ChunkTypes randomChank() {
         Random rand = new Random();

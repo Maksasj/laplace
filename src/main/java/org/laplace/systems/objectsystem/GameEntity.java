@@ -2,7 +2,9 @@ package org.laplace.systems.objectsystem;
 
 import com.raylib.Jaylib;
 import com.raylib.Raylib;
+import org.laplace.Dice.Dice;
 import org.laplace.Game;
+import org.laplace.systems.objectsystem.GameEntitys.Player;
 import org.laplace.systems.worldsystem.GameWorld;
 
 import static com.raylib.Jaylib.RAYWHITE;
@@ -16,12 +18,12 @@ public class GameEntity extends GameObject{
     private int maxhealth;
     private int damage = 0;
 
-    private Jaylib.Vector3 pos = new Jaylib.Vector3(0.0f, 0.0f, 0.0f); //Graphic thing
-    private Jaylib.Vector3 offset = new Jaylib.Vector3(0.0f, 0.0f, 0.0f);
-    private Jaylib.Vector3 rotAxis = new Jaylib.Vector3(0.0f, 0.0f, 0.0f);
-    private float rot = 0.0f;
+    public Jaylib.Vector3 pos = new Jaylib.Vector3(0.0f, 0.0f, 0.0f); //Graphic thing
+    public Jaylib.Vector3 offset = new Jaylib.Vector3(0.0f, 0.0f, 0.0f);
+    public Jaylib.Vector3 rotAxis = new Jaylib.Vector3(0.0f, 0.0f, 0.0f);
+    public float rot = 0.0f;
 
-    private float modelScale = 1.0f;
+    public float modelScale = 1.0f;
 
     public GameEntity(String name) {
         super(name);
@@ -32,9 +34,19 @@ public class GameEntity extends GameObject{
         maxhealth = y;
     }
 
+    public int getHealth() {
+        return health;
+    }
     public void setHealth(int x) {
         health = x;
         maxhealth = x;
+    }
+
+    public int x() {
+        return x;
+    }
+    public int y() {
+        return y;
     }
 
     public void setDamage(int x) {
@@ -48,9 +60,6 @@ public class GameEntity extends GameObject{
     @Override
     public void Update() {
         this.setPos(new Jaylib.Vector3(this.x, 0.0f, this.y));
-        if(health <= 0) {
-            GameWorld.killEnity(x, y);
-        }
     }
 
     @Override
@@ -119,5 +128,9 @@ public class GameEntity extends GameObject{
 
     public Jaylib.Vector3 getPos() {
         return pos;
+    }
+
+    public void receiveDamage(int value) {
+        health -= value;
     }
 }

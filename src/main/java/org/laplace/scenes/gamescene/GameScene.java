@@ -2,9 +2,9 @@ package org.laplace.scenes.gamescene;
 
 import com.raylib.Jaylib;
 import com.raylib.Raylib;
+import org.laplace.Dice.Dice;
 import org.laplace.Game;
 import org.laplace.scenes.ScenesGeneric;
-import org.laplace.systems.modelmanager.ModelManager;
 import org.laplace.systems.worldsystem.GameWorld;
 
 import static com.raylib.Jaylib.RAYWHITE;
@@ -13,7 +13,10 @@ import static com.raylib.Raylib.*;
 public class GameScene extends ScenesGeneric {
     private Raylib.RenderTexture target; //Rendering target
 
-    private float iTime = 0; //For now i used only with rendering
+    private static Dice mainDice = new Dice();
+    private static Dice leftDice = new Dice(0, -2.5f);
+    private static Dice rightDice = new Dice(0, 2.5f);
+    private float iTime = 0; //For now iTime used only with rendering
     private int shaderLoc;
     private Texture texture;
 
@@ -42,6 +45,18 @@ public class GameScene extends ScenesGeneric {
         UpdateCamera(Game.getCamera());
     }
 
+    public static Dice getMainDice() {
+        return mainDice;
+    }
+
+    public static Dice getLeftDice() {
+        return leftDice;
+    }
+
+    public static Dice getRightDice() {
+        return rightDice;
+    }
+
     @Override
     public void Draw() {
         BeginTextureMode(target);
@@ -51,22 +66,67 @@ public class GameScene extends ScenesGeneric {
                 DrawTexture(texture, 0, 0, RAYWHITE);
             Game.getShaderManager().DeactivateShader();
 
-            BeginMode3D(Game.getCamera()); //Scope for 3d stuff
-                gameWorld.Draw();
-            EndMode3D();
+            Game.getShaderManager().ActivateShader("defaultLight");
+                BeginMode3D(Game.getCamera()); //Scope for 3d stuff
+                    gameWorld.Draw();
+                EndMode3D();
 
-            BeginMode3D(Game.getDice().GetCamera());
-                Game.getDice().Draw();
-            EndMode3D();
+                BeginMode3D(mainDice.GetCamera());
+                    mainDice.Draw();
+                    leftDice.Draw();
+                    rightDice.Draw();
+                EndMode3D();
+            Game.getShaderManager().DeactivateShader();
+
+        DrawTextureEx(
+                Game.getTextureManager().GetTexture("healthbarui"), //Red thing
+                new Jaylib.Vector2(105.0f, 160.0f),
+                0.0f,
+                0.5f,
+                RAYWHITE);
+
+        DrawTextureEx(
+                Game.getTextureManager().GetTexture("healthbar"),
+                new Jaylib.Vector2(105.0f, 160.0f),
+                0.0f,
+                0.5f,
+                RAYWHITE);
+
+        /*
+        Raylib.DrawText("STR",
+                10,
+                10,
+                10,
+                RAYWHITE);
+
+         */
+
         EndTextureMode();
 
         BeginDrawing();
                 Game.getShaderManager().ActivateShader("basePixelated"); // Render generated texture using selected postprocessing shader
                     SetTextureWrap(target.texture(), 1);
-                    DrawTextureEx(target.texture(), new Jaylib.Vector2(Game.getWindowWidth() , Game.getWindowHeight()), 180, Game.getPixelezationRate(), RAYWHITE);
+
+
+                    DrawTexturePro(
+                            target.texture(),
+                            new Jaylib.Rectangle(
+                                    0,
+                                    0,
+                                    Game.getWindowWidth() / Game.pixelezationRate,
+                                    -Game.getWindowHeight() / Game.pixelezationRate),
+                            new Jaylib.Rectangle(
+                                    0,
+                                    0,
+                                    Game.getWindowWidth(),
+                                    Game.getWindowHeight()),
+                            new Jaylib.Vector2(0.0f, 0.0f),
+                            0,
+                            RAYWHITE);
+
                 Game.getShaderManager().DeactivateShader();
 
-                DrawFPS(20, 20);
+                //DrawFPS(20, 20);
         EndDrawing();
     }
 }
