@@ -37,6 +37,11 @@ public class GameEntity extends GameObject{
     public int getHealth() {
         return health;
     }
+
+    public int getMaxHealth() {
+        return maxhealth;
+    }
+
     public void setHealth(int x) {
         health = x;
         maxhealth = x;
@@ -73,7 +78,7 @@ public class GameEntity extends GameObject{
                         new Jaylib.Rectangle(0, 0, 220 * ((float) health / maxhealth), 40),
                         new Jaylib.Vector3(
                                 pos.x() + offset.x()     - 0.01f,
-                                pos.y() + offset.y()    + 1.39f,
+                                pos.y() + offset.y()    + 1.99f,
                                 pos.z() + offset.z()    - 0.01f
                         ),
                         new Jaylib.Vector2(0.3f, 0.3f),
@@ -85,7 +90,7 @@ public class GameEntity extends GameObject{
                         new Jaylib.Rectangle(0, 0, 220, 40),
                         new Jaylib.Vector3(
                                 pos.x() + offset.x(),
-                                pos.y() + offset.y() + 1.4f,
+                                pos.y() + offset.y() + 2.0f,
                                 pos.z() + offset.z()
                         ),
                         new Jaylib.Vector2(0.3f, 0.3f),

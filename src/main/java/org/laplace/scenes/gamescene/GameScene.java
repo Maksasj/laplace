@@ -22,6 +22,9 @@ public class GameScene extends ScenesGeneric {
 
     public static GameWorld gameWorld;
 
+    public static int pHealth = 1;
+    public static int pMaxHealth = 1;
+
     public GameScene() {
         super(); //Parent constructor
 
@@ -78,12 +81,32 @@ public class GameScene extends ScenesGeneric {
                 EndMode3D();
             Game.getShaderManager().DeactivateShader();
 
+            /*
         DrawTextureEx(
                 Game.getTextureManager().GetTexture("healthbarui"), //Red thing
                 new Jaylib.Vector2(105.0f, 160.0f),
                 0.0f,
                 0.5f,
                 RAYWHITE);
+
+             */
+
+        DrawTexturePro(
+                Game.getTextureManager().GetTexture("healthbarui"), //Red thing
+                new Jaylib.Rectangle(
+                    0.0f,
+                    0.0f,
+                        220,
+                        40),
+                new Jaylib.Rectangle(
+                        0.0f,
+                        0.0f,
+                        110 * ((float) pHealth / pMaxHealth), //TODO fix healthbar gui
+                        20),
+                new Jaylib.Vector2(-105.0f, -160.0f),
+                0,
+                RAYWHITE
+        );
 
         DrawTextureEx(
                 Game.getTextureManager().GetTexture("healthbar"),
@@ -92,14 +115,18 @@ public class GameScene extends ScenesGeneric {
                 0.5f,
                 RAYWHITE);
 
-        /*
         Raylib.DrawText("STR",
                 10,
-                10,
+                160,
                 10,
                 RAYWHITE);
 
-         */
+        Raylib.DrawText("DEF",
+                290,
+                160,
+                10,
+                RAYWHITE);
+
 
         EndTextureMode();
 
@@ -128,5 +155,9 @@ public class GameScene extends ScenesGeneric {
 
                 //DrawFPS(20, 20);
         EndDrawing();
+    }
+    
+    public static void playerDied() {
+
     }
 }

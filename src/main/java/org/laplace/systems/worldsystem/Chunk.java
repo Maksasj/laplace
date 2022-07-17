@@ -571,4 +571,7 @@ public class Chunk extends ChunkMesh {
     public void CreateDoor(int x, int y) {
         gameObjects[x][y] = new Door(x*2 + 10*this.X*2, y*2 + 10*this.Y*2);
     }
+    public void CreateTurnedDoor(int x, int y) {
+        gameObjects[x][y] = new TurnedDoor(x*2 + 10*this.X*2, y*2 + 10*this.Y*2);
+    }
 }
