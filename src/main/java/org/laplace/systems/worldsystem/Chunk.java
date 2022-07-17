@@ -488,10 +488,11 @@ public class Chunk extends ChunkMesh {
                 }
                 break;
         }
+
+        new RandomRoomObjects(X, Y, gameObjects, this);
+
         this.RegenerateMesh();
         this.LoadAtlas();
-
-        new RandomRoomObjects(X, Y, gameObjects);
     }
 
     public void setEntity(GameEntity entity, int x, int y) {
