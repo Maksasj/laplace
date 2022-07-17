@@ -73,6 +73,13 @@ public class DiceAnimation {
         }
     }
 
+    public void Spin() {
+        rotAxis = new Jaylib.Vector3(1.0f, 1.0f, 1.0f);
+
+        pos = new Jaylib.Vector3(x, 0.0f, y);
+
+        rot += 1;
+    }
     public void ResetAnimation() {
         Timer = 0;
         pos = new Jaylib.Vector3(0.0f, 8.0f, 0.0f);

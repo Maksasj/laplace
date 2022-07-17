@@ -49,9 +49,7 @@ public class Game {
         mainmenuScene = new MainMenu();
 
         soundManager = new SoundManager();
-
-        Raylib.SetTraceLogLevel(LOG_ALL);
-
+        
         Game.setActiveScene(Game.GetMainMenu());
     }
 
@@ -63,7 +61,7 @@ public class Game {
 
     //Main game loop
     public void run() {
-        while (gameRunning) {
+        while (!WindowShouldClose()) {
             activeScene.Update();
             activeScene.Draw();
         }

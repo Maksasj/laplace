@@ -97,8 +97,6 @@ public class GameScene extends ScenesGeneric {
                 Game.GameRestart();
             }
         }
-
-        UpdateCamera(Game.getCamera());
     }
 
     public static Dice getMainDice() {
@@ -115,75 +113,66 @@ public class GameScene extends ScenesGeneric {
 
     @Override
     public void Draw() {
-        if(!playerDied) {
             BeginTextureMode(target);
-            ClearBackground(RAYWHITE);
+                ClearBackground(RAYWHITE);
 
-            Game.getShaderManager().ActivateShader("defaultBackground");
-            DrawTexture(texture, 0, 0, RAYWHITE);
-            Game.getShaderManager().DeactivateShader();
+                Game.getShaderManager().ActivateShader("defaultBackground");
+                    DrawTexture(texture, 0, 0, RAYWHITE);
+                Game.getShaderManager().DeactivateShader();
 
-            Game.getShaderManager().ActivateShader("defaultLight");
-            BeginMode3D(Game.getCamera()); //Scope for 3d stuff
-            gameWorld.Draw();
-            EndMode3D();
+                Game.getShaderManager().ActivateShader("defaultLight");
 
-            BeginMode3D(mainDice.GetCamera());
-            mainDice.Draw();
-            leftDice.Draw();
-            rightDice.Draw();
-            EndMode3D();
-            Game.getShaderManager().DeactivateShader();
+                BeginMode3D(Game.getCamera()); //Scope for 3d stuff
+                    gameWorld.Draw();
+                EndMode3D();
 
-            /*
-        DrawTextureEx(
-                Game.getTextureManager().GetTexture("healthbarui"), //Red thing
-                new Jaylib.Vector2(105.0f, 160.0f),
-                0.0f,
-                0.5f,
-                RAYWHITE);
+                BeginMode3D(mainDice.GetCamera());
+                    mainDice.Draw();
+                    leftDice.Draw();
+                    rightDice.Draw();
+                EndMode3D();
 
-             */
+                Game.getShaderManager().DeactivateShader();
 
-            DrawTexturePro(
-                    Game.getTextureManager().GetTexture("healthbarui"), //Red thing
-                    new Jaylib.Rectangle(
-                            0.0f,
-                            0.0f,
-                            220,
-                            40),
-                    new Jaylib.Rectangle(
-                            0.0f,
-                            0.0f,
-                            110 * ((float) pHealth / pMaxHealth), //TODO fix healthbar gui
-                            20),
-                    new Jaylib.Vector2(-105.0f, -160.0f),
-                    0,
-                    RAYWHITE
-            );
+                DrawTexturePro(
+                        Game.getTextureManager().GetTexture("healthbarui"), //Red thing
+                        new Jaylib.Rectangle(
+                                0.0f,
+                                0.0f,
+                                220,
+                                40),
+                        new Jaylib.Rectangle(
+                                0.0f,
+                                0.0f,
+                                110 * ((float) pHealth / pMaxHealth), //TODO fix healthbar gui
+                                20),
+                        new Jaylib.Vector2(-105.0f, -160.0f),
+                        0,
+                        RAYWHITE
+                );
 
-            DrawTextureEx(
-                    Game.getTextureManager().GetTexture("healthbar"),
-                    new Jaylib.Vector2(105.0f, 160.0f),
-                    0.0f,
-                    0.5f,
-                    RAYWHITE);
+                DrawTextureEx(
+                        Game.getTextureManager().GetTexture("healthbar"),
+                        new Jaylib.Vector2(105.0f, 160.0f),
+                        0.0f,
+                        0.5f,
+                        RAYWHITE);
 
-            Raylib.DrawText("STR",
-                    10,
-                    160,
-                    10,
-                    RAYWHITE);
+                Raylib.DrawText("STR",
+                        10,
+                        160,
+                        10,
+                        RAYWHITE);
 
-            Raylib.DrawText("DEF",
-                    290,
-                    160,
-                    10,
-                    RAYWHITE);
+                Raylib.DrawText("DEF",
+                        290,
+                        160,
+                        10,
+                        RAYWHITE);
 
 
             EndTextureMode();
-        }
+
 
         BeginDrawing();
                 Game.getShaderManager().ActivateShader("basePixelated"); // Render generated texture using selected postprocessing shader
