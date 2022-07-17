@@ -1,16 +1,13 @@
 package org.laplace;
 
 import com.raylib.Raylib;
-import org.laplace.Dice.Dice;
 import org.laplace.scenes.ScenesGeneric;
 import org.laplace.scenes.gamescene.GameScene;
-import org.laplace.scenes.mainmenu.MainMenu;
 import org.laplace.systems.modelmanager.ModelManager;
 import org.laplace.systems.renderer.shadermanager.ShaderManager;
+import org.laplace.systems.soundmanager.SoundManager;
 import org.laplace.systems.texturemanager.TextureManager;
 
-import static com.raylib.Jaylib.RAYWHITE;
-import static com.raylib.Jaylib.VIOLET;
 import static com.raylib.Raylib.*;
 import static com.raylib.Raylib.CloseWindow;
 
@@ -18,13 +15,15 @@ public class Game {
     private static int windowWidth = 1280;
     private static int windowHeight = 720;
 
-    public static int pixelezationRate = 1;
+    public static int pixelezationRate = 4;
     private static Raylib.Camera3D camera;
     private boolean gameRunning;
     private static ModelManager modelManager;
     private static ShaderManager shaderManager;
     private static TextureManager textureManager;
     private static ScenesGeneric activeScene;
+
+    private static SoundManager soundManager;
 
     //Game constructor
     public Game() {
@@ -41,6 +40,7 @@ public class Game {
         textureManager = new TextureManager();
 
         activeScene = new GameScene();
+        soundManager = new SoundManager();
     }
 
     //Main game loop
@@ -51,6 +51,10 @@ public class Game {
         }
 
         CloseWindow();
+    }
+
+    public static SoundManager getSoundManager() {
+        return soundManager;
     }
 
     public static TextureManager getTextureManager() {

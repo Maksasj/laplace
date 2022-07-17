@@ -24,15 +24,7 @@ public class MainMenu extends ScenesGeneric {
     @Override
     public void Draw() {
         BeginDrawing();
-        ClearBackground(RAYWHITE);
-
-        BeginMode3D(Game.getCamera()); //Scope for 3d stuff
-            DrawGrid(20, 1.0f);
-        EndMode3D();
-
-        //There will be scope for 2d staff, guid soo on
-        //DrawText("Hello world", 190, 200, 20, VIOLET);
-        //DrawFPS(20, 20);
+            ClearBackground(RAYWHITE);
         EndDrawing();
     }
 }

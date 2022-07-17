@@ -1,7 +1,8 @@
 package org.laplace.systems.worldsystem;
 
 import org.laplace.systems.objectsystem.GameEntity;
-import org.laplace.systems.worldsystem.RandomChankType;
+import org.laplace.systems.objectsystem.GameEntitys.Door;
+
 import java.util.*;
 
 public class GameWorld {
@@ -56,23 +57,11 @@ public class GameWorld {
     public static void killEnity(int ix, int iy) {
         int X = ix / 10;
         int Y = iy / 10;
-
         int x = ix % 10;
         int y = iy % 10;
 
-        if(X < 0 || X > 8) {
-            return;
-        }
-
-        if(Y < 0 || Y > 8) {
-            return;
-        }
-
-        if(chunks[X][Y] == null) {
-            return;
-        }
-
-        chunks[X][Y].setEntity(null, x, y);
+        chunks[X][Y]
+                .setEntity(null, x, y);
     }
 
     public static boolean ChechIfWall(int ix, int iy) {
@@ -125,9 +114,9 @@ public class GameWorld {
     public void GenerateWorld() {
     
         chunks[0][0] = new Chunk(0,0, ChunkTypes.TWO_UP_RIGHT_DOOR);
+
         GenerateChunk(1, 0);
         GenerateChunk(0, 1);
-
 
         int buff[][] = new int[64][3];
         int l = 0;
@@ -245,7 +234,8 @@ public class GameWorld {
             }
         }
 
-        chunks[0][0].CreatePlayer(5, 3);
+        chunks[0][0].CreatePlayer(1, 1);
+        chunks[0][0].CreateDoor(8, 8);
     }
 
     public void GenerateRightChunk(int buff[][], int i)
@@ -449,7 +439,7 @@ public class GameWorld {
         int j = Integer.parseInt(String.valueOf(mas.get(rand.nextInt(mas.size()))));
         //
 
-        chunks[x][y] = new Chunk(x, y, RandomChankType.randomChank(j));
+        chunks[x][y] = new Chunk(x, y, RandomChunkType.randomChank(j));
     }
 }
 

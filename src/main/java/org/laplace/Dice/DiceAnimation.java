@@ -11,8 +11,8 @@ public class DiceAnimation {
     public float rot;
     public float scale;
 
-    private float x = 0;
-    private float y = 0;
+    public float x = 0;
+    public float y = 0;
     public float Timer = 0.0f;
 
     public boolean active = false;
@@ -29,8 +29,9 @@ public class DiceAnimation {
         scale = 1;
     }
     public void BeginAnimation(int value) {
-        if(pos.y() > 0) {
-            pos = this.cubic_interpolation( new Jaylib.Vector3(x, 8.0f, y),
+        if(pos.y() >= 0) {
+            pos = this.cubic_interpolation(
+                            new Jaylib.Vector3(x, 8.0f, y),
                             new Jaylib.Vector3(x, 0.0f, y),
                             Timer / 200.0f);
 
@@ -40,8 +41,46 @@ public class DiceAnimation {
                                 this.getRot(value).rotAxis,
                                 Timer / 200.0f);
             Timer++;
-        } else {
-            //Timer++;
+
+            if(pos.y() <= 0) {
+                Timer = 0;
+                pos.y(pos.y() - 0.01f);
+            }
+        }
+
+        if(pos.y() < 0) {
+            Timer++;
+
+            if(Timer > 50) {
+                rot = this.CosineInterpolate(this.getRot(value).rot, 2400, (Timer - 50) / 200.0f);
+
+                pos = this.lep(
+                        new Jaylib.Vector3(x, 0.0f, y),
+                        new Jaylib.Vector3(x, -8.0f, y),
+                        (Timer - 50)/ 200.0f);
+
+                rotAxis = this.CosineInterpolate(
+                        this.getRot(value).rotAxis,
+                        new Jaylib.Vector3(1.0f, 1.0f, 1.0f),
+                        (Timer - 50) / 200.0f);
+            }
+        }
+    }
+
+
+    public void HideAnimation() {
+        if (pos.y() <= 0) {
+            pos = this.cubic_interpolation(
+                    new Jaylib.Vector3(x, 0.0f, y),
+                    new Jaylib.Vector3(x, 8.0f, y),
+                    Timer / 200.0f);
+
+            rot = this.CosineInterpolate(rot, 240, Timer / 200.0f);
+
+            rotAxis = this.CosineInterpolate(rotAxis,
+                    new Jaylib.Vector3(1.0f, 1.0f, 1.0f),
+                    Timer / 200.0f);
+            Timer++;
         }
     }
 

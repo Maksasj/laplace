@@ -14,7 +14,7 @@ public class Chunk extends ChunkMesh {
     private int X; //relative to world
     private int Y; //relative to world
     private ChunkTypes chankType;
-    private GameEntity[][] gameObjects = new GameEntity[10][10];
+    public GameEntity[][] gameObjects = new GameEntity[10][10];
 
     public Chunk(int X, int Y, ChunkTypes chad) {
         super(X, Y);
@@ -492,7 +492,6 @@ public class Chunk extends ChunkMesh {
         this.LoadAtlas();
 
         new RandomRoomObjects(X, Y, gameObjects);
-
     }
 
     public void setEntity(GameEntity entity, int x, int y) {
@@ -537,6 +536,9 @@ public class Chunk extends ChunkMesh {
     }
 
     public void CreatePlayer(int x, int y) {
-        gameObjects[x][y] = new Player(x + 10*this.X*2, y + 10*this.Y*2);
+        gameObjects[x][y] = new Player(x*2 + 10*this.X*2, y*2 + 10*this.Y*2);
+    }
+    public void CreateDoor(int x, int y) {
+        gameObjects[x][y] = new Door(x*2 + 10*this.X*2, y*2 + 10*this.Y*2);
     }
 }

@@ -34,6 +34,9 @@ public class GameEntity extends GameObject{
         maxhealth = y;
     }
 
+    public int getHealth() {
+        return health;
+    }
     public void setHealth(int x) {
         health = x;
         maxhealth = x;
@@ -57,9 +60,6 @@ public class GameEntity extends GameObject{
     @Override
     public void Update() {
         this.setPos(new Jaylib.Vector3(this.x, 0.0f, this.y));
-        if(health <= 0) {
-            GameWorld.killEnity(x, y);
-        }
     }
 
     @Override

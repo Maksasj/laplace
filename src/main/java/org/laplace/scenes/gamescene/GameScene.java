@@ -77,15 +77,56 @@ public class GameScene extends ScenesGeneric {
                     rightDice.Draw();
                 EndMode3D();
             Game.getShaderManager().DeactivateShader();
+
+        DrawTextureEx(
+                Game.getTextureManager().GetTexture("healthbarui"), //Red thing
+                new Jaylib.Vector2(105.0f, 160.0f),
+                0.0f,
+                0.5f,
+                RAYWHITE);
+
+        DrawTextureEx(
+                Game.getTextureManager().GetTexture("healthbar"),
+                new Jaylib.Vector2(105.0f, 160.0f),
+                0.0f,
+                0.5f,
+                RAYWHITE);
+
+        /*
+        Raylib.DrawText("STR",
+                10,
+                10,
+                10,
+                RAYWHITE);
+
+         */
+
         EndTextureMode();
 
         BeginDrawing();
                 Game.getShaderManager().ActivateShader("basePixelated"); // Render generated texture using selected postprocessing shader
                     SetTextureWrap(target.texture(), 1);
-                    DrawTextureEx(target.texture(), new Jaylib.Vector2(Game.getWindowWidth() , Game.getWindowHeight()), 180, Game.getPixelezationRate(), RAYWHITE);
+
+
+                    DrawTexturePro(
+                            target.texture(),
+                            new Jaylib.Rectangle(
+                                    0,
+                                    0,
+                                    Game.getWindowWidth() / Game.pixelezationRate,
+                                    -Game.getWindowHeight() / Game.pixelezationRate),
+                            new Jaylib.Rectangle(
+                                    0,
+                                    0,
+                                    Game.getWindowWidth(),
+                                    Game.getWindowHeight()),
+                            new Jaylib.Vector2(0.0f, 0.0f),
+                            0,
+                            RAYWHITE);
+
                 Game.getShaderManager().DeactivateShader();
 
-                DrawFPS(20, 20);
+                //DrawFPS(20, 20);
         EndDrawing();
     }
 }
