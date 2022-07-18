@@ -1,14 +1,8 @@
 package org.laplace.systems.worldsystem;
 
-import com.raylib.Raylib;
 import org.laplace.systems.objectsystem.GameEntity;
 import org.laplace.systems.objectsystem.GameEntitys.*;
-import org.laplace.systems.worldsystem.ChunkTypes;
-import org.laplace.systems.worldsystem.RandomRoomObjects;
-import java.util.Random;
-
-import static com.raylib.Jaylib.WHITE;
-
+import org.laplace.systems.objectsystem.GameEntitys.PlayerEntity.PlayerCharacter;
 
 public class Chunk extends ChunkMesh {
     private int X; //relative to world
@@ -687,7 +681,7 @@ public class Chunk extends ChunkMesh {
     }
 
     public void CreatePlayer(int x, int y) {
-        gameObjects[x][y] = new Player(x*2 + 10*this.X*2, y*2 + 10*this.Y*2);
+        gameObjects[x][y] = new PlayerCharacter(x*2 + 10*this.X*2, y*2 + 10*this.Y*2);
     }
 
     public boolean MobCheck()

@@ -23,9 +23,7 @@ public class Game {
     private static ShaderManager shaderManager;
     private static TextureManager textureManager;
 
-
     private static SoundManager soundManager;
-
 
     private static ScenesGeneric activeScene;
     private static ScenesGeneric gameScene;

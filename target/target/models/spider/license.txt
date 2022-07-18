@@ -1,0 +1,11 @@
+Model Information:
+* title:	Spider Animated
+* source:	https://sketchfab.com/3d-models/spider-animated-535258125b254ad59690f08b4578ea30
+* author:	misfit410 (https://sketchfab.com/misfit410)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Spider Animated" (https://sketchfab.com/3d-models/spider-animated-535258125b254ad59690f08b4578ea30) by misfit410 (https://sketchfab.com/misfit410) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

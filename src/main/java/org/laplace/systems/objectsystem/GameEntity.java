@@ -2,13 +2,9 @@ package org.laplace.systems.objectsystem;
 
 import com.raylib.Jaylib;
 import com.raylib.Raylib;
-import org.laplace.Dice.Dice;
 import org.laplace.Game;
-import org.laplace.systems.objectsystem.GameEntitys.Player;
-import org.laplace.systems.worldsystem.GameWorld;
 
 import static com.raylib.Jaylib.RAYWHITE;
-import static com.raylib.Raylib.*;
 
 public class GameEntity extends GameObject{
     protected int x = 0; //Relative to world cords
@@ -110,6 +106,14 @@ public class GameEntity extends GameObject{
                 rot
         );
     }
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return x;
+    }
+
     public void setModelScale(float value) {
         modelScale = value;
     }
