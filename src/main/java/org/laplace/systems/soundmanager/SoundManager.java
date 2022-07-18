@@ -18,17 +18,17 @@ public class SoundManager {
 
             sounds = new HashMap<String, Raylib.Sound>();
 
-            this.LoadSound("battlebeggining", "target/sounds/battle/battlebeggining.wav");
+            this.LoadSound("battlebeggining", "data/sounds/battle/battlebeggining.wav");
 
-            this.LoadSound("footstep1", "target/sounds/ambient/footstep1.wav");
-            this.LoadSound("footstep2", "target/sounds/ambient/footstep2.wav");
-            this.LoadSound("footstep3", "target/sounds/ambient/footstep3.wav");
+            this.LoadSound("footstep1", "data/sounds/ambient/footstep1.wav");
+            this.LoadSound("footstep2", "data/sounds/ambient/footstep2.wav");
+            this.LoadSound("footstep3", "data/sounds/ambient/footstep3.wav");
 
-            this.LoadSound("dice1", "target/sounds/battle/dice1.wav");
-            this.LoadSound("dice2", "target/sounds/battle/dice2.wav");
-            this.LoadSound("shake", "target/sounds/battle/shake.wav");
+            this.LoadSound("dice1", "data/sounds/battle/dice1.wav");
+            this.LoadSound("dice2", "data/sounds/battle/dice2.wav");
+            this.LoadSound("shake", "data/sounds/battle/shake.wav");
 
-            this.LoadSound("screm", "target/sounds/ambient/screm.wav");
+            this.LoadSound("scream", "data/sounds/ambient/scream.wav");
         }
 
         public void LoadSound(String name, String path) {

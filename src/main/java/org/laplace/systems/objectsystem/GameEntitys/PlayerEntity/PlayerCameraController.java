@@ -4,7 +4,8 @@ import com.raylib.Jaylib;
 import com.raylib.Raylib;
 import org.laplace.Game;
 
-import static com.raylib.Raylib.CAMERA_PERSPECTIVE;
+import static com.raylib.Raylib.*;
+import static com.raylib.Raylib.GetMouseX;
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 
@@ -13,11 +14,14 @@ public class PlayerCameraController {
     private boolean mauseHold;
 
     private float mauseX;
+    private float prevMauseX;
 
     public PlayerCameraController() {
         mauseHold = false;
         mauseX = 0;
     }
+
+
 
     public void ControlCamera(PlayerCharacter p) {
         Game.getCamera()
@@ -35,7 +39,19 @@ public class PlayerCameraController {
     }
 
     private void Update() {
-        mauseX += 0.01;
-    }
+        if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+            mauseHold = true;
 
+            prevMauseX = GetMouseX();
+        }
+
+        if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
+            mauseHold = false;
+        }
+
+        if(mauseHold) {
+            mauseX += (prevMauseX - GetMouseX())*0.01f;
+            prevMauseX = GetMouseX();
+        }
+    }
 }

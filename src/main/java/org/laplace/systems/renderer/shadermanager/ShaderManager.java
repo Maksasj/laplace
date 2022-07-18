@@ -17,9 +17,9 @@ public class ShaderManager {
     public ShaderManager() {
         shaders = new HashMap<String, Raylib.Shader>();
 
-        this.LoadShader("basePixelated", "target/shaders/defaultPixelated/base.vs", "target/shaders/defaultPixelated/base.fs");
-        this.LoadShader("defaultBackground", "target/shaders/defaultBackground/base.vs", "target/shaders/defaultBackground/base.fs");
-        this.LoadShader("defaultLight", "target/shaders/defaultLight/base.vs", "target/shaders/defaultLight/base.fs");
+        this.LoadShader("basePixelated", "data/shaders/defaultPixelated/base.vs", "data/shaders/defaultPixelated/base.fs");
+        this.LoadShader("defaultBackground", "data/shaders/defaultBackground/base.vs", "data/shaders/defaultBackground/base.fs");
+        this.LoadShader("defaultLight", "data/shaders/defaultLight/base.vs", "data/shaders/defaultLight/base.fs");
     }
 
     public void LoadShader(String name, String fs, String vs) {

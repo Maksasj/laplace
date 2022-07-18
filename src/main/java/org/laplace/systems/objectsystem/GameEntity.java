@@ -111,7 +111,7 @@ public class GameEntity extends GameObject{
     }
 
     public int getY() {
-        return x;
+        return y;
     }
 
     public void setModelScale(float value) {

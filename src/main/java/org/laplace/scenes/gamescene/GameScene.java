@@ -42,7 +42,7 @@ public class GameScene extends ScenesGeneric {
 
         gameWorld = new GameWorld();
 
-        texture = LoadTexture("target/shaders/defaultBackground/tex.png");
+        texture = LoadTexture("data/shaders/defaultBackground/tex.png");
 
         shaderLoc = Game.getShaderManager().GetShaderLocation("defaultBackground", "iTime");
         Game.getShaderManager().SetShaderValue("defaultBackground", "iTime", shaderLoc, iTime);
@@ -50,7 +50,7 @@ public class GameScene extends ScenesGeneric {
         shaderLocPlayerDeathTint = Game.getShaderManager().GetShaderLocation("basePixelated", "playertint");
         Game.getShaderManager().SetShaderValue("basePixelated", "playertint", shaderLocPlayerDeathTint, playerDeathTint);
 
-        font = LoadFont("target/fonts/deathFont.ttf");
+        font = LoadFont("data/fonts/deathFont.ttf");
 
         System.out.println("CALLING CONSTRUCTOR");
 

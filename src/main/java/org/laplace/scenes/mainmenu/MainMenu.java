@@ -36,7 +36,7 @@ public class MainMenu extends ScenesGeneric {
 
         SetCameraMode(camera, CAMERA_CUSTOM);
 
-        texture = LoadTexture("target/shaders/defaultBackground/tex.png");
+        texture = LoadTexture("data/shaders/defaultBackground/tex.png");
 
         target = LoadRenderTexture(
                 Game.getWindowWidth() / Game.pixelezationRate,

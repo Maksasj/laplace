@@ -15,26 +15,20 @@ public class ModelManager {
     public ModelManager() {
         models = new HashMap<String, Raylib.Model>();
 
-        this.LoadModel("goblin", "target/models/goblin/scene.gltf");
-        this.LoadModel("skeleton", "target/models/skeleton/scene.gltf");
-        this.LoadModel("chest", "target/models/chest/scene.gltf");
-        this.LoadModel("player", "target/models/knight/scene.gltf");
-        this.LoadModel("spider", "target/models/spider/scene.gltf");
+        this.LoadModel("goblin", "data/models/goblin/scene.gltf");
+        this.LoadModel("skeleton", "datamodels/skeleton/scene.gltf");
+        this.LoadModel("chest", "data/models/chest/scene.gltf");
+        this.LoadModel("player", "data/models/knight/scene.gltf");
+        this.LoadModel("spider", "data/models/spider/scene.gltf");
 
-        this.LoadModel("door", "target/models/door/scene.gltf");
+        this.LoadModel("door", "data/models/door/scene.gltf");
 
-        this.LoadModel("dice6", "target/models/dice6/scene.gltf");
+        this.LoadModel("dice6", "data/models/dice6/scene.gltf");
     }
 
     public void LoadModel(String name, String path) {
         Raylib.Model model = Raylib.LoadModel(path);
-
-        System.out.println(model.materials().shader().id());
-
         model.materials().shader(Game.getShaderManager().getShader("defaultLight"));
-        System.out.println("=====================");
-        System.out.println(model.materials().shader().id());
-
         models.put(name, model);
     }
 

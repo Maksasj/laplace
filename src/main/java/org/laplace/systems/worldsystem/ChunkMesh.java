@@ -18,7 +18,7 @@ public class ChunkMesh {
     public boolean walls[][] = new boolean[20][20];
 
     public ChunkMesh(int x, int y) {
-        image = LoadImage("target/maps/test/cubicmap.png");      // Load cubicmap image (RAM)
+        image = LoadImage("data/maps/test/cubicmap.png");      // Load cubicmap image (RAM)
 
         mapPosition = new Jaylib.Vector3( 20.0f*x, -1.0f, 20.0f*y);
     }
@@ -38,7 +38,7 @@ public class ChunkMesh {
     }
 
     public void LoadAtlas() {
-        Texture texture = LoadTexture("target/maps/test/cubicmap_atlas.png");    // Load map texture
+        Texture texture = LoadTexture("data/maps/test/cubicmap_atlas.png");    // Load map texture
         chunkModel.materials().maps().texture(texture);
     }
 }

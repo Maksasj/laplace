@@ -1,0 +1,11 @@
+Model Information:
+* title:	Goblin
+* source:	https://sketchfab.com/3d-models/goblin-f8f2ac12f1b245dd91f0139a8755784a
+* author:	Mateus Schwaab (https://sketchfab.com/Mehrus)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Goblin" (https://sketchfab.com/3d-models/goblin-f8f2ac12f1b245dd91f0139a8755784a) by Mateus Schwaab (https://sketchfab.com/Mehrus) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
