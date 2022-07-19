@@ -39,6 +39,14 @@ public class ChunkMesh {
 
     public void LoadAtlas() {
         Texture texture = LoadTexture("data/maps/test/cubicmap_atlas.png");    // Load map texture
-        chunkModel.materials().maps().texture(texture);
+        chunkModel
+                .materials()
+                    .maps()
+                        .texture(texture);
+
+
+        chunkModel
+                .materials().shader(Game.getShaderManager().getShader("defaultLight"));
+
     }
 }

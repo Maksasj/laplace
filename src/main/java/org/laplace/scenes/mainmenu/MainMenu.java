@@ -2,14 +2,10 @@ package org.laplace.scenes.mainmenu;
 
 import com.raylib.Jaylib;
 import com.raylib.Raylib;
-import org.laplace.Dice.Dice;
 import org.laplace.Game;
-import org.laplace.Main;
 import org.laplace.scenes.ScenesGeneric;
-import org.laplace.systems.modelmanager.ModelManager;
 
 import static com.raylib.Jaylib.RAYWHITE;
-import static com.raylib.Jaylib.VIOLET;
 import static com.raylib.Raylib.*;
 import static com.raylib.Raylib.EndDrawing;
 
