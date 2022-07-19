@@ -8,8 +8,7 @@ import org.bytedeco.javacpp.Pointer;
 import java.util.HashMap;
 
 import static com.raylib.Jaylib.RAYWHITE;
-import static com.raylib.Raylib.SHADER_UNIFORM_FLOAT;
-import static com.raylib.Raylib.SHADER_UNIFORM_VEC2;
+import static com.raylib.Raylib.*;
 
 public class ShaderManager {
     public HashMap<String, Raylib.Shader> shaders;
@@ -56,5 +55,9 @@ public class ShaderManager {
         Pointer val = new FloatPointer(value);
         Raylib.SetShaderValue(this.getShader(name), loc, val, SHADER_UNIFORM_FLOAT);
         val.close();
+    }
+
+    public void SetShaderValueVec3(String name, String args, int loc, Jaylib.Vector3 value) {
+        Raylib.SetShaderValue(this.getShader(name), loc, value, SHADER_UNIFORM_VEC3);
     }
 }

@@ -28,10 +28,11 @@ public class GameScene extends ScenesGeneric {
 
     private static boolean playerDied = false;
     private float playerDeathTint = 1.0f;
-
     private int shaderLocPlayerDeathTint;
-
     private Font font;
+
+    private int shaderLocViewPos;
+    private static Jaylib.Vector3 viewPos = new Jaylib.Vector3(0.0f, 0.0f, 0.0f);
 
     public GameScene() {
         super(); //Parent constructor
@@ -49,6 +50,9 @@ public class GameScene extends ScenesGeneric {
 
         shaderLocPlayerDeathTint = Game.getShaderManager().GetShaderLocation("basePixelated", "playertint");
         Game.getShaderManager().SetShaderValue("basePixelated", "playertint", shaderLocPlayerDeathTint, playerDeathTint);
+
+        shaderLocViewPos = Game.getShaderManager().GetShaderLocation("defaultLight", "viewPos");
+        Game.getShaderManager().SetShaderValueVec3("defaultLight", "viewPos", shaderLocViewPos, viewPos);
 
         font = LoadFont("data/fonts/deathFont.ttf");
 
@@ -77,12 +81,17 @@ public class GameScene extends ScenesGeneric {
         rightDice = new Dice(0, 2.5f);
     }
 
+    public static void setViewPos(Jaylib.Vector3 _viewPos) {
+        viewPos = _viewPos;
+    }
+
     @Override
     public void Update() {
         if(!playerDied) {
             iTime += 0.01;
             gameWorld.Update();
             Game.getShaderManager().SetShaderValue("defaultBackground", "iTime", shaderLoc, iTime);
+            Game.getShaderManager().SetShaderValueVec3("defaultLight", "viewPos", shaderLocViewPos, viewPos);
         } else {
             if(playerDeathTint > 0.5f) {
                 playerDeathTint -= 0.05f;

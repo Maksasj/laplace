@@ -51,7 +51,7 @@ void main()
     //texelColor /= 3.0; 
 
     vec3 rgb = drawBorder(texelColor.rgb, 0.3);
-    rgb = drawRedBorder(rgb, rBorder);
+    //rgb = drawRedBorder(rgb, rBorder);
     // NOTE: Implement here your fragment shader code
     finalColor = vec4(rgb*playertint , 1.0);
     //finalColor = texelColor*colDiffuse;
