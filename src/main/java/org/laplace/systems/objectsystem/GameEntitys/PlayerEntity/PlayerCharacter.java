@@ -47,8 +47,6 @@ public class PlayerCharacter extends GameEntity {
 
     @Override
     public void Update() {
-        GameScene.setViewPos(new Jaylib.Vector3(x, 0.0f, y));
-
         if(battleMode && attackingTarget != null) {
             //GameWorld.killEnity( attackingTarget.x(), attackingTarget.y());
         }

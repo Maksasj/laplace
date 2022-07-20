@@ -15,8 +15,6 @@ uniform vec3 viewPos;
 // Output fragment color
 out vec4 finalColor;
 
-// NOTE: Add here your custom variables
-
 struct Light {
     int enabled;
     int type;
@@ -38,8 +36,7 @@ void main() {
 
     float ambientLight = 0.8;
 
-    Light test = Light(1, LIGHT_DIRECTIONAL, viewPos + vec3(5.0, 1.0, 5.0), vec3(5.0, 0.0, 5.0), vec4(1.0, 0.7, 0.3, 1.0));
-    // NOTE: Implement here your fragment shader code
+    Light test = Light(1, LIGHT_POINT, viewPos - vec3(0.0, 1.0, 0.0), vec3(0.0, 0.0, 0.0), vec4(1.0, 0.7, 0.3, 1.0));
 
     for (int i = 0; i < 1; i++)
     {

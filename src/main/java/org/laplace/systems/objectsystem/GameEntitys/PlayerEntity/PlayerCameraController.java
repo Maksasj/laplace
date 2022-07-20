@@ -3,6 +3,7 @@ package org.laplace.systems.objectsystem.GameEntitys.PlayerEntity;
 import com.raylib.Jaylib;
 import com.raylib.Raylib;
 import org.laplace.Game;
+import org.laplace.scenes.gamescene.GameScene;
 
 import static com.raylib.Raylib.*;
 import static com.raylib.Raylib.GetMouseX;
@@ -34,6 +35,12 @@ public class PlayerCameraController {
                 .up(        new Raylib.Vector3().x(0).y(1).z(0))
                 .fovy(45)
                 .projection(CAMERA_PERSPECTIVE);
+
+        GameScene.setViewPos(
+                new Jaylib.Vector3(
+                        (float) ((float) p.getX()*2),
+                        2.0f,
+                        (float) ((float)  p.getY()*2)));
 
         Update();
     }
