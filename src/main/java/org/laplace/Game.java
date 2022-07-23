@@ -4,6 +4,8 @@ import com.raylib.Raylib;
 import org.laplace.scenes.ScenesGeneric;
 import org.laplace.scenes.gamescene.GameScene;
 import org.laplace.scenes.mainmenu.MainMenu;
+import org.laplace.systems.eventsystem.EventHandler;
+import org.laplace.systems.eventsystem.events.PlayerMoveEvent;
 import org.laplace.systems.modelmanager.ModelManager;
 import org.laplace.systems.renderer.shadermanager.ShaderManager;
 import org.laplace.systems.soundmanager.SoundManager;
@@ -29,6 +31,8 @@ public class Game {
     private static ScenesGeneric gameScene;
     private static ScenesGeneric mainmenuScene;
 
+    private static EventHandler eventHandler;
+
     //Game constructor
     public Game() {
         InitWindow(windowWidth, windowHeight, "Laplace");
@@ -38,6 +42,8 @@ public class Game {
         SetCameraMode(camera, CAMERA_ORBITAL);
 
         gameRunning = true;
+
+        eventHandler = new EventHandler();
 
         shaderManager = new ShaderManager();
         modelManager = new ModelManager();
@@ -55,6 +61,10 @@ public class Game {
         gameScene = new GameScene();
 
         Game.setActiveScene(GetMainMenu());
+    }
+
+    public static EventHandler GetEventHandler() {
+        return eventHandler;
     }
 
     //Main game loop

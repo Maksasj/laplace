@@ -3,6 +3,8 @@ package org.laplace.systems.objectsystem.GameEntitys.PlayerEntity;
 import com.raylib.Jaylib;
 import org.laplace.Game;
 import org.laplace.scenes.gamescene.GameScene;
+import org.laplace.systems.eventsystem.EventTypes;
+import org.laplace.systems.eventsystem.events.PlayerMoveEvent;
 import org.laplace.systems.objectsystem.GameEntity;
 import org.laplace.systems.worldsystem.GameWorld;
 
@@ -43,6 +45,8 @@ public class PlayerCharacter extends GameEntity {
         camController = new PlayerCameraController();
 
         rBorderShaderLoc = Game.getShaderManager().GetShaderLocation("basePixelated", "rBorder");
+
+        Game.GetEventHandler().addEvent(new PlayerMoveEvent(this));
     }
 
     @Override
@@ -55,8 +59,6 @@ public class PlayerCharacter extends GameEntity {
         GameScene.pMaxHealth = getMaxHealth();
 
         if(getHealth() < 0) {
-            System.out.println("Player called die method");
-
             battleMode = false;
             walkCd = false;
 
@@ -78,6 +80,8 @@ public class PlayerCharacter extends GameEntity {
         //Walking Cd
         if(!walkCd && !battleMode) {
             if(IsKeyPressed(68)) { //W
+                Game.GetEventHandler().handleEvent(EventTypes.PLAYER_MOVE_EVENT);
+
                 this.setModelOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f));
                 this.setRotAxis(new Jaylib.Vector3(1.0f, 1.0f, 1.0f));
                 this.setRot(240.0f);
@@ -102,6 +106,8 @@ public class PlayerCharacter extends GameEntity {
             }
 
             if(IsKeyPressed(65)) { //S
+                Game.GetEventHandler().handleEvent(EventTypes.PLAYER_MOVE_EVENT);
+
                 this.setModelOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f));
                 this.setRotAxis(new Jaylib.Vector3(1.0f, -1.0f, -1.0f));
                 this.setRot(240);
@@ -126,6 +132,8 @@ public class PlayerCharacter extends GameEntity {
             }
 
             if(IsKeyPressed(87)) { //D
+                Game.GetEventHandler().handleEvent(EventTypes.PLAYER_MOVE_EVENT);
+
                 this.setModelOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f));
                 this.setRotAxis(new Jaylib.Vector3(1.0f, 0.0f, 0.0f));
                 this.setRot(270);
@@ -150,6 +158,8 @@ public class PlayerCharacter extends GameEntity {
             }
 
             if(IsKeyPressed(83)) { //A
+                Game.GetEventHandler().handleEvent(EventTypes.PLAYER_MOVE_EVENT);
+
                 this.setModelOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f));
                 this.setRotAxis(new Jaylib.Vector3(0.0f, 0.7f, 0.7f));
                 this.setRot(180);

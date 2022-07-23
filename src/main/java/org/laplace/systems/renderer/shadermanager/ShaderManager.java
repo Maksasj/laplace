@@ -4,6 +4,8 @@ import com.raylib.Jaylib;
 import com.raylib.Raylib;
 import org.bytedeco.javacpp.FloatPointer;
 import org.bytedeco.javacpp.Pointer;
+import org.laplace.Game;
+import org.laplace.systems.objectsystem.GameEntity;
 
 import java.util.HashMap;
 
@@ -59,5 +61,25 @@ public class ShaderManager {
 
     public void SetShaderValueVec3(String name, String args, int loc, Jaylib.Vector3 value) {
         Raylib.SetShaderValue(this.getShader(name), loc, value, SHADER_UNIFORM_VEC3);
+    }
+
+    public void SetTestLight(int loc) {
+        Jaylib.Vector3 val = new Jaylib.Vector3(1.0f, 0.7f, 0.3f);
+
+        Raylib.SetShaderValue(
+                this.getShader("defaultLight"),
+                loc,
+                new Jaylib.Vector3(10.0f, 1.0f, 10.0f),
+                SHADER_UNIFORM_VEC3);
+
+        /*
+        Raylib.SetShaderValue(
+                this.getShader("defaultLight"),
+                Raylib.GetShaderLocation(getShader("defaultLight"), "light"),
+                new Jaylib.Vector3(0.7f, 0.3f, 1.0f),
+                SHADER_UNIFORM_VEC3);
+
+
+         */
     }
 }

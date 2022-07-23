@@ -5,6 +5,8 @@ import com.raylib.Raylib;
 import org.laplace.Dice.Dice;
 import org.laplace.Game;
 import org.laplace.scenes.ScenesGeneric;
+import org.laplace.systems.renderer.lightsystem.Light;
+import org.laplace.systems.renderer.lightsystem.LightManager;
 import org.laplace.systems.worldsystem.GameWorld;
 
 import static com.raylib.Jaylib.RAYWHITE;
@@ -34,6 +36,8 @@ public class GameScene extends ScenesGeneric {
     private int shaderLocViewPos;
     private static Jaylib.Vector3 viewPos = new Jaylib.Vector3(0.0f, 0.0f, 0.0f);
 
+    private LightManager lightManager;
+
     public GameScene() {
         super(); //Parent constructor
 
@@ -42,21 +46,28 @@ public class GameScene extends ScenesGeneric {
                 Game.getWindowHeight() / Game.pixelezationRate);
 
         gameWorld = new GameWorld();
-
         texture = LoadTexture("data/shaders/defaultBackground/tex.png");
-
         shaderLoc = Game.getShaderManager().GetShaderLocation("defaultBackground", "iTime");
         Game.getShaderManager().SetShaderValue("defaultBackground", "iTime", shaderLoc, iTime);
-
         shaderLocPlayerDeathTint = Game.getShaderManager().GetShaderLocation("basePixelated", "playertint");
         Game.getShaderManager().SetShaderValue("basePixelated", "playertint", shaderLocPlayerDeathTint, playerDeathTint);
-
         shaderLocViewPos = Game.getShaderManager().GetShaderLocation("defaultLight", "viewPos");
         Game.getShaderManager().SetShaderValueVec3("defaultLight", "viewPos", shaderLocViewPos, viewPos);
-
         font = LoadFont("data/fonts/deathFont.ttf");
 
-        System.out.println("CALLING CONSTRUCTOR");
+        lightManager = new LightManager("defaultLight");
+        lightManager.addLight(
+                new Light(
+                        new Jaylib.Vector3(10.0f, 1.0f, 10.0f),
+                        new Jaylib.Vector3(0.3f, 1.0f, 0.7f)));
+
+        lightManager.addLight(
+                new Light(
+                        new Jaylib.Vector3(2.0f, 1.0f, 2.0f),
+                        new Jaylib.Vector3(1.0f, 0.0f, 0.0f)));
+
+        lightManager.updateLights();
+
 
         playerDied = false;
     }

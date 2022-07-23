@@ -12,20 +12,11 @@ uniform vec4 colDiffuse;
 uniform float playertint;
 uniform vec3 viewPos;
 
-// Output fragment color
+uniform float lightCount;
+uniform vec3 lightPos[16];
+uniform vec3 lightColor[16];
+
 out vec4 finalColor;
-
-struct Light {
-    int enabled;
-    int type;
-    vec3 position;
-    vec3 target;
-    vec4 color;
-};
-
-#define     MAX_LIGHTS              4
-#define     LIGHT_DIRECTIONAL       0
-#define     LIGHT_POINT             1
 
 void main() {
     vec4 texelColor = texture(texture0, fragTexCoord);
@@ -36,24 +27,19 @@ void main() {
 
     float ambientLight = 0.8;
 
-    Light test = Light(1, LIGHT_POINT, viewPos - vec3(0.0, 1.0, 0.0), vec3(0.0, 0.0, 0.0), vec4(1.0, 0.7, 0.3, 1.0));
+    //Light test = Light(lightPos[0], vec4(lightColor[0].rgb, 1.0));
 
-    for (int i = 0; i < 1; i++)
-    {
-        if (test.enabled == 1)
-        {
-            vec3 light = vec3(0.0);
+    for (int i = 0; i < lightCount; i++) {
+        vec3 Llight = vec3(0.0);
 
-            if (test.type == LIGHT_DIRECTIONAL) light = -normalize(test.target - test.position);
-            if (test.type == LIGHT_POINT) light = normalize(test.position - fragPosition);
+        Llight = normalize(lightPos[i] - fragPosition);
 
-            float NdotL = max(dot(normal, light), 0.0);
-            lightDot += test.color.rgb*NdotL;
+        float NdotL = max(dot(normal, Llight), 0.0);
+        lightDot += lightColor[i].rgb*NdotL;
 
-            float specCo = 0.0;
-            if (NdotL > 0.0) specCo = pow(max(0.0, dot(viewD, reflect(-(light), normal))), 16.0); // Shine: 16.0
-            specular += specCo;
-        }
+        float specCo = 0.0;
+        if (NdotL > 0.0) specCo = pow(max(0.0, dot(viewD, reflect(-(Llight), normal))), 16.0); // Shine: 16.0
+        specular += specCo;
     }
 
     finalColor = (texelColor*((colDiffuse + vec4(specular,1))*vec4(lightDot, 1.0)));
