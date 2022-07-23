@@ -5,6 +5,10 @@ import org.laplace.Game;
 import org.laplace.scenes.gamescene.GameScene;
 import org.laplace.systems.eventsystem.EventTypes;
 import org.laplace.systems.eventsystem.events.PlayerMoveEvent;
+import org.laplace.systems.objectsystem.ComponentSystem.Component;
+import org.laplace.systems.objectsystem.ComponentSystem.Components.CameraControl;
+import org.laplace.systems.objectsystem.ComponentSystem.Components.Health;
+import org.laplace.systems.objectsystem.ComponentSystem.Components.Model3D;
 import org.laplace.systems.objectsystem.GameEntity;
 import org.laplace.systems.worldsystem.GameWorld;
 
@@ -13,7 +17,7 @@ import java.util.Random;
 import static com.raylib.Raylib.IsKeyPressed;
 
 public class PlayerCharacter extends GameEntity {
-    private PlayerCameraController camController;
+    //private PlayerCameraController camController;
 
     private boolean walkCd = false;
 
@@ -31,33 +35,33 @@ public class PlayerCharacter extends GameEntity {
 
     public PlayerCharacter(int x, int y) {
         super("player");
-        setHealth(35);
         setDamage(15);
 
         this.x = x;
         this.y = y;
 
-        this.setModelScale(0.3f);
-        this.setModelOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f));
-        this.setRotAxis(new Jaylib.Vector3(1.0f, 0.0f, 0.0f));
-        this.setRot(270);
+        //this.setModelScale(0.3f);
+        //this.setModelOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f));
+        //this.setRotAxis(new Jaylib.Vector3(1.0f, 0.0f, 0.0f));
+        //this.setRot(270);
 
-        camController = new PlayerCameraController();
+        components.addComponent(
+                new Model3D(this, "player")
+                        .setModelScale(0.3f)
+                        .setModelOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f))
+                        .setRotAxis(new Jaylib.Vector3(1.0f, 0.0f, 0.0f))
+                        .setRot(270));
+        components.addComponent(new Health(this, 35));
+        components.addComponent(new CameraControl(this));
 
         rBorderShaderLoc = Game.getShaderManager().GetShaderLocation("basePixelated", "rBorder");
 
-        this.setPos(new Jaylib.Vector3(this.x, 0.0f, this.y));
+        Game.GetEventHandler().addEvent(new PlayerFootStepListener());
     }
 
     @Override
     public void Update() {
-        if(battleMode && attackingTarget != null) {
-            //GameWorld.killEnity( attackingTarget.x(), attackingTarget.y());
-        }
-
-        GameScene.pHealth = getHealth();
-        GameScene.pMaxHealth = getMaxHealth();
-
+        /*
         if(getHealth() < 0) {
             battleMode = false;
             walkCd = false;
@@ -75,15 +79,16 @@ public class PlayerCharacter extends GameEntity {
 
             GameScene.playerDied();
         }
+        */
 
         //Walking Cd
         if(!walkCd && !battleMode) {
             if(IsKeyPressed(68)) { //W
                 Game.GetEventHandler().handleEvent(EventTypes.PLAYER_MOVE_EVENT);
 
-                this.setModelOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f));
-                this.setRotAxis(new Jaylib.Vector3(1.0f, 1.0f, 1.0f));
-                this.setRot(240.0f);
+                //this.setModelOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f));
+                //this.setRotAxis(new Jaylib.Vector3(1.0f, 1.0f, 1.0f));
+                //this.setRot(240.0f);
 
                 if(!GameWorld.ChechIfWall(x - 1, y)) {
                     if(GameWorld.getEntity(x - 1, y) != null) {
@@ -94,22 +99,18 @@ public class PlayerCharacter extends GameEntity {
                         GameWorld.TranlocateEntity(this, x, y, x - 1, y);
                         this.x -= 1;
                         walkCd = true;
-
-                        Random rand = new Random();
-                        int int_random = rand.nextInt(3);
-                        Game.getSoundManager().PlaySound("footstep"+(int_random+1), 0.2f);
                     }
                 } else {
-                    System.out.println("WALL COLLISION");
+                    Game.GetEventHandler().handleEvent(EventTypes.PLAYER_WALL_COLLISION);
                 }
             }
 
             if(IsKeyPressed(65)) { //S
                 Game.GetEventHandler().handleEvent(EventTypes.PLAYER_MOVE_EVENT);
 
-                this.setModelOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f));
-                this.setRotAxis(new Jaylib.Vector3(1.0f, -1.0f, -1.0f));
-                this.setRot(240);
+                //this.setModelOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f));
+                //this.setRotAxis(new Jaylib.Vector3(1.0f, -1.0f, -1.0f));
+                //this.setRot(240);
 
                 if(!GameWorld.ChechIfWall(x + 1, y)) {
                     if(GameWorld.getEntity(x + 1, y) != null) {
@@ -120,22 +121,18 @@ public class PlayerCharacter extends GameEntity {
                         GameWorld.TranlocateEntity(this, x, y, x + 1, y);
                         this.x += 1;
                         walkCd = true;
-
-                        Random rand = new Random();
-                        int int_random = rand.nextInt(3);
-                        Game.getSoundManager().PlaySound("footstep"+(int_random+1), 0.2f);
                     }
                 } else {
-                    System.out.println("WALL COLLISION");
+                    Game.GetEventHandler().handleEvent(EventTypes.PLAYER_WALL_COLLISION);
                 }
             }
 
             if(IsKeyPressed(87)) { //D
                 Game.GetEventHandler().handleEvent(EventTypes.PLAYER_MOVE_EVENT);
 
-                this.setModelOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f));
-                this.setRotAxis(new Jaylib.Vector3(1.0f, 0.0f, 0.0f));
-                this.setRot(270);
+                //this.setModelOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f));
+                //this.setRotAxis(new Jaylib.Vector3(1.0f, 0.0f, 0.0f));
+                //this.setRot(270);
 
                 if(!GameWorld.ChechIfWall(x, y + 1)) {
                     if(GameWorld.getEntity(x, y + 1) != null) {
@@ -146,22 +143,18 @@ public class PlayerCharacter extends GameEntity {
                         GameWorld.TranlocateEntity(this, x, y, x, y + 1);
                         this.y += 1;
                         walkCd = true;
-
-                        Random rand = new Random();
-                        int int_random = rand.nextInt(3);
-                        Game.getSoundManager().PlaySound("footstep"+(int_random+1), 0.2f);
                     }
                 } else {
-                    System.out.println("WALL COLLISION");
+                    Game.GetEventHandler().handleEvent(EventTypes.PLAYER_WALL_COLLISION);
                 }
             }
 
             if(IsKeyPressed(83)) { //A
                 Game.GetEventHandler().handleEvent(EventTypes.PLAYER_MOVE_EVENT);
 
-                this.setModelOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f));
-                this.setRotAxis(new Jaylib.Vector3(0.0f, 0.7f, 0.7f));
-                this.setRot(180);
+                //this.setModelOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f));
+                //this.setRotAxis(new Jaylib.Vector3(0.0f, 0.7f, 0.7f));
+                //this.setRot(180);
 
                 if(!GameWorld.ChechIfWall(x, y - 1)) {
                     if(GameWorld.getEntity(x, y - 1) != null) {
@@ -172,13 +165,9 @@ public class PlayerCharacter extends GameEntity {
                         GameWorld.TranlocateEntity(this, x, y, x, y - 1);
                         this.y -= 1;
                         walkCd = true;
-
-                        Random rand = new Random();
-                        int int_random = rand.nextInt(3);
-                        Game.getSoundManager().PlaySound("footstep"+(int_random+1), 0.2f);
                     }
                 } else {
-                    System.out.println("WALL COLLISION");
+                    Game.GetEventHandler().handleEvent(EventTypes.PLAYER_WALL_COLLISION);
                 }
             }
         } else {
@@ -204,39 +193,21 @@ public class PlayerCharacter extends GameEntity {
                 }
             }
 
-        if(IsKeyPressed(66)) { //test
-            //GameScene.getMainDice().ThrowDice(6);
-            setHealth(-2, getMaxHealth());
-
-        }
-
-        camController.ControlCamera(this);
-
         if(!battleMode && rBorder > 0.0) {
             rBorder -= 0.01;
             Game.getShaderManager().SetShaderValue("basePixelated", "rBorder", rBorderShaderLoc, rBorder);
         }
 
-        //Update mesh location
-        this.setPos(new Jaylib.Vector3(this.x, 0.0f, this.y));
+        components.updateComponents();
     }
 
     @Override
     public void Draw() {
-        Game.getModelManager().DrawModel(
-                this.getName(),
-                new Jaylib.Vector3(
-                        pos.x() + offset.x(),
-                        pos.y() + offset.y(),
-                        pos.z() + offset.z()
-                ),
-                modelScale,
-                rotAxis,
-                rot
-        );
+        components.drawComponents();
     }
 
     public void StartBattle(GameEntity entity) {
+        /*
         if(!battleMode) {
             battleMode = true;
             battleCd = 0;
@@ -245,10 +216,11 @@ public class PlayerCharacter extends GameEntity {
             rValue = GameScene.getRightDice().ThrowDice(6);
             lValue = GameScene.getLeftDice().ThrowDice(6);
 
-            attackingTarget.receiveDamage(1);
+            //attackingTarget.receiveDamage(1);
 
             Game.getSoundManager().PlaySound("battlebeggining", 0.2f);
         }
+
 
         if(battleMode && battleCd > 100) {
             if(attackingTarget.getHealth() < 1) {
@@ -295,5 +267,7 @@ public class PlayerCharacter extends GameEntity {
             rBorder += 0.05;
             Game.getShaderManager().SetShaderValue("basePixelated", "rBorder", rBorderShaderLoc, rBorder);
         }
+
+         */
     }
 }
