@@ -3,12 +3,18 @@ package org.laplace.systems.objectsystem;
 import com.raylib.Jaylib;
 import com.raylib.Raylib;
 import org.laplace.Game;
+import org.laplace.systems.objectsystem.ComponentSystem.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.raylib.Jaylib.RAYWHITE;
 
-public class GameEntity extends GameObject{
+public class GameEntity extends GameObject {
     public int x = 0; //Relative to world cords
     public int y = 0; //Relative to world cords
+
+    public List<Component> components = new ArrayList<>();
 
     private int health;
     private int maxhealth;
@@ -60,7 +66,9 @@ public class GameEntity extends GameObject{
 
     @Override
     public void Update() {
-        //this.setPos(new Jaylib.Vector3(this.x, 0.0f, this.y));
+        for(Component comp : components) {
+            comp.Update();
+        }
     }
 
     @Override
@@ -104,6 +112,10 @@ public class GameEntity extends GameObject{
                 rotAxis,
                 rot
         );
+
+        for(Component comp : components) {
+            comp.Draw();
+        }
     }
     public int getX() {
         return x;

@@ -36,10 +36,12 @@ public class GameScene extends ScenesGeneric {
     private int shaderLocViewPos;
     private static Jaylib.Vector3 viewPos = new Jaylib.Vector3(0.0f, 0.0f, 0.0f);
 
-    private LightManager lightManager;
+    private static LightManager lightManager;
 
     public GameScene() {
         super(); //Parent constructor
+
+        lightManager = new LightManager("defaultLight");
 
         target = LoadRenderTexture(
                 Game.getWindowWidth() / Game.pixelezationRate,
@@ -55,21 +57,13 @@ public class GameScene extends ScenesGeneric {
         Game.getShaderManager().SetShaderValueVec3("defaultLight", "viewPos", shaderLocViewPos, viewPos);
         font = LoadFont("data/fonts/deathFont.ttf");
 
-        lightManager = new LightManager("defaultLight");
-        lightManager.addLight(
-                new Light(
-                        new Jaylib.Vector3(10.0f, 1.0f, 10.0f),
-                        new Jaylib.Vector3(0.3f, 1.0f, 0.7f)));
-
-        lightManager.addLight(
-                new Light(
-                        new Jaylib.Vector3(2.0f, 1.0f, 2.0f),
-                        new Jaylib.Vector3(1.0f, 0.0f, 0.0f)));
-
         lightManager.updateLights();
 
-
         playerDied = false;
+    }
+
+    public static LightManager getLightManager() {
+        return lightManager;
     }
 
     public void ResetScene() {

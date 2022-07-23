@@ -24,9 +24,11 @@ public class LightManager {
         allocateUniforms();
     };
 
-    public void addLight(Light newLight) {
+    public int addLight(Light newLight) {
         lights[(int) lightCount] = newLight;
         lightCount++;
+
+        return ((int)lightCount - 1);
     }
 
     public int getLightCount() {
@@ -59,5 +61,23 @@ public class LightManager {
                     lights[x].color,
                     SHADER_UNIFORM_VEC3);
         }
+    }
+
+    public void updateLight(int x) {
+        Raylib.SetShaderValue(
+                Game.getShaderManager().getShader(shaderName),
+                lightsPosUniforms[x],
+                lights[x].pos,
+                SHADER_UNIFORM_VEC3);
+
+        Raylib.SetShaderValue(
+                Game.getShaderManager().getShader(shaderName),
+                lightsColorUniforms[x],
+                lights[x].color,
+                SHADER_UNIFORM_VEC3);
+    }
+
+    public void setLight(int x, Light newLight) {
+        lights[x] = newLight;
     }
 }

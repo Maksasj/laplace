@@ -1,6 +1,7 @@
 package org.laplace.systems.objectsystem.GameEntitys;
 
 import com.raylib.Jaylib;
+import org.laplace.systems.objectsystem.ComponentSystem.Components.LightSource;
 import org.laplace.systems.objectsystem.GameEntity;
 
 public class Torch extends GameEntity {
@@ -18,5 +19,10 @@ public class Torch extends GameEntity {
         this.setRot(90);
 
         this.setPos(new Jaylib.Vector3(this.x, 0.0f, this.y));
+
+        components.add(
+                new LightSource(
+                        this,
+                        new Jaylib.Vector3(1.0f, 0.7f, 0.3f)));
     }
 }
