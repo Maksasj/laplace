@@ -8,8 +8,8 @@ public enum ComponentTypes {
     MODEL3D,
     SOLID,
     RBORDER,
-
     BATTLEBLE,
     POSITIONABLE,
-    PLAYER_WALK
+    PLAYER_WALK,
+    DAMAGE_DEALER
 }

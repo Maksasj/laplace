@@ -26,6 +26,12 @@ public class rBorder extends Component {
             rBorder -= 0.01;
             Game.getShaderManager().SetShaderValue("basePixelated", "rBorder", rBorderShaderLoc, rBorder);
         }
+
+
+        if(battleble.GetBattleMode() && rBorder < 0.3) {
+            rBorder += 0.05;
+            Game.getShaderManager().SetShaderValue("basePixelated", "rBorder", rBorderShaderLoc, rBorder);
+        }
     }
 
     @Override

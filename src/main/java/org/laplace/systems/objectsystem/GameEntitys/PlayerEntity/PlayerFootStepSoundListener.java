@@ -5,8 +5,8 @@ import org.laplace.systems.eventsystem.events.PlayerMoveEvent;
 
 import java.util.Random;
 
-public class PlayerFootStepListener extends PlayerMoveEvent {
-    public PlayerFootStepListener() {
+public class PlayerFootStepSoundListener extends PlayerMoveEvent {
+    public PlayerFootStepSoundListener() {
         super();
     }
 

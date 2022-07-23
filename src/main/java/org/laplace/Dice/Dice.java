@@ -4,6 +4,7 @@ import com.raylib.Jaylib;
 import com.raylib.Raylib;
 import org.laplace.Game;
 import org.laplace.scenes.gamescene.GameScene;
+import org.laplace.systems.eventsystem.EventTypes;
 
 import java.util.Random;
 
@@ -61,6 +62,8 @@ public class Dice extends DiceAnimation {
     }
 
     public int ThrowDice(int maxVal) {
+        Game.GetEventHandler().handleEvent(EventTypes.DICE_THROWN);
+
         switch (maxVal) {
             case 6:
                 return trow6();
