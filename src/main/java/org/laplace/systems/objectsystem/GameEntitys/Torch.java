@@ -23,6 +23,6 @@ public class Torch extends GameEntity {
         components.add(
                 new LightSource(
                         this,
-                        new Jaylib.Vector3(1.0f, 0.7f, 0.3f)));
+                        new Jaylib.Vector3(1.0f, 0.5f, 0.3f)));
     }
 }
