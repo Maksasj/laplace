@@ -238,9 +238,18 @@ public class GameWorld {
             }
         }
 
+        //chunks[0][0].CreateChest(0, 1);
+        //chunks[0][0].CreateChest(1, 0);
+        //chunks[0][0].CreateChest(2, 1);
+        //chunks[0][0].CreateChest(1, 2);
+
+        //chunks[0][0].CreateChest(3, 2);
+        //chunks[0][0].CreateChest(2, 3);
+
         chunks[0][0].CreatePlayer(1, 1);
+        chunks[0][0].CreateTorch(3, 3);
+
         chunks[0][0].RoomCleared(0, 0, chunks);
-        //chunks[0][0].KiilMobs();
     }
 
     public void GenerateRightChunk(int buff[][], int i)

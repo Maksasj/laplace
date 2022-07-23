@@ -31,6 +31,8 @@ public class ModelManager {
         this.LoadModel("player", "data/models/knight/scene.gltf");
         this.LoadModel("spider", "data/models/spider/scene.gltf");
 
+        this.LoadModel("torch", "data/models/torch/scene.gltf");
+
         this.LoadModel("door", "data/models/door/scene.gltf");
 
         this.LoadModel("dice6", "data/models/dice6/scene.gltf");

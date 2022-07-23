@@ -681,7 +681,15 @@ public class Chunk extends ChunkMesh {
     }
 
     public void CreatePlayer(int x, int y) {
-        gameObjects[x][y] = new PlayerCharacter(x*2 + 10*this.X*2, y*2 + 10*this.Y*2);
+        gameObjects[x][y] = new PlayerCharacter(x + 10*this.X, y + 10*this.Y);
+    }
+
+    public void CreateTorch(int x, int y) {
+        gameObjects[x][y] = new Torch(x + 10*this.X, y + 10*this.Y);
+    }
+
+    public void CreateChest(int x, int y) {
+        gameObjects[x][y] = new Chest(x + 10*this.X, y + 10*this.Y);
     }
 
     public boolean MobCheck()
@@ -762,10 +770,11 @@ public class Chunk extends ChunkMesh {
     }
 
     public void CreateDoor(int x, int y) {
-        gameObjects[x][y] = new Door(x*2 + 10*this.X*2, y*2 + 10*this.Y*2);
+        gameObjects[x][y] = new Door(x + 10*this.X, y + 10*this.Y);
     }
+
     public void CreateTurnedDoor(int x, int y) {
-        gameObjects[x][y] = new TurnedDoor(x*2 + 10*this.X*2, y*2 + 10*this.Y*2);
+        gameObjects[x][y] = new TurnedDoor(x + 10*this.X, y + 10*this.Y);
     }
     public void RoomCleared(int X, int Y, Chunk[][] chunks)
     {

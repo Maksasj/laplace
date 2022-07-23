@@ -16,13 +16,13 @@ public class RandomRoomObjects {
             for(int y = 1; y < 9; y++) {
                 int j = rand.nextInt(65);
                 if (j < 2) {
-                    gameObjects[x][y] = new Goblin(x * 2 + 10 * X * 2, y * 2 + 10 * Y * 2); //Testing
+                    gameObjects[x][y] = new Goblin(x + 10 * X, y + 10 * Y);
                 }
                 if (j > 6 && j < 9) {
-                    gameObjects[x][y] = new Spider(x * 2 + 10 * X * 2, y * 2 + 10 * Y * 2); //Testing
+                    gameObjects[x][y] = new Spider(x + 10 * X, y + 10 * Y);
                 }
                 if (j > 62) {
-                    gameObjects[x][y] = new Skeleton(x * 2 + 10 * X * 2, y * 2 + 10 * Y * 2); //Testing
+                    gameObjects[x][y] = new Skeleton(x + 10 * X, y + 10 * Y);
                 }
             }
         }

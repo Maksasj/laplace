@@ -7,8 +7,8 @@ import org.laplace.Game;
 import static com.raylib.Jaylib.RAYWHITE;
 
 public class GameEntity extends GameObject{
-    protected int x = 0; //Relative to world cords
-    protected int y = 0; //Relative to world cords
+    public int x = 0; //Relative to world cords
+    public int y = 0; //Relative to world cords
 
     private int health;
     private int maxhealth;
@@ -60,39 +60,38 @@ public class GameEntity extends GameObject{
 
     @Override
     public void Update() {
-        this.setPos(new Jaylib.Vector3(this.x, 0.0f, this.y));
+        //this.setPos(new Jaylib.Vector3(this.x, 0.0f, this.y));
     }
 
     @Override
     public void Draw() {
         //Healt bar drawing
-        if(getName() != "player") {
-            if(health != maxhealth) {
-                Raylib.DrawBillboardRec(
-                        Game.getCamera(),
-                        Game.getTextureManager().GetTexture("healthbarui"),
-                        new Jaylib.Rectangle(0, 0, 220 * ((float) health / maxhealth), 40),
-                        new Jaylib.Vector3(
-                                pos.x() + offset.x()     - 0.01f,
-                                pos.y() + offset.y()    + 1.99f,
-                                pos.z() + offset.z()    - 0.01f
-                        ),
-                        new Jaylib.Vector2(0.3f, 0.3f),
-                        RAYWHITE);
+        if(health != maxhealth) {
+            Raylib.DrawBillboardRec(
+                    Game.getCamera(),
+                    Game.getTextureManager().GetTexture("healthbarui"),
+                    new Jaylib.Rectangle(0, 0, 220 * ((float) health / maxhealth), 40),
+                    new Jaylib.Vector3(
+                            pos.x() + offset.x()     - 0.01f,
+                            pos.y() + offset.y()    + 1.99f,
+                            pos.z() + offset.z()    - 0.01f
+                    ),
+                    new Jaylib.Vector2(0.3f, 0.3f),
+                    RAYWHITE);
 
-                Raylib.DrawBillboardRec(
-                        Game.getCamera(),
-                        Game.getTextureManager().GetTexture("healthbar"),
-                        new Jaylib.Rectangle(0, 0, 220, 40),
-                        new Jaylib.Vector3(
-                                pos.x() + offset.x(),
-                                pos.y() + offset.y() + 2.0f,
-                                pos.z() + offset.z()
-                        ),
-                        new Jaylib.Vector2(0.3f, 0.3f),
-                        RAYWHITE);
-            }
+            Raylib.DrawBillboardRec(
+                    Game.getCamera(),
+                    Game.getTextureManager().GetTexture("healthbar"),
+                    new Jaylib.Rectangle(0, 0, 220, 40),
+                    new Jaylib.Vector3(
+                            pos.x() + offset.x(),
+                            pos.y() + offset.y() + 2.0f,
+                            pos.z() + offset.z()
+                    ),
+                    new Jaylib.Vector2(0.3f, 0.3f),
+                    RAYWHITE);
         }
+
 
         Game.getModelManager().DrawModel(
                 this.getName(),
@@ -130,8 +129,9 @@ public class GameEntity extends GameObject{
         rot = value;
     }
 
+    //Automatically set mesh pos in correct place (x2 cords)
     public void setPos(Jaylib.Vector3 pos) {
-        this.pos = pos;
+        this.pos = new Jaylib.Vector3(pos.x()*2, pos.y()*2, pos.z()*2);
     }
 
     public Jaylib.Vector3 getPos() {

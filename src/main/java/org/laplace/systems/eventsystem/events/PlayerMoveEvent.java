@@ -19,6 +19,6 @@ public class PlayerMoveEvent extends GameEvent {
 
     @Override
     public void onEvent() {
-        System.out.println("player moved");
+
     }
 }

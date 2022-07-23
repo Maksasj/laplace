@@ -16,5 +16,7 @@ public class Chest extends GameEntity {
         this.setModelOffset(new Jaylib.Vector3(0.0f, -1.0f,1.0f));
         this.setRotAxis(new Jaylib.Vector3(1.0f, 0.0f, 0.0f));
         this.setRot(270);
+
+        this.setPos(new Jaylib.Vector3(this.x, 0.0f, this.y));
     }
 }

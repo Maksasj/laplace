@@ -22,8 +22,6 @@ public class PlayerCameraController {
         mauseX = 0;
     }
 
-
-
     public void ControlCamera(PlayerCharacter p) {
         Game.getCamera()
                 ._position(

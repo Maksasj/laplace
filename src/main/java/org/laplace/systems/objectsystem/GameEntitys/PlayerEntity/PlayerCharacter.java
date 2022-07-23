@@ -46,7 +46,7 @@ public class PlayerCharacter extends GameEntity {
 
         rBorderShaderLoc = Game.getShaderManager().GetShaderLocation("basePixelated", "rBorder");
 
-        Game.GetEventHandler().addEvent(new PlayerMoveEvent(this));
+        this.setPos(new Jaylib.Vector3(this.x, 0.0f, this.y));
     }
 
     @Override
@@ -72,7 +72,6 @@ public class PlayerCharacter extends GameEntity {
             this.setModelOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f));
             this.setRotAxis(new Jaylib.Vector3(1.0f, 0.0f, 0.0f));
             this.setRot(270);
-
 
             GameScene.playerDied();
         }
@@ -219,7 +218,7 @@ public class PlayerCharacter extends GameEntity {
         }
 
         //Update mesh location
-        this.setPos(new Jaylib.Vector3(this.x*2, 0.0f, this.y*2));
+        this.setPos(new Jaylib.Vector3(this.x, 0.0f, this.y));
     }
 
     @Override

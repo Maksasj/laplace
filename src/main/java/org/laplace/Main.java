@@ -5,6 +5,5 @@ public class Main {
     public static void main(String[] args) {
         game = new Game();
         game.run();
-        game.close();
     }
 }

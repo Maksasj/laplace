@@ -14,22 +14,17 @@ import org.laplace.systems.texturemanager.TextureManager;
 import static com.raylib.Raylib.*;
 import static com.raylib.Raylib.CloseWindow;
 
-public class Game {
+public class Game extends SceneManager {
     private static int windowWidth = 1280;
     private static int windowHeight = 720;
 
     public static int pixelezationRate = 4;
     private static Raylib.Camera3D camera;
-    private boolean gameRunning;
     private static ModelManager modelManager;
     private static ShaderManager shaderManager;
     private static TextureManager textureManager;
 
     private static SoundManager soundManager;
-
-    private static ScenesGeneric activeScene;
-    private static ScenesGeneric gameScene;
-    private static ScenesGeneric mainmenuScene;
 
     private static EventHandler eventHandler;
 
@@ -41,26 +36,20 @@ public class Game {
         camera = new Raylib.Camera3D();
         SetCameraMode(camera, CAMERA_ORBITAL);
 
-        gameRunning = true;
-
         eventHandler = new EventHandler();
 
         shaderManager = new ShaderManager();
         modelManager = new ModelManager();
         textureManager = new TextureManager();
-
-        gameScene = new GameScene();
-        mainmenuScene = new MainMenu();
-
         soundManager = new SoundManager();
-        
-        Game.setActiveScene(Game.GetMainMenu());
+
+        this.CreateScenes();
     }
 
     public static void GameRestart() {
         gameScene = new GameScene();
 
-        Game.setActiveScene(GetMainMenu());
+        setActiveScene(GetMainMenu());
     }
 
     public static EventHandler GetEventHandler() {
@@ -77,35 +66,12 @@ public class Game {
         CloseWindow();
     }
 
-    public static ScenesGeneric GetMainMenu() {
-        return mainmenuScene;
-    }
-
-    public static ScenesGeneric GetGameScene() {
-        return gameScene;
-    }
-
-    public static void setActiveScene(ScenesGeneric value) {
-        activeScene = value;
-    }
-
     public static SoundManager getSoundManager() {
         return soundManager;
     }
 
     public static TextureManager getTextureManager() {
         return textureManager;
-    }
-    public void handleDrawing() {
-        activeScene.Draw();
-    }
-
-    public void setGameRunning(boolean value) {
-        gameRunning = value;
-    }
-
-    public void close() {
-        setGameRunning(false);
     }
 
     public static Raylib.Camera3D getCamera() {
@@ -118,10 +84,6 @@ public class Game {
 
     public static ShaderManager getShaderManager() {
         return shaderManager;
-    }
-
-    public Game getInstance() {
-        return this;
     }
 
     public static int getWindowWidth() {
