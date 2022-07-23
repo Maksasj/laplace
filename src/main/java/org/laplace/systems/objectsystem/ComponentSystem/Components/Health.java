@@ -1,7 +1,9 @@
 package org.laplace.systems.objectsystem.ComponentSystem.Components;
 
 import com.raylib.Jaylib;
+import org.laplace.Game;
 import org.laplace.scenes.gamescene.GameScene;
+import org.laplace.systems.eventsystem.EventTypes;
 import org.laplace.systems.objectsystem.ComponentSystem.Component;
 import org.laplace.systems.objectsystem.ComponentSystem.ComponentTypes;
 import org.laplace.systems.objectsystem.GameEntity;
@@ -28,6 +30,15 @@ public class Health extends Component {
             GameScene.pHealth = health;
             GameScene.pMaxHealth = maxhealth;
         }
+
+        if(health < maxhealth) {
+            Game.GetEventHandler().handleEvent(EventTypes.PLAYER_DEATH_EVENT);
+        }
+    }
+
+    @Override
+    public void Init() {
+
     }
 
     public int getHealth() {

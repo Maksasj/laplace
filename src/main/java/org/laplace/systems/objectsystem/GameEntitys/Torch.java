@@ -1,20 +1,19 @@
 package org.laplace.systems.objectsystem.GameEntitys;
 
 import com.raylib.Jaylib;
-import org.laplace.systems.objectsystem.ComponentSystem.Components.Health;
-import org.laplace.systems.objectsystem.ComponentSystem.Components.HealthBar;
-import org.laplace.systems.objectsystem.ComponentSystem.Components.LightSource;
-import org.laplace.systems.objectsystem.ComponentSystem.Components.Model3D;
+import org.laplace.systems.objectsystem.ComponentSystem.Components.*;
 import org.laplace.systems.objectsystem.GameEntity;
+import org.laplace.systems.objectsystem.GameEntityTypes;
 
 public class Torch extends GameEntity {
 
     public Torch(int x, int y) {
-        super("torch");
+        super("torch", GameEntityTypes.AMBIENT);
 
         this.x = x;
         this.y = y;
 
+        components.addComponent(new Positionable());
         components.addComponent(new Health(this, 20));
         components.addComponent(new LightSource(this, new Jaylib.Vector3(1.0f, 0.5f, 0.3f)));
         components.addComponent(

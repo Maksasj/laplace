@@ -5,5 +5,11 @@ public enum ComponentTypes {
     HEALTH,
     HEALTH_BAR,
     LIGHT_SOURCE,
-    MODEL3D
+    MODEL3D,
+    SOLID,
+    RBORDER,
+
+    BATTLEBLE,
+    POSITIONABLE,
+    PLAYER_WALK
 }

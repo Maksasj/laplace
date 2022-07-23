@@ -5,6 +5,7 @@ import org.apache.tools.ant.taskdefs.ManifestTask;
 import org.laplace.Game;
 import org.laplace.scenes.gamescene.GameScene;
 import org.laplace.systems.objectsystem.ComponentSystem.Component;
+import org.laplace.systems.objectsystem.ComponentSystem.ComponentBlock;
 import org.laplace.systems.objectsystem.ComponentSystem.ComponentTypes;
 import org.laplace.systems.objectsystem.GameEntity;
 import org.laplace.systems.renderer.lightsystem.Light;
@@ -13,10 +14,8 @@ public class Model3D extends Component {
     private String modelName;
     private GameEntity gameEntity;
 
-    public Jaylib.Vector3 pos = new Jaylib.Vector3(0.0f, 0.0f, 0.0f); //Graphic thing
-    public Jaylib.Vector3 offset = new Jaylib.Vector3(0.0f, 0.0f, 0.0f);
-    public Jaylib.Vector3 rotAxis = new Jaylib.Vector3(0.0f, 0.0f, 0.0f);
-    public float rot = 0.0f;
+    private Positionable positionable;
+
     public float modelScale = 1.0f;
 
     public Model3D(GameEntity gameEntity, String modelName) {
@@ -25,11 +24,21 @@ public class Model3D extends Component {
         this.gameEntity = gameEntity;
         this.modelName = modelName;
         this.Init();
+
+        AskDependencies(gameEntity.components);
+    }
+
+    @Override
+    public void AskDependencies(ComponentBlock dependencies) {
+        if(dependencies.components.containsKey(ComponentTypes.POSITIONABLE)) {
+            //throw new Exception("COMPONENT DEPENDENCIE MISSING");
+            positionable = (Positionable) dependencies.components.get(ComponentTypes.POSITIONABLE);
+        }
     }
 
     @Override
     public void Update() {
-        pos = new Jaylib.Vector3(gameEntity.x*2, 0, gameEntity.y*2);
+        positionable.pos = new Jaylib.Vector3(gameEntity.x*2, 0, gameEntity.y*2);
     }
 
     @Override
@@ -37,13 +46,13 @@ public class Model3D extends Component {
         Game.getModelManager().DrawModel(
                 modelName,
                 new Jaylib.Vector3(
-                        pos.x() + offset.x(),
-                        pos.y() + offset.y(),
-                        pos.z() + offset.z()
+                        positionable.pos.x() + positionable.offset.x(),
+                        positionable.pos.y() + positionable.offset.y(),
+                        positionable.pos.z() + positionable.offset.z()
                 ),
                 modelScale,
-                rotAxis,
-                rot
+                positionable.rotAxis,
+                positionable.rot
         );
     }
 
@@ -53,29 +62,29 @@ public class Model3D extends Component {
     }
 
     public Model3D setModelOffset(Jaylib.Vector3 value) {
-        offset = value;
+        positionable.offset = value;
         return this;
     }
 
     public Model3D setRotAxis(Jaylib.Vector3 value) {
-        rotAxis = value;
+        positionable.rotAxis = value;
         return this;
     }
 
     public Model3D setRot(float value) {
-        rot = value;
+        positionable.rot = value;
         return this;
     }
 
     public Jaylib.Vector3 getPos() {
-        return pos;
+        return positionable.pos;
     }
 
     public Jaylib.Vector3 getOffset() {
-        return offset;
+        return positionable.offset;
     }
 
     public Jaylib.Vector3 getRotAxis() {
-        return rotAxis;
+        return positionable.rotAxis;
     }
 }

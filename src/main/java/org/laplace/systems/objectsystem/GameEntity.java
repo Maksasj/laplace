@@ -1,30 +1,15 @@
 package org.laplace.systems.objectsystem;
 
-import com.raylib.Jaylib;
-import com.raylib.Raylib;
-import org.laplace.Game;
-import org.laplace.systems.objectsystem.ComponentSystem.Component;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.raylib.Jaylib.RAYWHITE;
+import javax.swing.text.html.parser.Entity;
 
 public class GameEntity extends GameObject {
+    private GameEntityTypes type;
     public int x = 0; //Relative to world cords
     public int y = 0; //Relative to world cords
-    private int damage = 0;
 
-    public GameEntity(String name) {
+    public GameEntity(String name, GameEntityTypes type) {
         super(name);
-    }
-
-    public void setDamage(int x) {
-        damage = x;
-    }
-
-    public int dealDamage() {
-        return damage;
+        this.type = type;
     }
 
     @Override
@@ -36,11 +21,8 @@ public class GameEntity extends GameObject {
     public void Draw() {
         components.drawComponents();
     }
-    public int getX() {
-        return x;
-    }
 
-    public int getY() {
-        return y;
+    public GameEntityTypes getType() {
+        return type;
     }
 }

@@ -17,11 +17,11 @@ import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 
 public class CameraControl extends Component {
-
-    private Model3D model;
+    private Positionable positionable;
     private boolean mauseHold;
     private float mauseX;
     private float prevMauseX;
+
     public PlayerCharacter player;
 
     public CameraControl(GameEntity gameEntity) {
@@ -34,8 +34,8 @@ public class CameraControl extends Component {
 
     @Override
     public void AskDependencies(ComponentBlock dependencies) {
-        if(dependencies.components.containsKey(ComponentTypes.MODEL3D)) {
-            model = (Model3D) dependencies.components.get(ComponentTypes.MODEL3D);
+        if(dependencies.components.containsKey(ComponentTypes.POSITIONABLE)) {
+            positionable = (Positionable) dependencies.components.get(ComponentTypes.POSITIONABLE);
         }
     }
 
@@ -44,19 +44,19 @@ public class CameraControl extends Component {
         Game.getCamera()
                 ._position(
                         new Jaylib.Vector3(
-                                (float) ((float) model.pos.x() - 7.0f*sin(mauseX)),
+                                (float) ((float) positionable.pos.x() - 7.0f*sin(mauseX)),
                                 5.0f, (float)
-                                ((float)  model.pos.z() - 7*cos(mauseX))))
-                .target(    new Jaylib.Vector3( model.pos.x(), 1.0f, (float)  model.pos.z()))
+                                ((float)  positionable.pos.z() - 7*cos(mauseX))))
+                .target(    new Jaylib.Vector3( positionable.pos.x(), 1.0f, (float)  positionable.pos.z()))
                 .up(        new Raylib.Vector3().x(0).y(1).z(0))
                 .fovy(45)
                 .projection(CAMERA_PERSPECTIVE);
 
         GameScene.setViewPos(
                 new Jaylib.Vector3(
-                        (float) ((float) model.pos.x()),
+                        (float) ((float) positionable.pos.x()),
                         2.0f,
-                        (float) ((float)  model.pos.z())));
+                        (float) ((float)  positionable.pos.z())));
 
         if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
             mauseHold = true;
