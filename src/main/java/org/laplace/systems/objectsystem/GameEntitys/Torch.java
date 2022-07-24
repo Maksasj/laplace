@@ -15,7 +15,8 @@ public class Torch extends GameEntity {
 
         components.addComponent(new Positionable());
         components.addComponent(new Health(this, 20));
-        components.addComponent(new LightSource(this, new Jaylib.Vector3(1.0f, 0.5f, 0.3f)));
+        components.addComponent(new Timer());
+        components.addComponent(new FireLightSource(this));
         components.addComponent(
                 new Model3D(this, "torch")
                         .setModelScale(0.015f)

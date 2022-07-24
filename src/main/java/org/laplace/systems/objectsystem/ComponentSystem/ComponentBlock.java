@@ -12,12 +12,16 @@ public class ComponentBlock {
         components.put(comp.GetType(), comp);
     }
 
+    public void deleteComponent(ComponentTypes type) {
+        components.get(type).Update();
+        components.put(type, null);
+    }
+
     public void updateComponents() {
         for (Component comp : components.values()) {
             comp.Update();
         }
     }
-
     public void drawComponents() {
         for (Component comp : components.values()) {
             comp.Draw();

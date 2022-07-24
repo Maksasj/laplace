@@ -31,7 +31,6 @@ public class Model3D extends Component {
     @Override
     public void AskDependencies(ComponentBlock dependencies) {
         if(dependencies.components.containsKey(ComponentTypes.POSITIONABLE)) {
-            //throw new Exception("COMPONENT DEPENDENCIE MISSING");
             positionable = (Positionable) dependencies.components.get(ComponentTypes.POSITIONABLE);
         }
     }

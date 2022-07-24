@@ -10,7 +10,6 @@ import org.laplace.systems.renderer.lightsystem.Light;
 public class LightSource extends Component {
     private GameEntity gameEntity;
     private Jaylib.Vector3 color;
-
     private int lightId;
 
     public LightSource(GameEntity gameEntity, Jaylib.Vector3 color) {

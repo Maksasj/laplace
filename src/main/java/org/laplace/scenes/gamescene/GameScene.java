@@ -5,7 +5,7 @@ import com.raylib.Raylib;
 import org.laplace.Dice.Dice;
 import org.laplace.Game;
 import org.laplace.scenes.ScenesGeneric;
-import org.laplace.systems.renderer.lightsystem.Light;
+import org.laplace.systems.objectsystem.ComponentSystem.Components.Timer;
 import org.laplace.systems.renderer.lightsystem.LightManager;
 import org.laplace.systems.worldsystem.GameWorld;
 
@@ -19,27 +19,18 @@ public class GameScene extends ScenesGeneric {
     private static Dice mainDice = new Dice();
     private static Dice leftDice = new Dice(0, -2.5f);
     private static Dice rightDice = new Dice(0, 2.5f);
-    private float iTime = 0; //For now iTime used only with rendering
-    private int shaderLoc;
-    private Texture texture;
-
     public GameWorld gameWorld;
-
     public static int pHealth = 1;
     public static int pMaxHealth = 1;
-
     private static boolean playerDied = false;
     private float playerDeathTint = 1.0f;
     private int shaderLocPlayerDeathTint;
-    private Font font;
-
     private int shaderLocViewPos;
     private static Jaylib.Vector3 viewPos = new Jaylib.Vector3(0.0f, 0.0f, 0.0f);
-
     private static LightManager lightManager;
 
     public GameScene() {
-        super(); //Parent constructor
+        super();
 
         lightManager = new LightManager("defaultLight");
 
@@ -48,14 +39,15 @@ public class GameScene extends ScenesGeneric {
                 Game.getWindowHeight() / Game.pixelezationRate);
 
         gameWorld = new GameWorld();
-        texture = LoadTexture("data/shaders/defaultBackground/tex.png");
-        shaderLoc = Game.getShaderManager().GetShaderLocation("defaultBackground", "iTime");
-        Game.getShaderManager().SetShaderValue("defaultBackground", "iTime", shaderLoc, iTime);
+
+        components.addComponent(new Timer("defaultBackground", "iTime"));
+
         shaderLocPlayerDeathTint = Game.getShaderManager().GetShaderLocation("basePixelated", "playertint");
         Game.getShaderManager().SetShaderValue("basePixelated", "playertint", shaderLocPlayerDeathTint, playerDeathTint);
+
         shaderLocViewPos = Game.getShaderManager().GetShaderLocation("defaultLight", "viewPos");
+
         Game.getShaderManager().SetShaderValueVec3("defaultLight", "viewPos", shaderLocViewPos, viewPos);
-        font = LoadFont("data/fonts/deathFont.ttf");
 
         lightManager.updateLights();
 
@@ -66,26 +58,6 @@ public class GameScene extends ScenesGeneric {
         return lightManager;
     }
 
-    public void ResetScene() {
-        playerDied = false;
-        mainDice = new Dice();
-        rightDice = new Dice(0, 2.5f);
-        leftDice = new Dice(0, -2.5f);
-
-        target = LoadRenderTexture(
-                Game.getWindowWidth() / Game.pixelezationRate,
-                Game.getWindowHeight() / Game.pixelezationRate);
-
-        pHealth = 1;
-        pMaxHealth = 1;
-
-        gameWorld = new GameWorld();
-
-        mainDice = new Dice();
-        leftDice = new Dice(0, -2.5f);
-        rightDice = new Dice(0, 2.5f);
-    }
-
     public static void setViewPos(Jaylib.Vector3 _viewPos) {
         viewPos = _viewPos;
     }
@@ -93,9 +65,7 @@ public class GameScene extends ScenesGeneric {
     @Override
     public void Update() {
         if(!playerDied) {
-            iTime += 0.01;
             gameWorld.Update();
-            Game.getShaderManager().SetShaderValue("defaultBackground", "iTime", shaderLoc, iTime);
             Game.getShaderManager().SetShaderValueVec3("defaultLight", "viewPos", shaderLocViewPos, viewPos);
         } else {
             if(playerDeathTint > 0.5f) {
@@ -103,13 +73,6 @@ public class GameScene extends ScenesGeneric {
             }
 
             Game.getShaderManager().SetShaderValue("basePixelated", "playertint", shaderLocPlayerDeathTint, playerDeathTint);
-
-            if(IsKeyPressed(32)) {
-                System.out.println("PRESSIGN SPACE");
-
-                ResetScene();
-                Game.GameRestart();
-            }
         }
     }
 
@@ -131,7 +94,7 @@ public class GameScene extends ScenesGeneric {
                 ClearBackground(RAYWHITE);
 
                 Game.getShaderManager().ActivateShader("defaultBackground");
-                    DrawTexture(texture, 0, 0, RAYWHITE);
+                    DrawTexture(Game.getTextureManager().GetTexture("background"), 0, 0, RAYWHITE);
                 Game.getShaderManager().DeactivateShader();
 
                 Game.getShaderManager().ActivateShader("defaultLight");
@@ -169,20 +132,6 @@ public class GameScene extends ScenesGeneric {
                         0.0f,
                         0.5f,
                         RAYWHITE);
-
-                Raylib.DrawText("STR",
-                        10,
-                        160,
-                        10,
-                        RAYWHITE);
-
-                Raylib.DrawText("DEF",
-                        290,
-                        160,
-                        10,
-                        RAYWHITE);
-
-
             EndTextureMode();
 
 
@@ -205,16 +154,11 @@ public class GameScene extends ScenesGeneric {
                             new Jaylib.Vector2(0.0f, 0.0f),
                             0,
                             RAYWHITE);
-
-
-
-
                 Game.getShaderManager().DeactivateShader();
-                DrawFPS(20, 20);
-
+                
                 if(playerDied) {
                     DrawTextEx(
-                            font,
+                            Game.GetFontManager().GetFont("playerDeath"),
                             "YOU DIED",
                             new Jaylib.Vector2(350.0f, 120.0f),
                             250,
@@ -235,8 +179,5 @@ public class GameScene extends ScenesGeneric {
                 }
 
         EndDrawing();
-    }
-    public static void playerDied() {
-        playerDied = true;
     }
 }

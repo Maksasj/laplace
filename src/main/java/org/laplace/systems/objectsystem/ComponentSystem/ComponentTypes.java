@@ -11,5 +11,8 @@ public enum ComponentTypes {
     BATTLEBLE,
     POSITIONABLE,
     PLAYER_WALK,
-    DAMAGE_DEALER
+    DAMAGE_DEALER,
+    CAMERA,
+    TIMER,
+    RENDER_TARGET
 }

@@ -9,14 +9,11 @@ import static com.raylib.Raylib.*;
 
 public class LightManager {
     final int maxLightCount = 16;
-
     private int lightCountUniform;
-
     private int[] lightsPosUniforms = new int[maxLightCount];
     private int[] lightsColorUniforms = new int[maxLightCount];
     private Light[] lights = new Light[maxLightCount];
     private float lightCount = 0;
-
     private String shaderName;
 
     public LightManager(String shaderName) {

@@ -4,42 +4,29 @@ import com.raylib.Jaylib;
 import com.raylib.Raylib;
 import org.laplace.Game;
 import org.laplace.scenes.ScenesGeneric;
+import org.laplace.systems.objectsystem.ComponentSystem.ComponentTypes;
+import org.laplace.systems.objectsystem.ComponentSystem.Components.CameraComponent;
+import org.laplace.systems.objectsystem.ComponentSystem.Components.CameraControl;
+import org.laplace.systems.objectsystem.ComponentSystem.Components.RenderTarget;
+import org.laplace.systems.objectsystem.ComponentSystem.Components.Timer;
 
 import static com.raylib.Jaylib.RAYWHITE;
 import static com.raylib.Raylib.*;
 import static com.raylib.Raylib.EndDrawing;
 
 public class MainMenu extends ScenesGeneric {
-    private RenderTexture target;
-
-    public Raylib.Camera3D camera;
-    private Texture texture;
-
-    private float iTime = 0; //For now iTime used only with rendering
-    private int shaderLoc;
-
-    public int cubicSpin = 0;
-
     public MainMenu() {
         super(); //Parent constructor
 
-        camera = new Raylib.Camera3D()
-                ._position( new Jaylib.Vector3( 9.0f, 0.0f,  0.0f))
-                .target(    new Jaylib.Vector3(0.0f, 0.0f, 0.0f))
-                .up(        new Raylib.Vector3().x(0.0f).y(1.0f).z(0.0f))
-                .fovy(45)
-                .projection(CAMERA_PERSPECTIVE);
-
-        SetCameraMode(camera, CAMERA_CUSTOM);
-
-        texture = LoadTexture("data/shaders/defaultBackground/tex.png");
-
-        target = LoadRenderTexture(
-                Game.getWindowWidth() / Game.pixelezationRate,
-                Game.getWindowHeight() / Game.pixelezationRate);
-
-        shaderLoc = Game.getShaderManager().GetShaderLocation("defaultBackground", "iTime");
-        Game.getShaderManager().SetShaderValue("defaultBackground", "iTime", shaderLoc, iTime);
+        components.addComponent(new RenderTarget());
+        components.addComponent(new CameraComponent()
+                .SetPosition(new Jaylib.Vector3( 9.0f, 0.0f,  0.0f))
+                .SetTarget(new Jaylib.Vector3(0.0f, 0.0f, 0.0f))
+                .SetUp(new Jaylib.Vector3(0.0f, 1.0f, 0.0f))
+                .SetFovy(45)
+                .SetProjection(CAMERA_PERSPECTIVE)
+                .SetCameraCompMode(CAMERA_CUSTOM));
+        components.addComponent(new Timer("defaultBackground", "iTime"));
     }
 
     @Override
@@ -48,66 +35,34 @@ public class MainMenu extends ScenesGeneric {
             Game.setActiveScene(Game.GetGameScene());
         }
 
-        iTime += 0.01;
-        Game.getShaderManager().SetShaderValue("defaultBackground", "iTime", shaderLoc, iTime);
         UpdateCamera(Game.getCamera());
-
-        cubicSpin++;
+        components.updateComponents();
     }
 
     @Override
     public void Draw() {
-            BeginTextureMode(target);
+        components.drawComponents();
+            BeginTextureMode(((RenderTarget) components.components.get(ComponentTypes.RENDER_TARGET)).GetTarget());
                 ClearBackground(RAYWHITE);
 
                 Game.getShaderManager().ActivateShader("defaultBackground");
-                    DrawTexture(texture, 0, 0, RAYWHITE);
+                    DrawTexture(Game.getTextureManager().GetTexture("background"), 0, 0, RAYWHITE);
                 Game.getShaderManager().DeactivateShader();
 
                 Game.getShaderManager().ActivateShader("defaultLight");
-                    BeginMode3D(camera);
-                        camera.
-                            _position( new Jaylib.Vector3( 9.0f, 0.0f,  0.0f))
-                            .target(    new Jaylib.Vector3(0.0f, 0.0f, 0.0f))
-                            .up(        new Raylib.Vector3().x(0.0f).y(1.0f).z(0.0f))
-                            .fovy(45)
-                            .projection(CAMERA_PERSPECTIVE);
-
-                        Game.getModelManager().DrawModel(
-                                "dice6",
-                                new Jaylib.Vector3(
-                                        0,
-                                        -1.5f,
-                                        -3
-                                ),
-                                1.25f,
-                                new Jaylib.Vector3(1.0f, 1.0f, 1.0f),
-                                cubicSpin
-                        );
-
-                        Game.getModelManager().DrawModel(
-                                "player",
-                                new Jaylib.Vector3(
-                                        4,
-                                        -3.25f,
-                                        3.25f
-                                ),
-                                1.0f,
-                                new Jaylib.Vector3(-1.0f, 1.0f, 1.0f),
-                                150
-                        );
-
+                    BeginMode3D(((CameraComponent) components.components.get(ComponentTypes.CAMERA)).GetCamera());
+                        Game.getModelManager().DrawModel("dice6",new Jaylib.Vector3(0,-1.5f,-3),1.25f,new Jaylib.Vector3(1.0f, 1.0f, 1.0f),
+                                ((Timer) components.components.get(ComponentTypes.TIMER)).GetTime() );
+                        Game.getModelManager().DrawModel("player",new Jaylib.Vector3(4,-3.25f,3.25f),1.0f,new Jaylib.Vector3(-1.0f, 1.0f, 1.0f),150);
                     EndMode3D();
                 Game.getShaderManager().DeactivateShader();
-
             EndTextureMode();
 
             BeginDrawing();
                 Game.getShaderManager().ActivateShader("basePixelated"); // Render generated texture using selected postprocessing shader
-                SetTextureWrap(target.texture(), 1);
 
                 DrawTexturePro(
-                        target.texture(),
+                        ((RenderTarget) components.components.get(ComponentTypes.RENDER_TARGET)).GetTarget().texture(),
                         new Jaylib.Rectangle(
                                 0,
                                 0,
@@ -121,8 +76,6 @@ public class MainMenu extends ScenesGeneric {
                         new Jaylib.Vector2(0.0f, 0.0f),
                         0,
                         RAYWHITE);
-
-
             Game.getShaderManager().DeactivateShader();
         EndDrawing();
     }

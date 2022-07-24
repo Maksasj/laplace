@@ -21,6 +21,13 @@ public class rBorder extends Component {
     }
 
     @Override
+    public void AskDependencies(ComponentBlock dependencies) {
+        if(dependencies.components.containsKey(ComponentTypes.BATTLEBLE)) {
+            battleble = (Battleble) dependencies.components.get(ComponentTypes.BATTLEBLE);
+        }
+    }
+
+    @Override
     public void Update() {
         if(!battleble.GetBattleMode() && rBorder > 0.0) {
             rBorder -= 0.01;
@@ -31,13 +38,6 @@ public class rBorder extends Component {
         if(battleble.GetBattleMode() && rBorder < 0.3) {
             rBorder += 0.05;
             Game.getShaderManager().SetShaderValue("basePixelated", "rBorder", rBorderShaderLoc, rBorder);
-        }
-    }
-
-    @Override
-    public void AskDependencies(ComponentBlock dependencies) {
-        if(dependencies.components.containsKey(ComponentTypes.BATTLEBLE)) {
-            battleble = (Battleble) dependencies.components.get(ComponentTypes.BATTLEBLE);
         }
     }
 
