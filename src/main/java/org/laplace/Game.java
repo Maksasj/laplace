@@ -6,6 +6,7 @@ import org.laplace.scenes.gamescene.GameScene;
 import org.laplace.scenes.mainmenu.MainMenu;
 import org.laplace.systems.eventsystem.EventHandler;
 import org.laplace.systems.eventsystem.events.PlayerMoveEvent;
+import org.laplace.systems.fontmanager.FontManager;
 import org.laplace.systems.modelmanager.ModelManager;
 import org.laplace.systems.renderer.shadermanager.ShaderManager;
 import org.laplace.systems.soundmanager.SoundManager;
@@ -28,6 +29,8 @@ public class Game extends SceneManager {
 
     private static EventHandler eventHandler;
 
+    private static FontManager fontManager;
+
     //Game constructor
     public Game() {
         InitWindow(windowWidth, windowHeight, "Laplace");
@@ -42,6 +45,7 @@ public class Game extends SceneManager {
         modelManager = new ModelManager();
         textureManager = new TextureManager();
         soundManager = new SoundManager();
+        fontManager = new FontManager();
 
         this.CreateScenes();
     }
@@ -50,6 +54,10 @@ public class Game extends SceneManager {
         gameScene = new GameScene();
 
         setActiveScene(GetMainMenu());
+    }
+
+    public static FontManager GetFontManager() {
+        return fontManager;
     }
 
     public static EventHandler GetEventHandler() {

@@ -1,22 +1,27 @@
 package org.laplace.systems.objectsystem.GameEntitys;
 
 import com.raylib.Jaylib;
+import org.laplace.systems.objectsystem.ComponentSystem.Components.Health;
+import org.laplace.systems.objectsystem.ComponentSystem.Components.Model3D;
+import org.laplace.systems.objectsystem.ComponentSystem.Components.Positionable;
 import org.laplace.systems.objectsystem.GameEntity;
+import org.laplace.systems.objectsystem.GameEntityTypes;
 
 public class Door extends GameEntity {
 
     public Door(int x, int y) {
-        super("door");
-        setHealth(20, 20);
+        super("door", GameEntityTypes.AMBIENT);
 
         this.x = x;
         this.y = y;
 
-        this.setModelScale(0.4f);
-        this.setModelOffset(new Jaylib.Vector3(0.0f, 0.0f,0.0f));
-        this.setRotAxis(new Jaylib.Vector3(0.0f, 0.0f, 0.0f));
-        this.setRot(0);
-
-        this.setPos(new Jaylib.Vector3(this.x, 0.0f, this.y));
+        components.addComponent(new Positionable());
+        components.addComponent(new Health(this, 20));
+        components.addComponent(
+                new Model3D(this, "door")
+                        .setModelScale(0.4f)
+                        .setModelOffset(new Jaylib.Vector3(0.0f, 0.0f,0.0f))
+                        .setRotAxis(new Jaylib.Vector3(0.0f, 0.0f, 0.0f))
+                        .setRot(0));
     }
 }

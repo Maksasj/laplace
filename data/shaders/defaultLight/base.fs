@@ -18,6 +18,10 @@ uniform vec3 lightColor[16];
 
 out vec4 finalColor;
 
+float lightStrength(int i) {
+    return (1.0 / length(lightPos[i] - fragPosition) * 8);
+}
+
 void main() {
     vec4 texelColor = texture(texture0, fragTexCoord);
     vec3 lightDot = vec3(0.0);
@@ -25,21 +29,17 @@ void main() {
     vec3 viewD = normalize(viewPos - fragPosition);
     vec3 specular = vec3(0.0);
 
-    float ambientLight = 0.8;
-
-    //Light test = Light(lightPos[0], vec4(lightColor[0].rgb, 1.0));
+    float ambientLight = 0.5;
 
     for (int i = 0; i < lightCount; i++) {
-        vec3 Llight = vec3(0.0);
-
-        Llight = normalize(lightPos[i] - fragPosition);
+        vec3 Llight = normalize(lightPos[i] - fragPosition);
 
         float NdotL = max(dot(normal, Llight), 0.0);
-        lightDot += lightColor[i].rgb*NdotL;
+        lightDot += (lightColor[i].rgb*NdotL) * lightStrength(i);
 
-        float specCo = 0.0;
-        if (NdotL > 0.0) specCo = pow(max(0.0, dot(viewD, reflect(-(Llight), normal))), 16.0); // Shine: 16.0
-        specular += specCo;
+        //float specCo = 0.0;
+        //if (NdotL > 0.0) specCo = pow(max(0.0, dot(viewD, reflect(-(Llight), normal))), 16.0); // Shine: 16.0
+        //specular += specCo;
     }
 
     finalColor = (texelColor*((colDiffuse + vec4(specular,1))*vec4(lightDot, 1.0)));

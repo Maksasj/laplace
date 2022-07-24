@@ -18,3 +18,4 @@ Rogue like fantasy game with elements of luck, based on dice throw. Made by two 
 - [ ] Complete gameplay
   - [ ] Fight system
   - [ ] Powerup system
+  - [x] Component system
