@@ -11,7 +11,7 @@ Rogue like fantasy game with elements of luck, based on dice throw. Made by two 
     - [ ] Floors with different graphics style
     - [ ] Difference room style
 - [ ] Improve graphics style
-  - [ ] Light system
+  - [x] Light system
   - [ ] Shadow casting
   - [ ] Model animations
   - [ ] Smooth mesh movement
