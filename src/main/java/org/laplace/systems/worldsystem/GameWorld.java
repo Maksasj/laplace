@@ -248,6 +248,7 @@ public class GameWorld {
 
         chunks[0][0].CreatePlayer(1, 1);
         chunks[0][0].CreateTorch(3, 3);
+        chunks[0][0].CreateChest(4, 3);
 
         chunks[0][0].RoomCleared(0, 0, chunks);
     }

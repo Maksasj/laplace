@@ -8,6 +8,7 @@ import org.laplace.systems.objectsystem.ComponentSystem.Component;
 import org.laplace.systems.objectsystem.ComponentSystem.ComponentBlock;
 import org.laplace.systems.objectsystem.ComponentSystem.ComponentTypes;
 import org.laplace.systems.objectsystem.GameEntity;
+import org.laplace.systems.objectsystem.GameEntityTypes;
 import org.laplace.systems.objectsystem.GameEntitys.PlayerEntity.PlayerCharacter;
 import org.laplace.systems.renderer.lightsystem.Light;
 import org.laplace.systems.worldsystem.GameWorld;
@@ -44,6 +45,11 @@ public class PlayerWalk extends Component {
                         GameWorld.TranlocateEntity(player, player.x, player.y, player.x - 1, player.y);
                         player.x -= 1;
                         walkCd = true;
+                    } else {
+                        Game.GetEventHandler().handleEvent(EventTypes.PLAYER_ENTITY_COLLISION);
+
+                        GameEntityTypes gameEntityType = GameWorld.getEntity(player.x - 1, player.y).getType();
+                        MatchEnityTypeCollision(gameEntityType);
                     }
                 } else {
                     Game.GetEventHandler().handleEvent(EventTypes.PLAYER_WALL_COLLISION);
@@ -57,6 +63,11 @@ public class PlayerWalk extends Component {
                         GameWorld.TranlocateEntity(player, player.x, player.y, player.x + 1, player.y);
                         player.x += 1;
                         walkCd = true;
+                    } else {
+                        Game.GetEventHandler().handleEvent(EventTypes.PLAYER_ENTITY_COLLISION);
+
+                        GameEntityTypes gameEntityType = GameWorld.getEntity(player.x + 1, player.y).getType();
+                        MatchEnityTypeCollision(gameEntityType);
                     }
                 } else {
                     Game.GetEventHandler().handleEvent(EventTypes.PLAYER_WALL_COLLISION);
@@ -70,6 +81,11 @@ public class PlayerWalk extends Component {
                         GameWorld.TranlocateEntity(player, player.x, player.y, player.x, player.y + 1);
                         player.y += 1;
                         walkCd = true;
+                    } else {
+                        Game.GetEventHandler().handleEvent(EventTypes.PLAYER_ENTITY_COLLISION);
+
+                        GameEntityTypes gameEntityType = GameWorld.getEntity(player.x, player.y + 1).getType();
+                        MatchEnityTypeCollision(gameEntityType);
                     }
                 } else {
                     Game.GetEventHandler().handleEvent(EventTypes.PLAYER_WALL_COLLISION);
@@ -83,6 +99,11 @@ public class PlayerWalk extends Component {
                         GameWorld.TranlocateEntity(player, player.x, player.y, player.x, player.y - 1);
                         player.y -= 1;
                         walkCd = true;
+                    } else {
+                        Game.GetEventHandler().handleEvent(EventTypes.PLAYER_ENTITY_COLLISION);
+
+                        GameEntityTypes gameEntityType = GameWorld.getEntity(player.x, player.y - 1).getType();
+                        MatchEnityTypeCollision(gameEntityType);
                     }
                 } else {
                     Game.GetEventHandler().handleEvent(EventTypes.PLAYER_WALL_COLLISION);
@@ -90,6 +111,25 @@ public class PlayerWalk extends Component {
             }
         } else {
             walkCd = false;
+        }
+    }
+
+    public void MatchEnityTypeCollision(GameEntityTypes gameEntityType) {
+        switch (gameEntityType) {
+            case HOSTILE:
+                Game.GetEventHandler().handleEvent(EventTypes.PLAYER_HOSTILE_ENTITY_COLLISION);
+                break;
+            case AMBIENT:
+                Game.GetEventHandler().handleEvent(EventTypes.PLAYER_AMBIENT_ENTITY_COLLISION);
+                break;
+            case CHEST:
+                Game.GetEventHandler().handleEvent(EventTypes.PLAYER_CHEST_ENTITY_COLLISION);
+                break;
+            case PLAYER:
+                Game.GetEventHandler().handleEvent(EventTypes.PLAYER_PLAYER_ENTITY_COLLISION);
+                break;
+            default:
+                Game.GetEventHandler().handleEvent(EventTypes.PLAYER_UNKNOWN_ENTITY_COLLISION);
         }
     }
 }
