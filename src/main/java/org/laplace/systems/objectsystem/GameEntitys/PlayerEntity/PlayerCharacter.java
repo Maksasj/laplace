@@ -31,6 +31,7 @@ public class PlayerCharacter extends GameEntity {
         Game.GetEventHandler().addEvent(new PlayerBattleListener(this));
         Game.GetEventHandler().addEvent(new PlayerDeathListener(this));
         Game.GetEventHandler().addEvent(new PlayerRotateListener(this));
+        Game.GetEventHandler().addEvent(new PlayerChestCollisionListener(this));
     }
 
     @Override
