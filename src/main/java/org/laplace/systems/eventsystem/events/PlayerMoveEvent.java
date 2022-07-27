@@ -16,7 +16,4 @@ public class PlayerMoveEvent extends GameEvent {
         this.player = player;
         eventType = PLAYER_MOVE_EVENT;
     }
-
-    @Override
-    public void onEvent() { }
 }

@@ -15,7 +15,4 @@ public class PlayerBattleEvent extends GameEvent {
         this.player = player;
         eventType = EventTypes.PLAYER_BATTLE_EVENT;
     }
-
-    @Override
-    public void onEvent() { }
 }

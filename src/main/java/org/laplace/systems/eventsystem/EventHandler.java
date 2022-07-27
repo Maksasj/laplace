@@ -9,10 +9,10 @@ public class EventHandler {
 
     List<GameEvent> eventListeners = new ArrayList<GameEvent>();
 
-    public void handleEvent(EventTypes eventType) {
+    public void handleEvent(EventTypes eventType, EventDataGeneric eventData) {
         for (GameEvent event : eventListeners) {
             if(event.eventType.equals(eventType)) {
-                event.onEvent();
+                event.onEvent(eventData);
             }
         }
     }

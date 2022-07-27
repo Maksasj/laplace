@@ -10,7 +10,4 @@ public class PlayerUnknownEntityCollision extends GameEvent {
     public PlayerUnknownEntityCollision() {
         eventType = EventTypes.PLAYER_UNKNOWN_ENTITY_COLLISION;
     }
-
-    @Override
-    public void onEvent() { }
 }

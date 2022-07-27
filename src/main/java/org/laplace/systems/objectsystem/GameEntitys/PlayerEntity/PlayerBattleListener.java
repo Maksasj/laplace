@@ -2,6 +2,7 @@ package org.laplace.systems.objectsystem.GameEntitys.PlayerEntity;
 
 import org.laplace.Game;
 import org.laplace.scenes.gamescene.GameScene;
+import org.laplace.systems.eventsystem.EventDataGeneric;
 import org.laplace.systems.eventsystem.EventTypes;
 import org.laplace.systems.eventsystem.events.PlayerBattleEvent;
 import org.laplace.systems.objectsystem.ComponentSystem.ComponentTypes;
@@ -29,13 +30,13 @@ public class PlayerBattleListener extends PlayerBattleEvent {
             battleble.SetBattleMode(true);
             battleCd = 0;
 
-            Game.GetEventHandler().handleEvent(EventTypes.PLAYER_START_BATTLE_EVENT);
+            Game.GetEventHandler().handleEvent(EventTypes.PLAYER_START_BATTLE_EVENT, new EventDataGeneric());
         }
 
         //Battle logic
         if(battleble.GetBattleMode()) {
             if(battleCd <= 1) {
-                Game.GetEventHandler().handleEvent(EventTypes.PLAYER_THROWING_COMBAT_DICES);
+                Game.GetEventHandler().handleEvent(EventTypes.PLAYER_THROWING_COMBAT_DICES, new EventDataGeneric());
 
                 rValue = GameScene.getRightDice().ThrowDice(6);
                 lValue = GameScene.getLeftDice().ThrowDice(6);

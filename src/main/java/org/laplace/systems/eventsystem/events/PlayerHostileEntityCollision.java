@@ -10,7 +10,4 @@ public class PlayerHostileEntityCollision extends GameEvent {
     public PlayerHostileEntityCollision() {
         eventType = EventTypes.PLAYER_HOSTILE_ENTITY_COLLISION;
     }
-
-    @Override
-    public void onEvent() { }
 }

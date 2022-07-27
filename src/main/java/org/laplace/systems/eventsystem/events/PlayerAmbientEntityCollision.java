@@ -10,7 +10,4 @@ public class PlayerAmbientEntityCollision extends GameEvent {
     public PlayerAmbientEntityCollision() {
         eventType = EventTypes.PLAYER_AMBIENT_ENTITY_COLLISION;
     }
-
-    @Override
-    public void onEvent() { }
 }

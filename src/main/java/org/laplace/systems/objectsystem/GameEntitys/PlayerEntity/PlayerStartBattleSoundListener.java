@@ -10,3 +10,7 @@ public class PlayerStartBattleSoundListener extends PlayerDeathEvent {
         Game.getSoundManager().PlaySound("battlebeggining", 0.2f);
     }
 }
+
+//=====================================================================
+//Todo implement proper EventData passing to all listeners and events !
+//=====================================================================
