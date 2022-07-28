@@ -1,5 +1,6 @@
 package org.laplace.systems.objectsystem.GameEntitys.PlayerEntity;
 
+import org.laplace.systems.eventsystem.eventdata.PlayerDeathData;
 import org.laplace.systems.eventsystem.events.PlayerDeathEvent;
 
 public class PlayerDeathListener extends PlayerDeathEvent {
@@ -11,7 +12,7 @@ public class PlayerDeathListener extends PlayerDeathEvent {
     }
 
     @Override
-    public void onEvent() {
+    public void onEvent(PlayerDeathData event) {
         System.out.println("Player should be dead");
     }
 }

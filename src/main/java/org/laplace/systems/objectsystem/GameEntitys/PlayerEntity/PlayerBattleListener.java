@@ -4,6 +4,7 @@ import org.laplace.Game;
 import org.laplace.scenes.gamescene.GameScene;
 import org.laplace.systems.eventsystem.EventDataGeneric;
 import org.laplace.systems.eventsystem.EventTypes;
+import org.laplace.systems.eventsystem.eventdata.PlayerBattleData;
 import org.laplace.systems.eventsystem.events.PlayerBattleEvent;
 import org.laplace.systems.objectsystem.ComponentSystem.ComponentTypes;
 import org.laplace.systems.objectsystem.ComponentSystem.Components.Battleble;
@@ -25,7 +26,7 @@ public class PlayerBattleListener extends PlayerBattleEvent {
     }
 
     @Override
-    public void onEvent() {
+    public void onEvent(PlayerBattleData event) {
         if(!battleble.GetBattleMode()) {
             battleble.SetBattleMode(true);
             battleCd = 0;

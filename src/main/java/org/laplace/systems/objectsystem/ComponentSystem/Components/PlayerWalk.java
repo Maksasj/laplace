@@ -5,6 +5,8 @@ import org.laplace.Game;
 import org.laplace.scenes.gamescene.GameScene;
 import org.laplace.systems.eventsystem.EventDataGeneric;
 import org.laplace.systems.eventsystem.EventTypes;
+import org.laplace.systems.eventsystem.eventdata.PlayerChestEntityCollisionData;
+import org.laplace.systems.eventsystem.eventdata.PlayerMoveData;
 import org.laplace.systems.objectsystem.ComponentSystem.Component;
 import org.laplace.systems.objectsystem.ComponentSystem.ComponentBlock;
 import org.laplace.systems.objectsystem.ComponentSystem.ComponentTypes;
@@ -40,7 +42,7 @@ public class PlayerWalk extends Component {
         //Walking Cd
         if(!walkCd && !battleble.GetBattleMode()) {
             if(IsKeyPressed(68)) { //W
-                Game.GetEventHandler().handleEvent(EventTypes.PLAYER_MOVE_EVENT, new EventDataGeneric());
+                Game.GetEventHandler().handleEvent(EventTypes.PLAYER_MOVE_EVENT, new PlayerMoveData());
                 if(!GameWorld.ChechIfWall(player.x - 1, player.y)) {
                     if(GameWorld.getEntity(player.x - 1, player.y) == null) {
                         GameWorld.TranlocateEntity(player, player.x, player.y, player.x - 1, player.y);
@@ -58,7 +60,7 @@ public class PlayerWalk extends Component {
             }
 
             if(IsKeyPressed(65)) { //S
-                Game.GetEventHandler().handleEvent(EventTypes.PLAYER_MOVE_EVENT, new EventDataGeneric());
+                Game.GetEventHandler().handleEvent(EventTypes.PLAYER_MOVE_EVENT, new PlayerMoveData());
                 if(!GameWorld.ChechIfWall(player.x + 1, player.y)) {
                     if(GameWorld.getEntity(player.x + 1, player.y) == null) {
                         GameWorld.TranlocateEntity(player, player.x, player.y, player.x + 1, player.y);
@@ -76,7 +78,7 @@ public class PlayerWalk extends Component {
             }
 
             if(IsKeyPressed(87)) { //D
-                Game.GetEventHandler().handleEvent(EventTypes.PLAYER_MOVE_EVENT, new EventDataGeneric());
+                Game.GetEventHandler().handleEvent(EventTypes.PLAYER_MOVE_EVENT, new PlayerMoveData());
                 if(!GameWorld.ChechIfWall(player.x, player.y + 1)) {
                     if(GameWorld.getEntity(player.x, player.y + 1) == null) {
                         GameWorld.TranlocateEntity(player, player.x, player.y, player.x, player.y + 1);
@@ -94,7 +96,7 @@ public class PlayerWalk extends Component {
             }
 
             if(IsKeyPressed(83)) { //A
-                Game.GetEventHandler().handleEvent(EventTypes.PLAYER_MOVE_EVENT, new EventDataGeneric());
+                Game.GetEventHandler().handleEvent(EventTypes.PLAYER_MOVE_EVENT, new PlayerMoveData());
                 if(!GameWorld.ChechIfWall(player.x, player.y - 1)) {
                     if(GameWorld.getEntity(player.x, player.y - 1) == null) {
                         GameWorld.TranlocateEntity(player, player.x, player.y, player.x, player.y - 1);
@@ -124,7 +126,7 @@ public class PlayerWalk extends Component {
                 Game.GetEventHandler().handleEvent(EventTypes.PLAYER_AMBIENT_ENTITY_COLLISION, new EventDataGeneric());
                 break;
             case CHEST:
-                Game.GetEventHandler().handleEvent(EventTypes.PLAYER_CHEST_ENTITY_COLLISION, new EventDataGeneric());
+                Game.GetEventHandler().handleEvent(EventTypes.PLAYER_CHEST_ENTITY_COLLISION, new PlayerChestEntityCollisionData());
                 break;
             case PLAYER:
                 Game.GetEventHandler().handleEvent(EventTypes.PLAYER_PLAYER_ENTITY_COLLISION, new EventDataGeneric());

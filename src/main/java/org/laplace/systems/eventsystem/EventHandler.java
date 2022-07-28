@@ -12,7 +12,7 @@ public class EventHandler {
     public void handleEvent(EventTypes eventType, EventDataGeneric eventData) {
         for (GameEvent event : eventListeners) {
             if(event.eventType.equals(eventType)) {
-                event.onEvent(eventData);
+                event.castEvent(eventData);
             }
         }
     }

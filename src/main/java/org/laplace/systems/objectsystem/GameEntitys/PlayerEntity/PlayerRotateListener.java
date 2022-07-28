@@ -2,6 +2,7 @@ package org.laplace.systems.objectsystem.GameEntitys.PlayerEntity;
 
 import com.raylib.Jaylib;
 import org.laplace.Game;
+import org.laplace.systems.eventsystem.eventdata.PlayerMoveData;
 import org.laplace.systems.eventsystem.events.PlayerMoveEvent;
 import org.laplace.systems.objectsystem.ComponentSystem.ComponentTypes;
 import org.laplace.systems.objectsystem.ComponentSystem.Components.Positionable;
@@ -20,7 +21,7 @@ public class PlayerRotateListener extends PlayerMoveEvent {
     }
 
     @Override
-    public void onEvent() {
+    public void onEvent(PlayerMoveData event) {
         if(IsKeyPressed(68)) { //W
             ((Positionable) player.components.components.get(ComponentTypes.POSITIONABLE))
                     .setOffset(new Jaylib.Vector3(0.2f, 0.3f,0.2f));

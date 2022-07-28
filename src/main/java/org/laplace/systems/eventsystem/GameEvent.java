@@ -4,4 +4,6 @@ public class GameEvent {
     public EventTypes eventType;
 
     public void onEvent(EventDataGeneric eventData) {}
+
+    public void castEvent(EventDataGeneric event) {}
 }
